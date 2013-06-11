@@ -26,6 +26,9 @@ set autoread
 let mapleader = ","
 let g:mapleader = ","
 
+" Can be typed even faster than jj.
+:imap jj <Esc>
+
 " Fast saving
 nmap <leader>w :w!<cr>
 
@@ -164,6 +167,8 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+:autocmd InsertEnter,InsertLeave * set cul!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FuzzyFinder
