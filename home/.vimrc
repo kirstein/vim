@@ -11,6 +11,9 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Save on focus lost
+:au FocusLost * :wa
+
 " Sets how many lines of history VIM has to remember
 set history=700
 
@@ -168,9 +171,12 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" Replace highlight line when insert and vice versa
 :autocmd InsertEnter,InsertLeave * set cul!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FuzzyFinder
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>f :FufFile **/<CR>
+
+
