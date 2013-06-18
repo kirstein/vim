@@ -9,7 +9,4 @@
 	url = https://github.com/vim-scripts/L9.git
 [submodule "home/.vim/bundle/vim-surround"]
 	path = home/.vim/bundle/vim-surround
-	url = git://github.com/tpope/vim-surround.git
-[submodule "home/.vim/bundle/nerd-commenter"]
-	path = home/.vim/bundle/nerd-commenter
-	url = https://github.com/vim-scripts/The-NERD-Commenter.git
+	url = https://github.com/tpope/vim-surround.git
