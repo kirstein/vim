@@ -13,3 +13,9 @@
 [submodule "home/.vim/bundle/nerdcommenter"]
 	path = home/.vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "home/.vim/bundle/hardmode"]
+	path = home/.vim/bundle/hardmode
+	url = https://github.com/wikitopian/hardmode.git
+[submodule "home/.vim/bundle/jshint"]
+	path = home/.vim/bundle/jshint
+	url = https://github.com/wookiehangover/jshint.vim.git

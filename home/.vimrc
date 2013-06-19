@@ -11,6 +11,23 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Easy window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" wraped lines
+nnoremap j gj
+nnoremap k gk
+
+" Remap ; :, save some time
+nnoremap ; :
+nnoremap : ;
+
+" Toggle f2 as paste mode
+set pastetoggle=<F2>
+
 " Save on focus lost
 :au FocusLost * :wa
 
@@ -162,9 +179,6 @@ map k gk
 map <space> /
 map <c-space> ?
 
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
-
 " Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -181,13 +195,11 @@ map <leader>f :FufFile **/<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Hardcore vim
+" => hardcore vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Relative line numbers
@@ -195,3 +207,17 @@ noremap <Right> <NOP>
 
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" List char
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
+" Colors for chars
+"Invisible character colors
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
