@@ -180,3 +180,18 @@ map <C-l> <C-W>l
 map <leader>f :FufFile **/<CR>
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Hardcore vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Relative line numbers
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
