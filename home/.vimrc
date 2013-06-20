@@ -191,7 +191,20 @@ map <C-l> <C-W>l
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FuzzyFinder
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>f :FufFile **/<CR>
+nnoremap <C-t> :FufFileWithFullCwd<CR>
+"FuzzyFinder should ignore all files in .gitignore
+let ignorefile = ".gitignore"
+if filereadable(ignorefile)
+
+  let ignore = '\v\~$'
+  for line in readfile(ignorefile)
+    let line = substitute(line, '\.', '\\.', 'g')
+    let line = substitute(line, '\*', '.*', 'g')
+    let ignore .= '|^' . line
+  endfor
+
+  let g:fuf_coveragefile_exclude = ignore
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
