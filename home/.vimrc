@@ -179,12 +179,6 @@ map k gk
 map <space> /
 map <c-space> ?
 
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
 " Replace highlight line when insert and vice versa
 :autocmd InsertEnter,InsertLeave * set cul!
 
@@ -221,7 +215,7 @@ autocmd InsertLeave * :set relativenumber
 nmap <leader>l :set list!<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:¬,trail:.
 
 " Colors for chars
 "Invisible character colors
@@ -229,4 +223,13 @@ highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
 
 autocmd BufWritePre * :%s/\s\+$//e
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Lets learn this shit
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
 
