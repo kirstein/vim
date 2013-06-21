@@ -191,7 +191,7 @@ map <C-l> <C-W>l
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FuzzyFinder
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <C-t> :FufFileWithFullCwd<CR>
+nnoremap <C-t> :FufFile**/<CR>
 "FuzzyFinder should ignore all files in .gitignore
 let ignorefile = ".gitignore"
 if filereadable(ignorefile)
@@ -208,13 +208,6 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => hardcore vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Relative line numbers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -234,3 +227,6 @@ set listchars=tab:▸\ ,eol:¬
 "Invisible character colors
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
+
+autocmd BufWritePre * :%s/\s\+$//e
+
