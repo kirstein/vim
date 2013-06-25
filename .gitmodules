@@ -22,3 +22,6 @@
 [submodule "home/.vim/bundle/textobj-word-column"]
 	path = home/.vim/bundle/textobj-word-column
 	url = https://github.com/coderifous/textobj-word-column.vim.git
+[submodule "home/.vim/bundle/vim-jade"]
+	path = home/.vim/bundle/vim-jade
+	url = https://github.com/digitaltoad/vim-jade.git

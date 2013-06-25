@@ -21,10 +21,6 @@ map <C-l> <C-w>l
 nnoremap j gj
 nnoremap k gk
 
-" Remap ; :, save some time
-nnoremap ; :
-nnoremap : ;
-
 " Toggle f2 as paste mode
 set pastetoggle=<F2>
 
@@ -50,7 +46,7 @@ let g:mapleader = ","
 :imap jj <Esc>
 
 " Fast saving
-nmap <leader>w :w!<cr>
+nmap <leader>s :w!<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -186,6 +182,7 @@ map <c-space> ?
 " => FuzzyFinder
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <C-t> :FufFile**/<CR>
+
 "FuzzyFinder should ignore all files in .gitignore
 let ignorefile = ".gitignore"
 if filereadable(ignorefile)
@@ -200,6 +197,7 @@ if filereadable(ignorefile)
   let g:fuf_coveragefile_exclude = ignore
 endif
 
+let g:fuf_file_exclude = '\v\~$|\.o$|\.exe$|\.bak$|\.swp|\.class$|coverage/|\.git|tags|node_modules|tmp/|.DS_Store'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Relative line numbers
@@ -232,4 +230,7 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+
+""" Easymotion
+let g:EasyMotion_leader_key = '<Leader>'
 
