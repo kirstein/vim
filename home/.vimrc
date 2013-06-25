@@ -181,7 +181,9 @@ map <c-space> ?
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FuzzyFinder
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <C-t> :FufFile**/<CR>
+nnoremap /t :FufTaggedFile**/<CR>
+nnoremap /b :FufBuffer**/<CR>
+nnoremap /f :FufFileWithCurrentBufferDir**/<CR>
 
 "FuzzyFinder should ignore all files in .gitignore
 let ignorefile = ".gitignore"
@@ -232,5 +234,8 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 """ Easymotion
-let g:EasyMotion_leader_key = '<Leader>'
+let g:EasyMotion_leader_key = '<leader>'
+
+""" Toggle tagbar
+nmap <F8> :TagbarToggle<CR>
 
