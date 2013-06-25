@@ -181,9 +181,9 @@ map <c-space> ?
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FuzzyFinder
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap /t :FufTaggedFile**/<CR>
-nnoremap /b :FufBuffer**/<CR>
-nnoremap /f :FufFileWithCurrentBufferDir**/<CR>
+nnoremap /t :FufTaggedFile<CR>
+nnoremap /b :FufBuffer<CR>
+nnoremap /f :FufFileWithCurrentBufferDir<CR>
 
 "FuzzyFinder should ignore all files in .gitignore
 let ignorefile = ".gitignore"
