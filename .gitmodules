@@ -34,3 +34,6 @@
 [submodule "home/.vim/bundle/vim-misc"]
 	path = home/.vim/bundle/vim-misc
 	url = https://github.com/xolox/vim-misc.git
+[submodule "home/.vim/bundle/zencoding"]
+	path = home/.vim/bundle/zencoding
+	url = https://github.com/mattn/zencoding-vim.git
