@@ -43,3 +43,6 @@
 [submodule "home/.vim/bundle/vim-signature"]
 	path = home/.vim/bundle/vim-signature
 	url = https://github.com/kshenoy/vim-signature.git
+[submodule "home/.vim/bundle/vim-autoclose"]
+	path = home/.vim/bundle/vim-autoclose
+	url = https://github.com/Townk/vim-autoclose.git
