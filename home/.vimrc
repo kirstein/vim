@@ -28,7 +28,7 @@ set pastetoggle=<F2>
 :au FocusLost * :wa
 
 " Sets how many lines of history VIM has to remember
-set history=700
+set history=70000
 
 " Enable filetype plugins
 filetype plugin on
@@ -239,3 +239,13 @@ let g:EasyMotion_leader_key = '<leader>'
 """ Toggle tagbar
 nmap <F8> :TagbarToggle<CR>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Indent guide colors
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let indent_guides_auto_colors = 0
+:hi IndentGuidesOdd  guibg=darkgrey   ctermbg=236
+:hi IndentGuidesEven guibg=darkgrey   ctermbg=237
+let indent_guides_color_change_percent = 10
+let indent_guides_guide_size = 1
+let indent_guides_start_level = 2
+set ts=2 sw=2 et
