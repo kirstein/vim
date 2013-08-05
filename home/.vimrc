@@ -48,6 +48,8 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>s :w!<cr>
 
+" Replace word under the cursor
+:nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
