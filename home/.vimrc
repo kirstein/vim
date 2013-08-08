@@ -8,6 +8,14 @@ augroup myvimrc
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Folding
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set foldmethod=indent
+set foldnestmax=3
+set nofoldenable " dont fold by default
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -251,3 +259,9 @@ let indent_guides_color_change_percent = 10
 let indent_guides_guide_size = 1
 let indent_guides_start_level = 2
 set ts=2 sw=2 et
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:syntastic_javascript_checkers=['jshint']
