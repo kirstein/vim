@@ -73,3 +73,6 @@
 [submodule "home/.vim/bundle/snippets-javascript"]
 	path = home/.vim/bundle/snippets-javascript
 	url = https://github.com/kirstein/snippets-javascript.git
+[submodule "home/.vim/bundle/vim-visual-star-search"]
+	path = home/.vim/bundle/vim-visual-star-search
+	url = https://github.com/nelstrom/vim-visual-star-search.git
