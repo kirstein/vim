@@ -8,7 +8,6 @@ augroup myvimrc
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -19,6 +18,9 @@ set nofoldenable " dont fold by default
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Statline fugitive
+let g:statline_fugitive = 1
+
 " Easy window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j

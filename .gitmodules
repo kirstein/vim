@@ -55,12 +55,21 @@
 [submodule "home/.vim/bundle/vim-fugitive"]
 	path = home/.vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "home/.vim/bundle/snipmate"]
-	path = home/.vim/bundle/snipmate
-	url = https://github.com/msanders/snipmate.vim.git
 [submodule "home/.vim/bundle/syntastic"]
 	path = home/.vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
 [submodule "home/.vim/bundle/statline"]
 	path = home/.vim/bundle/statline
 	url = https://github.com/millermedeiros/vim-statline.git
+[submodule "home/.vim/bundle/tlib_vim"]
+	path = home/.vim/bundle/tlib_vim
+	url = https://github.com/tomtom/tlib_vim.git
+[submodule "home/.vim/bundle/vim-addon-mw-utils"]
+	path = home/.vim/bundle/vim-addon-mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "home/.vim/bundle/vim-snipmate-garbas"]
+	path = home/.vim/bundle/vim-snipmate-garbas
+	url = https://github.com/garbas/vim-snipmate.git
+[submodule "home/.vim/bundle/snippets-javascript"]
+	path = home/.vim/bundle/snippets-javascript
+	url = https://github.com/kirstein/snippets-javascript.git
