@@ -76,3 +76,6 @@
 [submodule "home/.vim/bundle/vim-visual-star-search"]
 	path = home/.vim/bundle/vim-visual-star-search
 	url = https://github.com/nelstrom/vim-visual-star-search.git
+[submodule "home/.vim/bundle/vim-unimpaired"]
+	path = home/.vim/bundle/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
