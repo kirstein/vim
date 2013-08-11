@@ -1,4 +1,5 @@
 execute pathogen#infect()
+Helptags
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Reload vimrc config each time
