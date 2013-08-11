@@ -79,3 +79,6 @@
 [submodule "home/.vim/bundle/vim-unimpaired"]
 	path = home/.vim/bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "home/.vim/bundle/vim-matchit"]
+	path = home/.vim/bundle/vim-matchit
+	url = https://github.com/tsaleh/vim-matchit.git
