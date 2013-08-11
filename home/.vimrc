@@ -19,6 +19,9 @@ set nofoldenable " dont fold by default
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Yank to clipboard
+set clipboard+=unnamed
+
 " Statline fugitive
 let g:statline_fugitive = 1
 
@@ -132,14 +135,6 @@ se cursorline
 
 set background=dark
 colorscheme molokai
-
-" Set extra options when running in GUI mode
-if has("gui_running")
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-endif
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
