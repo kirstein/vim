@@ -13,9 +13,6 @@
 [submodule "home/.vim/bundle/nerdcommenter"]
 	path = home/.vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
-[submodule "home/.vim/bundle/hardmode"]
-	path = home/.vim/bundle/hardmode
-	url = https://github.com/wikitopian/hardmode.git
 [submodule "home/.vim/bundle/jshint"]
 	path = home/.vim/bundle/jshint
 	url = https://github.com/wookiehangover/jshint.vim.git
@@ -58,9 +55,6 @@
 [submodule "home/.vim/bundle/syntastic"]
 	path = home/.vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
-[submodule "home/.vim/bundle/statline"]
-	path = home/.vim/bundle/statline
-	url = https://github.com/millermedeiros/vim-statline.git
 [submodule "home/.vim/bundle/tlib_vim"]
 	path = home/.vim/bundle/tlib_vim
 	url = https://github.com/tomtom/tlib_vim.git
@@ -100,3 +94,6 @@
 [submodule "home/.vim/bundle/vim-abolish"]
 	path = home/.vim/bundle/vim-abolish
 	url = https://github.com/tpope/vim-abolish.git
+[submodule "home/.vim/bundle/powerline"]
+	path = home/.vim/bundle/powerline
+	url = https://github.com/Lokaltog/powerline.git

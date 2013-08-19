@@ -10,6 +10,14 @@ augroup myvimrc
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Powerline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+set laststatus=2
+set noshowmode
+let g:Powerline_symbols = 'fancy'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text bubbling
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -34,7 +42,7 @@ set nofoldenable " dont fold by default
 set clipboard+=unnamed
 
 " Statline fugitive
-let g:statline_fugitive = 1
+"let g:statline_fugitive = 1
 
 " Easy window navigation
 map <C-h> <C-w>h
