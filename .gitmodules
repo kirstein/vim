@@ -97,3 +97,6 @@
 [submodule "home/.vim/bundle/vim-togglelist"]
 	path = home/.vim/bundle/vim-togglelist
 	url = https://github.com/milkypostman/vim-togglelist.git
+[submodule "home/.vim/bundle/mru"]
+	path = home/.vim/bundle/mru
+	url = https://github.com/vim-scripts/mru.vim.git

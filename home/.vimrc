@@ -33,6 +33,9 @@ nmap <C-Down> ]e
 " Bubble multiple lines
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
+" Keep the visual block if indenting
+vnoremap > >gv
+vnoremap < <gv
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding
