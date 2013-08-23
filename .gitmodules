@@ -22,12 +22,6 @@
 [submodule "home/.vim/bundle/vim-jade"]
 	path = home/.vim/bundle/vim-jade
 	url = https://github.com/digitaltoad/vim-jade.git
-[submodule "home/.vim/bundle/tagbar"]
-	path = home/.vim/bundle/tagbar
-	url = https://github.com/majutsushi/tagbar.git
-[submodule "home/.vim/bundle/easytags"]
-	path = home/.vim/bundle/easytags
-	url = https://github.com/xolox/vim-easytags.git
 [submodule "home/.vim/bundle/vim-misc"]
 	path = home/.vim/bundle/vim-misc
 	url = https://github.com/xolox/vim-misc.git
@@ -97,3 +91,12 @@
 [submodule "home/.vim/bundle/powerline"]
 	path = home/.vim/bundle/powerline
 	url = https://github.com/Lokaltog/powerline.git
+[submodule "home/.vim/bundle/tern"]
+	path = home/.vim/bundle/tern
+	url = https://github.com/marijnh/tern_for_vim.git
+[submodule "home/.vim/bundle/vim-togglelist"]
+	path = home/.vim/bundle/vim-togglelist
+	url = https://github.com/milkypostman/vim-togglelist.git
+[submodule "home/.vim/bundle/mru"]
+	path = home/.vim/bundle/mru
+	url = https://github.com/vim-scripts/mru.vim.git

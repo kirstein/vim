@@ -1,6 +1,12 @@
 execute pathogen#infect()
 Helptags
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Tern settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:tern_map_keys=1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Reload vimrc config each time
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -35,6 +41,9 @@ nmap <C-Down> ]e
 " Bubble multiple lines
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
+" Keep the visual block if indenting
+vnoremap > >gv
+vnoremap < <gv
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding
@@ -242,7 +251,7 @@ autocmd InsertLeave * :set relativenumber
 " List char
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
+nmap \l :set list!<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬,trail:.
@@ -264,10 +273,7 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 """ Easymotion
-let g:EasyMotion_leader_key = '<leader>'
-
-""" Toggle tagbar
-nmap <F8> :TagbarToggle<CR>
+let g:EasyMotion_leader_key = '\'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Indent guide colors
