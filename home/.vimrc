@@ -10,6 +10,14 @@ augroup myvimrc
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Clipboard fun
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <C-y> "+y
+vnoremap <C-y> "+y
+nnoremap <C-p> "+gP
+vnoremap <C-p> "+gP
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Powerline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
@@ -38,11 +46,6 @@ set nofoldenable " dont fold by default
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Yank to clipboard
-set clipboard+=unnamed
-
-" Statline fugitive
-"let g:statline_fugitive = 1
 
 " Easy window navigation
 map <C-h> <C-w>h
