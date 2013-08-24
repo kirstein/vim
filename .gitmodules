@@ -1,9 +1,6 @@
 [submodule "home/.vim/bundle/vim-easymotion"]
 	path = home/.vim/bundle/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
-[submodule "home/.vim/bundle/fuzzyfinder"]
-	path = home/.vim/bundle/fuzzyfinder
-	url = https://github.com/vim-scripts/FuzzyFinder.git
 [submodule "home/.vim/bundle/l9"]
 	path = home/.vim/bundle/l9
 	url = https://github.com/vim-scripts/L9.git
@@ -97,6 +94,6 @@
 [submodule "home/.vim/bundle/vim-togglelist"]
 	path = home/.vim/bundle/vim-togglelist
 	url = https://github.com/milkypostman/vim-togglelist.git
-[submodule "home/.vim/bundle/mru"]
-	path = home/.vim/bundle/mru
-	url = https://github.com/vim-scripts/mru.vim.git
+[submodule "home/.vim/bundle/ctrlp"]
+	path = home/.vim/bundle/ctrlp
+	url = https://github.com/kien/ctrlp.vim.git

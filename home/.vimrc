@@ -123,6 +123,10 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
+" Toggle search highlighting
+nmap <Leader>n :set hls!<cr>
+vmap <Leader>n :set hls!<cr>
+
 " When searching try to be smart about cases
 set smartcase
 
@@ -218,34 +222,26 @@ map <c-space> ?
 :autocmd InsertEnter,InsertLeave * set cul!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => FuzzyFinder
+" => CtrlP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap /t :FufTaggedFile<CR>
-nnoremap /b :FufBuffer<CR>
-nnoremap /f :FufFileWithCurrentBufferDir<CR>
+nnoremap /t :CtrlP %<CR>
+nnoremap /b :CtrlPBuffer<CR>
+nnoremap /m :CtrlPMRU<CR>
+nnoremap /T :CtrlPMixed<CR>
 
-"FuzzyFinder should ignore all files in .gitignore
-let ignorefile = ".gitignore"
-if filereadable(ignorefile)
+let g:ctrlp_working_path_mode = 'ra'
 
-  let ignore = '\v\~$'
-  for line in readfile(ignorefile)
-    let line = substitute(line, '\.', '\\.', 'g')
-    let line = substitute(line, '\*', '.*', 'g')
-    let ignore .= '|^' . line
-  endfor
-
-  let g:fuf_coveragefile_exclude = ignore
-endif
-
-let g:fuf_file_exclude = '\v\~$|\.o$|\.exe$|\.bak$|\.swp|\.class$|coverage/|\.git|tags|node_modules|tmp/|.DS_Store'
-
+" Overwrite the default mapping in order to let the C+p work
+let g:ctrlp_map = "/t"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Relative line numbers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
+" Use relative numbers
+:set relativenumber
+
+"autocmd InsertEnter * :set number
+"autocmd InsertLeave * :set relativenumber
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " List char
