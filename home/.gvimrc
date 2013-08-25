@@ -1,10 +1,13 @@
 " Set extra options when running in GUI mode
-set guioptions-=T
+set guioptions-=r
 set guioptions+=e
 set t_Co=256
 set guitablabel=%M\ %t
-set guifont=Inconsolata:h22
+set guifont=Inconsolata-dz\ for\ Powerline:h20
 
-" fullscreen mode magic
-set fuopt+=maxhorz                      " grow to maximum horizontal width on entering fullscreen mode
-map <D-CR> :set fu!<CR>                 " toggle fullscreen mode
+" grow to maximum horizontal width on entering fullscreen mode
+set fuopt+=maxhorz
+" toggle fullscreen mode
+map <D-CR> :set fu!<CR>
+
+
