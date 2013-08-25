@@ -55,6 +55,8 @@ set nofoldenable " dont fold by default
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Make PWD the current file
+nnoremap <Leader>:cd %:p:h<CR>:pwd<CR>
 
 " Easy window navigation
 map <C-h> <C-w>h
