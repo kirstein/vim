@@ -56,7 +56,7 @@ set nofoldenable " dont fold by default
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Make PWD the current file
-nnoremap <Leader>:cd %:p:h<CR>:pwd<CR>
+nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Easy window navigation
 map <C-h> <C-w>h
@@ -107,7 +107,7 @@ set so=7
 set wildmenu
 
 " Ignore compiled files
-set wildignore=*.o,*~,*.pyc
+set wildignore=*/tmp/*,*/*-target/,*/node_modules/,*.zip,*.o,*~,*.pyc
 
 "Always show current position
 set ruler
@@ -226,15 +226,16 @@ map <c-space> ?
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => CtrlP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap /t :CtrlP %<CR>
+nnoremap /d :CtrlP %:p:h<CR>
 nnoremap /b :CtrlPBuffer<CR>
 nnoremap /m :CtrlPMRU<CR>
 nnoremap /T :CtrlPMixed<CR>
 
-let g:ctrlp_working_path_mode = 'ra'
 
 " Overwrite the default mapping in order to let the C+p work
 let g:ctrlp_map = "/t"
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|DS_Store\|git'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Relative line numbers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
