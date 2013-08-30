@@ -2,9 +2,13 @@
 set guioptions-=r " remove right-hand scrollbar
 set guioptions+=e " dont use gui tab
 set guioptions-=T " hide toolbar
+set guioptions-=L
 
 set t_Co=256
 set guitablabel=%M\ %t
+
+" Disable the mouse, its amazingly annoying when dealing with gvim/macvim
+set mouse=
 
 if has("gui_macvim")
   set guifont=Inconsolata-dz\ for\ Powerline:h20
