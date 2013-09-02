@@ -226,7 +226,7 @@ map <c-space> ?
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => CtrlP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap /d :CtrlP %:p:h<CR>
+nnoremap /d :CtrlPCurWD<CR>
 nnoremap /b :CtrlPBuffer<CR>
 nnoremap /m :CtrlPMRU<CR>
 nnoremap /T :CtrlPMixed<CR>
@@ -235,7 +235,7 @@ nnoremap /T :CtrlPMixed<CR>
 " Overwrite the default mapping in order to let the C+p work
 let g:ctrlp_map = "/t"
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|.git\'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Relative line numbers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -23,4 +23,8 @@ else
   set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 16
 endif
 
+set noerrorbells
+set novisualbell
+set t_vb=
+autocmd! GUIEnter * set vb t_vb=
 
