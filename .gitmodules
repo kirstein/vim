@@ -100,3 +100,6 @@
 [submodule "home/.vim/bundle/tasklist"]
 	path = home/.vim/bundle/tasklist
 	url = https://github.com/vim-scripts/TaskList.vim.git
+[submodule "home/.vim/bundle/searchfold"]
+	path = home/.vim/bundle/searchfold
+	url = https://github.com/vim-scripts/searchfold.vim.git
