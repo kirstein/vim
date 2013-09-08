@@ -16,6 +16,7 @@ if has("gui_macvim")
   set fuopt+=maxhorz
   " toggle fullscreen mode
   map <D-CR> :set fu!<CR>
+  autocmd VimLeave * macaction terminate:
 
 else
   map <silent> <F11>
