@@ -1,6 +1,5 @@
 execute pathogen#infect()
-Helptags
-
+execute pathogen#helptags()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tern settings
@@ -14,6 +13,8 @@ augroup myvimrc
     au!
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
+
+nmap <leader>v :tabedit $MYVIMRC<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Clipboard fun
@@ -45,6 +46,7 @@ vmap <C-Down> ]egv
 vnoremap > >gv
 vnoremap < <gv
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -71,11 +73,11 @@ nnoremap k gk
 " Toggle f2 as paste mode
 set pastetoggle=<F2>
 
-" Save on focus lost
-:au FocusLost * :wa
-
 " Sets how many lines of history VIM has to remember
 set history=70000
+
+" No compatible
+set nocompatible
 
 " Enable filetype plugins
 filetype plugin on
@@ -231,9 +233,12 @@ nnoremap /b :CtrlPBuffer<CR>
 nnoremap /m :CtrlPMRU<CR>
 nnoremap /T :CtrlPMixed<CR>
 
+silent! nnoremap <unique> <silent> <Leader>f :CtrlPFiletype<CR>
+
 
 " Overwrite the default mapping in order to let the C+p work
 let g:ctrlp_map = "/t"
+let g:ctrlp_extensions = [ 'filetype' ]
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|.git\'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -250,7 +255,7 @@ let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|
 " List char
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcut to rapidly toggle `set list`
-nmap \l :set list!<CR>
+"nmap \l :set list!<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬,trail:.
