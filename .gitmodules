@@ -106,3 +106,6 @@
 [submodule "home/.vim/bundle/ctrlp-filetype"]
 	path = home/.vim/bundle/ctrlp-filetype
 	url = https://github.com/endel/ctrlp-filetype.vim.git
+[submodule "home/.vim/bundle/pipe2-eval"]
+	path = home/.vim/bundle/pipe2-eval
+	url = https://github.com/zweifisch/pipe2eval.git
