@@ -34,9 +34,6 @@
 [submodule "home/.vim/bundle/vim-gitgutter"]
 	path = home/.vim/bundle/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
-[submodule "home/.vim/bundle/vim-ident-guides"]
-	path = home/.vim/bundle/vim-ident-guides
-	url = https://github.com/nathanaelkane/vim-indent-guides.git
 [submodule "home/.vim/bundle/vim-fugitive"]
 	path = home/.vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
