@@ -60,6 +60,9 @@ set nofoldenable " dont fold by default
 " Make PWD the current file
 nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
 
+" map @q to Q
+nnoremap Q @q
+
 " Easy window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -234,11 +237,11 @@ nnoremap /m :CtrlPMRU<CR>
 nnoremap /T :CtrlPMixed<CR>
 
 silent! nnoremap <unique> <silent> <Leader>f :CtrlPFiletype<CR>
-
+silent! nnoremap <unique> <silent> <Leader>a :CtrlPRegister<CR>
 
 " Overwrite the default mapping in order to let the C+p work
 let g:ctrlp_map = "/t"
-let g:ctrlp_extensions = [ 'filetype' ]
+let g:ctrlp_extensions = [ 'filetype', 'register' ]
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|.git\'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

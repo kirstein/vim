@@ -10,9 +10,6 @@ set guitablabel=%M\ %t
 " Disable the mouse, its amazingly annoying when dealing with gvim/macvim
 set mouse=
 
-" Save on focus lost
-:au FocusLost * :wa
-
 if has("gui_macvim")
   set guifont=Inconsolata-dz\ for\ Powerline:h20
   " grow to maximum horizontal width on entering fullscreen mode
