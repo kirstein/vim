@@ -22,9 +22,6 @@
 [submodule "home/.vim/bundle/vim-misc"]
 	path = home/.vim/bundle/vim-misc
 	url = https://github.com/xolox/vim-misc.git
-[submodule "home/.vim/bundle/zencoding"]
-	path = home/.vim/bundle/zencoding
-	url = https://github.com/mattn/zencoding-vim.git
 [submodule "home/.vim/bundle/vim-javascript"]
 	path = home/.vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
@@ -37,9 +34,6 @@
 [submodule "home/.vim/bundle/vim-gitgutter"]
 	path = home/.vim/bundle/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
-[submodule "home/.vim/bundle/vim-ident-guides"]
-	path = home/.vim/bundle/vim-ident-guides
-	url = https://github.com/nathanaelkane/vim-indent-guides.git
 [submodule "home/.vim/bundle/vim-fugitive"]
 	path = home/.vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
@@ -109,3 +103,9 @@
 [submodule "home/.vim/bundle/pipe2-eval"]
 	path = home/.vim/bundle/pipe2-eval
 	url = https://github.com/zweifisch/pipe2eval.git
+[submodule "home/.vim/bundle/ctrlp-register"]
+	path = home/.vim/bundle/ctrlp-register
+	url = https://github.com/mattn/ctrlp-register.git
+[submodule "home/.vim/bundle/emmet-vim"]
+	path = home/.vim/bundle/emmet-vim
+	url = https://github.com/mattn/emmet-vim.git

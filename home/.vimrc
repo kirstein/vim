@@ -60,6 +60,9 @@ set nofoldenable " dont fold by default
 " Make PWD the current file
 nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
 
+" map @q to Q
+nnoremap Q @q
+
 " Easy window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -234,11 +237,11 @@ nnoremap /m :CtrlPMRU<CR>
 nnoremap /T :CtrlPMixed<CR>
 
 silent! nnoremap <unique> <silent> <Leader>f :CtrlPFiletype<CR>
-
+silent! nnoremap <unique> <silent> <Leader>a :CtrlPRegister<CR>
 
 " Overwrite the default mapping in order to let the C+p work
 let g:ctrlp_map = "/t"
-let g:ctrlp_extensions = [ 'filetype' ]
+let g:ctrlp_extensions = [ 'filetype', 'register' ]
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|.git\'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -248,15 +251,9 @@ let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|
 " Use relative numbers
 :set relativenumber
 
-"autocmd InsertEnter * :set number
-"autocmd InsertLeave * :set relativenumber
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " List char
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Shortcut to rapidly toggle `set list`
-"nmap \l :set list!<CR>
-
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬,trail:.
 
@@ -266,7 +263,6 @@ highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
 
 autocmd BufWritePre * :%s/\s\+$//e
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Lets learn this shit
@@ -278,17 +274,6 @@ noremap <Right> <Nop>
 
 """ Easymotion
 let g:EasyMotion_leader_key = '\'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Indent guide colors
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let indent_guides_auto_colors = 0
-:hi IndentGuidesOdd  guibg=darkgrey   ctermbg=236
-:hi IndentGuidesEven guibg=darkgrey   ctermbg=237
-let indent_guides_color_change_percent = 10
-let indent_guides_guide_size = 1
-let indent_guides_start_level = 2
-set ts=2 sw=2 et
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic
