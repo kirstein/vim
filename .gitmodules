@@ -109,3 +109,6 @@
 [submodule "home/.vim/bundle/emmet-vim"]
 	path = home/.vim/bundle/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
+[submodule "home/.vim/bundle/startify"]
+	path = home/.vim/bundle/startify
+	url = https://github.com/mhinz/vim-startify.git

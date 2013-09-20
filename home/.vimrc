@@ -2,6 +2,16 @@ execute pathogen#infect()
 execute pathogen#helptags()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Startify
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:startify_session_dir = '~/.tmp/session'
+let g:startify_bookmarks = [ '~/.vimrc', '~/.gvimrc' ]
+let g:startify_restore_position = 1
+let g:startify_custom_header =
+      \ map(split(system('todo ls'), '\n'), '"   ". v:val') + ['','']
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tern settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tern_map_keys=1
@@ -58,7 +68,7 @@ set nofoldenable " dont fold by default
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Make PWD the current file
-nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
+nnoremap \cd :cd %:p:h<CR>:pwd<CR>
 
 " map @q to Q
 nnoremap Q @q
