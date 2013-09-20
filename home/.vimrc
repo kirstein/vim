@@ -9,7 +9,8 @@ let g:startify_session_dir = '~/.tmp/session'
 let g:startify_bookmarks = [ '~/.vimrc', '~/.gvimrc' ]
 let g:startify_restore_position = 1
 let g:startify_custom_header =
-      \ map(split(system('todo ls'), '\n'), '"   ". v:val') + ['','']
+      \ map(["   TODO:" ] + split(system('todo ls | perl -pe "s/\e\[?.*?[\@-~]//g"'), '\n'), '"". v:val') + ['','']
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tern settings
