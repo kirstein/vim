@@ -79,9 +79,6 @@
 [submodule "home/.vim/bundle/vim-abolish"]
 	path = home/.vim/bundle/vim-abolish
 	url = https://github.com/tpope/vim-abolish.git
-[submodule "home/.vim/bundle/powerline"]
-	path = home/.vim/bundle/powerline
-	url = https://github.com/Lokaltog/powerline.git
 [submodule "home/.vim/bundle/tern"]
 	path = home/.vim/bundle/tern
 	url = https://github.com/marijnh/tern_for_vim.git
@@ -112,3 +109,6 @@
 [submodule "home/.vim/bundle/startify"]
 	path = home/.vim/bundle/startify
 	url = https://github.com/mhinz/vim-startify.git
+[submodule "home/.vim/bundle/airline"]
+	path = home/.vim/bundle/airline
+	url = https://github.com/bling/vim-airline.git
