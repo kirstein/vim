@@ -9,7 +9,7 @@ let g:startify_session_dir = '~/.tmp/session'
 let g:startify_bookmarks = [ '~/.vimrc', '~/.gvimrc' ]
 let g:startify_restore_position = 1
 let g:startify_custom_header =
-      \ map(["   TODO:" ] + split(system('todo ls | perl -pe "s/\e\[?.*?[\@-~]//g"'), '\n'), '"". v:val') + ['','']
+      \ map(["   TODO:" ] + split(system('t ls'), '\n'), '"". v:val') + ['','']
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -36,12 +36,12 @@ nnoremap <C-p> "+gP
 vnoremap <C-p> "+gP
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Powerline
+" => Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 set laststatus=2
 set noshowmode
-let g:Powerline_symbols = 'fancy'
+let g:airline_powerline_fonts = 1
+let g:airline_theme="murmur"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text bubbling
@@ -182,6 +182,7 @@ syntax enable
 set number
 
 " support 256 colors in Lion terminal
+set term=screen-256color
 set t_Co=256
 
 se cursorline
@@ -190,7 +191,7 @@ set background=dark
 colorscheme molokai
 
 " Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
+set encoding=utf-8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
