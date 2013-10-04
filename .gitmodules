@@ -97,9 +97,6 @@
 [submodule "home/.vim/bundle/ctrlp-filetype"]
 	path = home/.vim/bundle/ctrlp-filetype
 	url = https://github.com/endel/ctrlp-filetype.vim.git
-[submodule "home/.vim/bundle/pipe2-eval"]
-	path = home/.vim/bundle/pipe2-eval
-	url = https://github.com/zweifisch/pipe2eval.git
 [submodule "home/.vim/bundle/ctrlp-register"]
 	path = home/.vim/bundle/ctrlp-register
 	url = https://github.com/mattn/ctrlp-register.git
@@ -112,3 +109,6 @@
 [submodule "home/.vim/bundle/airline"]
 	path = home/.vim/bundle/airline
 	url = https://github.com/bling/vim-airline.git
+[submodule "home/.vim/bundle/slime"]
+	path = home/.vim/bundle/slime
+	url = https://github.com/jpalardy/vim-slime.git
