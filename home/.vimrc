@@ -46,6 +46,8 @@ let g:airline_theme="murmur"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text bubbling
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <C-left> <NOP>
+nnoremap <C-right> <NOP>
 
 " Bubble single lines
 nmap <C-Up> [e
@@ -298,3 +300,8 @@ let g:syntastic_javascript_checkers=['jshint']
 let g:slime_target = "tmux"
 let g:slime_paste_file = tempname()
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Tabbar
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+:hi TabLineFill term=bold cterm=bold ctermbg=235
