@@ -1,3 +1,7 @@
+" Use Vim settings, rather than Vi settings
+" This must be first because it changes other options as a side effect
+set nocompatible
+
 execute pathogen#infect()
 execute pathogen#helptags()
 
@@ -70,6 +74,11 @@ set nofoldenable " dont fold by default
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap ,, ,
+
+" Allow unsaved buffers
+set hidden
+
 " Make PWD the current file
 nnoremap \cd :cd %:p:h<CR>:pwd<CR>
 
@@ -91,9 +100,6 @@ set pastetoggle=<F2>
 
 " Sets how many lines of history VIM has to remember
 set history=70000
-
-" No compatible
-set nocompatible
 
 " Enable filetype plugins
 filetype plugin on
@@ -235,6 +241,9 @@ set wrap "Wrap lines
 map j gj
 map k gk
 
+" Use one space instead of two when joining lines
+set nojoinspaces
+
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <space> /
 map <c-space> ?
@@ -276,7 +285,8 @@ set listchars=tab:▸\ ,eol:¬,trail:.
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
 
-autocmd BufWritePre * :%s/\s\+$//e
+" Remove trailing whitespaces
+autocmd FileType javascript,python autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Lets learn this shit

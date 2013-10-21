@@ -49,9 +49,6 @@
 [submodule "home/.vim/bundle/vim-snipmate-garbas"]
 	path = home/.vim/bundle/vim-snipmate-garbas
 	url = https://github.com/garbas/vim-snipmate.git
-[submodule "home/.vim/bundle/snippets-javascript"]
-	path = home/.vim/bundle/snippets-javascript
-	url = https://github.com/kirstein/snippets-javascript.git
 [submodule "home/.vim/bundle/vim-visual-star-search"]
 	path = home/.vim/bundle/vim-visual-star-search
 	url = https://github.com/nelstrom/vim-visual-star-search.git
@@ -112,3 +109,15 @@
 [submodule "home/.vim/bundle/slime"]
 	path = home/.vim/bundle/slime
 	url = https://github.com/jpalardy/vim-slime.git
+[submodule "home/.vim/bundle/less"]
+	path = home/.vim/bundle/less
+	url = https://github.com/groenewege/vim-less.git
+[submodule "home/.vim/bundle/sneak"]
+	path = home/.vim/bundle/sneak
+	url = https://github.com/justinmk/vim-sneak.git
+[submodule "home/.vim/bundle/repeat"]
+	path = home/.vim/bundle/repeat
+	url = https://github.com/tpope/vim-repeat.git
+[submodule "home/.vim/bundle/vim-snippets"]
+	path = home/.vim/bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
