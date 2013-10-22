@@ -118,3 +118,6 @@
 [submodule "home/.vim/bundle/tabular"]
 	path = home/.vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
+[submodule "home/.vim/bundle/vim2hs"]
+	path = home/.vim/bundle/vim2hs
+	url = https://github.com/dag/vim2hs.git
