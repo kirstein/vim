@@ -1,9 +1,6 @@
 [submodule "home/.vim/bundle/vim-easymotion"]
 	path = home/.vim/bundle/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
-[submodule "home/.vim/bundle/l9"]
-	path = home/.vim/bundle/l9
-	url = https://github.com/vim-scripts/L9.git
 [submodule "home/.vim/bundle/vim-surround"]
 	path = home/.vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
@@ -19,9 +16,6 @@
 [submodule "home/.vim/bundle/vim-jade"]
 	path = home/.vim/bundle/vim-jade
 	url = https://github.com/digitaltoad/vim-jade.git
-[submodule "home/.vim/bundle/vim-misc"]
-	path = home/.vim/bundle/vim-misc
-	url = https://github.com/xolox/vim-misc.git
 [submodule "home/.vim/bundle/vim-javascript"]
 	path = home/.vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
