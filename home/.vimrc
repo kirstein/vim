@@ -4,6 +4,12 @@ set nocompatible
 
 execute pathogen#infect()
 execute pathogen#helptags()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Make gf work for Common JS and AMD modules
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+au FileType javascript setlocal suffixesadd=.coffee,.js,.jade
+au FileType coffee setlocal suffixesadd=.coffee ",.js,.jade
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Startify
@@ -302,6 +308,7 @@ let g:EasyMotion_leader_key = '\'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_always_populate_loc_list=1
 let g:syntastic_javascript_checkers=['jshint']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
