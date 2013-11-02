@@ -115,3 +115,9 @@
 [submodule "home/.vim/bundle/vim2hs"]
 	path = home/.vim/bundle/vim2hs
 	url = https://github.com/dag/vim2hs.git
+[submodule "home/.vim/bundle/mustache"]
+	path = home/.vim/bundle/mustache
+	url = https://github.com/mustache/vim-mode.git
+[submodule "home/.vim/snippets/javascript"]
+	path = home/.vim/snippets/javascript
+	url = git@github.com:lightsofapollo/js-bdd-snippets-vim.git

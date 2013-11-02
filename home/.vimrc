@@ -80,7 +80,8 @@ set nofoldenable " dont fold by default
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap ,, ,
+" Make sure that if i hyper-click my leader i wont get jumped back
+nmap ,, <NOP>
 
 " Allow unsaved buffers
 set hidden
