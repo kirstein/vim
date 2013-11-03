@@ -315,6 +315,10 @@ let g:slime_paste_file = tempname()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabbar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:lasttab = 1
+nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
+
 :hi TabLineFill term=bold cterm=bold ctermbg=235
 set tabline=%!TabLineNumbers()  " custom tab pages line
 function TabLineNumbers()
