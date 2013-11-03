@@ -70,15 +70,9 @@
 [submodule "home/.vim/bundle/tern"]
 	path = home/.vim/bundle/tern
 	url = https://github.com/marijnh/tern_for_vim.git
-[submodule "home/.vim/bundle/vim-togglelist"]
-	path = home/.vim/bundle/vim-togglelist
-	url = https://github.com/milkypostman/vim-togglelist.git
 [submodule "home/.vim/bundle/ctrlp"]
 	path = home/.vim/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
-[submodule "home/.vim/bundle/tasklist"]
-	path = home/.vim/bundle/tasklist
-	url = https://github.com/vim-scripts/TaskList.vim.git
 [submodule "home/.vim/bundle/searchfold"]
 	path = home/.vim/bundle/searchfold
 	url = https://github.com/vim-scripts/searchfold.vim.git
@@ -124,3 +118,6 @@
 [submodule "home/.vim/bundle/vim-node"]
 	path = home/.vim/bundle/vim-node
 	url = https://github.com/moll/vim-node.git
+[submodule "home/.vim/bundle/ctrlp-funky"]
+	path = home/.vim/bundle/ctrlp-funky
+	url = https://github.com/tacahiroy/ctrlp-funky.git

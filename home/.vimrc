@@ -258,16 +258,20 @@ map <c-space> ?
 nnoremap /d :CtrlPCurWD<CR>
 nnoremap /b :CtrlPBuffer<CR>
 nnoremap /m :CtrlPMRU<CR>
-nnoremap /T :CtrlPMixed<CR>
+nnoremap /T :CtrlPBufTagAll<CR>
+nnoremap /q :CtrlPQuickfix<CR>
+nnoremap /f :CtrlPFunky<CR>
+" narrow the list down with a word under cursor
+nnoremap <Leader>fu :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 silent! nnoremap <unique> <silent> <Leader>f :CtrlPFiletype<CR>
 silent! nnoremap <unique> <silent> <Leader>a :CtrlPRegister<CR>
-
 " Overwrite the default mapping in order to let the C+p work
 let g:ctrlp_map = "/t"
-let g:ctrlp_extensions = [ 'filetype', 'register' ]
+let g:ctrlp_extensions = [ 'filetype', 'register', 'quickfix', 'tag', 'funky' ]
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|.git\'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Relative line numbers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -311,6 +315,15 @@ let g:syntastic_javascript_checkers=['jshint']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:slime_target = "tmux"
 let g:slime_paste_file = tempname()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Easytags
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ensure it checks the project specific tags file
+let g:easytags_dynamic_files = 1
+" configure easytags to run ctags after saving the buffer
+let g:easytags_events = ['BufWritePost']
+let g:easytags_always_enabled = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabbar
