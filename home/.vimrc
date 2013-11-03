@@ -315,16 +315,7 @@ let g:syntastic_javascript_checkers=['jshint']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:slime_target = "tmux"
 let g:slime_paste_file = tempname()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Easytags
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ensure it checks the project specific tags file
-let g:easytags_dynamic_files = 1
-" configure easytags to run ctags after saving the buffer
-let g:easytags_events = ['BufWritePost']
-let g:easytags_always_enabled = 1
-
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabbar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
