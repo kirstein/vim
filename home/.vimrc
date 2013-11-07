@@ -54,11 +54,9 @@ nnoremap <C-left> <NOP>
 nnoremap <C-right> <NOP>
 
 " Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
+nmap <C-Up> [egv
+nmap <C-Down> ]egv
+
 " Keep the visual block if indenting
 vnoremap > >gv
 vnoremap < <gv
@@ -205,7 +203,6 @@ set encoding=utf-8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -258,17 +255,16 @@ map <c-space> ?
 nnoremap /d :CtrlPCurWD<CR>
 nnoremap /b :CtrlPBuffer<CR>
 nnoremap /m :CtrlPMRU<CR>
-nnoremap /T :CtrlPBufTagAll<CR>
-nnoremap /q :CtrlPQuickfix<CR>
 nnoremap /f :CtrlPFunky<CR>
 " narrow the list down with a word under cursor
-nnoremap <Leader>fu :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+nnoremap /fu :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 silent! nnoremap <unique> <silent> <Leader>f :CtrlPFiletype<CR>
 silent! nnoremap <unique> <silent> <Leader>a :CtrlPRegister<CR>
+
 " Overwrite the default mapping in order to let the C+p work
 let g:ctrlp_map = "/t"
-let g:ctrlp_extensions = [ 'filetype', 'register', 'quickfix', 'tag', 'funky' ]
+let g:ctrlp_extensions = [ 'filetype', 'register', 'funky' ]
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|.git\'
 
