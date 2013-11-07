@@ -114,7 +114,7 @@
 	url = https://github.com/mustache/vim-mode.git
 [submodule "home/.vim/snippets/javascript"]
 	path = home/.vim/snippets/javascript
-	url = git@github.com:lightsofapollo/js-bdd-snippets-vim.git
+	url = https://github.com/lightsofapollo/js-bdd-snippets-vim.git
 [submodule "home/.vim/bundle/vim-node"]
 	path = home/.vim/bundle/vim-node
 	url = https://github.com/moll/vim-node.git
