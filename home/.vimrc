@@ -15,7 +15,39 @@ let g:startify_restore_position = 1
 let g:startify_custom_header =
       \ map(["   TODO:" ] + split(system('t ls'), '\n'), '"". v:val') + ['','']
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Netrw
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:netrw_banner       = 0
+let g:netrw_keepdir      = 0
+let g:netrw_liststyle    = 3
+let g:netrw_sort_options = 'i'
+let g:netrw_altv         = 1
+let g:netrw_browse_split = 4
+
+" Toggle Vexplore with Ctrl-E
+function! ToggleVExplorer()
+  if exists("t:expl_buf_num")
+      let expl_win_num = bufwinnr(t:expl_buf_num)
+      if expl_win_num != -1
+          let cur_win_nr = winnr()
+          exec expl_win_num . 'wincmd w'
+          close
+          exec cur_win_nr . 'wincmd w'
+          unlet t:expl_buf_num
+      else
+          unlet t:expl_buf_num
+      endif
+  else
+      exec '1wincmd w'
+      Vexplore
+      let t:expl_buf_num = bufnr("%")
+      :vertical resize 30
+  endif
+endfunction
+map <silent> <C-E> :call ToggleVExplorer()<CR>
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tern settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -66,7 +98,7 @@ vnoremap < <gv
 " => Folding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set foldmethod=indent
-set foldnestmax=3
+set foldnestmax=10
 set nofoldenable " dont fold by default
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -287,7 +319,7 @@ highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
 
 " Remove trailing whitespaces
-autocmd FileType javascript,python autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType javascript,python,coffee,vim autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Lets learn this shit
