@@ -5,6 +5,10 @@ set nocompatible
 execute pathogen#infect()
 execute pathogen#helptags()
 
+" Automatically change the directory to working file
+" Might cause some breakage with plugins!
+set autochdir
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Startify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -104,6 +108,9 @@ set nofoldenable " dont fold by default
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Incremental search. This is kind of amazing
+set incsearch
+
 " Make sure that if i hyper-click my leader i wont get jumped back
 nmap ,, <NOP>
 
