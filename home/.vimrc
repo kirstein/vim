@@ -5,10 +5,6 @@ set nocompatible
 execute pathogen#infect()
 execute pathogen#helptags()
 
-" Automatically change the directory to working file
-" Might cause some breakage with plugins!
-set autochdir
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Startify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -51,7 +47,16 @@ function! ToggleVExplorer()
   endif
 endfunction
 map <silent> <C-E> :call ToggleVExplorer()<CR>
-"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Silver surfer
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" bind K to grep word under cursor
+nnoremap K :Ag! "<C-R><C-W>"<CR>
+
+" Bind \ as default search param
+nnoremap \ :Ag<SPACE>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tern settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -159,6 +164,7 @@ nmap <leader>s :w!<cr>
 
 " Replace word under the cursor
 :nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -305,7 +311,12 @@ silent! nnoremap <unique> <silent> <Leader>a :CtrlPRegister<CR>
 let g:ctrlp_map = "/t"
 let g:ctrlp_extensions = [ 'filetype', 'register', 'funky' ]
 let g:ctrlp_working_path_mode = 'ra'
+" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|.git\'
+
+" ag is fast enough that CtrlP doesn't need to cache
+let g:ctrlp_use_caching = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Relative line numbers
@@ -326,7 +337,7 @@ highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
 
 " Remove trailing whitespaces
-autocmd FileType javascript,python,coffee,vim autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType javascript,python,coffee,vim,html autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Lets learn this shit
@@ -350,78 +361,8 @@ let g:syntastic_javascript_checkers=['jshint']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:slime_target = "tmux"
 let g:slime_paste_file = tempname()
-"
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabbar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lasttab = 1
-nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
-au TabLeave * let g:lasttab = tabpagenr()
-
-:hi TabLineFill term=bold cterm=bold ctermbg=235
-set tabline=%!TabLineNumbers()  " custom tab pages line
-function TabLineNumbers()
-  let s = '' " complete tabline goes here
-  " loop through each tab page
-  for t in range(tabpagenr('$'))
-    " set highlight
-    if t + 1 == tabpagenr()
-      let s .= '%#TabLineSel#'
-    else
-      let s .= '%#TabLine#'
-    endif
-    " set the tab page number (for mouse clicks)
-    let s .= '%' . (t + 1) . 'T'
-    let s .= ' '
-    " set page number string
-    let s .= t + 1 . ' '
-    " get buffer names and statuses
-    let n = ''      "temp string for buffer names while we loop and check buftype
-    let m = 0       " &modified counter
-    let bc = len(tabpagebuflist(t + 1))     "counter to avoid last ' '
-    " loop through each buffer in a tab
-    for b in tabpagebuflist(t + 1)
-      " buffer types: quickfix gets a [Q], help gets [H]{base fname}
-      " others get 1dir/2dir/3dir/fname shortened to 1/2/3/fname
-      if getbufvar( b, "&buftype" ) == 'help'
-        let n .= '[H]' . fnamemodify( bufname(b), ':t:s/.txt$//' )
-      elseif getbufvar( b, "&buftype" ) == 'quickfix'
-        let n .= '[Q]'
-      else
-        let n .= pathshorten(bufname(b))
-      endif
-      " check and ++ tab's &modified count
-      if getbufvar( b, "&modified" )
-        let m += 1
-      endif
-      " no final ' ' added...formatting looks better done later
-      if bc > 1
-        let n .= ' '
-      endif
-      let bc -= 1
-    endfor
-    " add modified label [n+] where n pages in tab are modified
-    if m > 0
-      let s .= '[' . m . '+]'
-    endif
-    " select the highlighting for the buffer names
-    " my default highlighting only underlines the active tab
-    " buffer names.
-    if t + 1 == tabpagenr()
-      let s .= '%#TabLineSel#'
-    else
-      let s .= '%#TabLine#'
-    endif
-    " add buffer names
-    if n == ''
-      let s.= '[New]'
-    else
-      let s .= n
-    endif
-    " switch to no underlining and add final space to buffer list
-    let s .= ' '
-  endfor
-  " after the last tab fill with TabLineFill and reset tab page nr
-  let s .= '%#TabLineFill#%T'
-  return s
-endfunction
