@@ -9,11 +9,29 @@ execute pathogen#helptags()
 " => Startify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:startify_session_dir = '~/.tmp/session'
-let g:startify_bookmarks = [ '~/.vimrc', '~/.gvimrc' ]
-let g:startify_restore_position = 1
+let g:startify_bookmarks = [ '~/.vimrc' ]
 let g:startify_custom_header =
-      \ map(["   TODO:" ] + split(system('t ls'), '\n'), '"". v:val') + ['','']
+      \ map(split(system('task ls limit:5'), '\n'), '"\t ". v:val') + ['','']
+let g:startify_list_order = [
+      \ ['   Bookmarks:'],
+      \ 'bookmarks',
+      \ ['   DIR:'],
+      \ 'dir',
+      \ ['   Sessions:'],
+      \ 'sessions',
+      \ ]
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Directory assigning
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Make PWD the current file
+nnoremap \cd :cd %:p:h<CR>:pwd<CR>
+
+" Set variable on vim initiation
+let g:root_dir = getcwd()
+" Navigate to root `root_dir` directory
+nnoremap \rd :execute ':cd ' . root_dir<CR>:pwd<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Netrw
@@ -121,10 +139,7 @@ nmap ,, <NOP>
 
 " Allow unsaved buffers
 set hidden
-
-" Make PWD the current file
-nnoremap \cd :cd %:p:h<CR>:pwd<CR>
-
+"
 " map @q to Q
 nnoremap Q @q
 
