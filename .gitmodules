@@ -130,3 +130,6 @@
 [submodule "home/.vim/bundle/supertab"]
 	path = home/.vim/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
+[submodule "home/.vim/bundle/vertical-move"]
+	path = home/.vim/bundle/vertical-move
+	url = https://github.com/bruno-/vim-vertical-move.git
