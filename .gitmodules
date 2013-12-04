@@ -133,3 +133,9 @@
 [submodule "home/.vim/bundle/vertical-move"]
 	path = home/.vim/bundle/vertical-move
 	url = https://github.com/bruno-/vim-vertical-move.git
+[submodule "home/.vim/bundle/gist"]
+	path = home/.vim/bundle/gist
+	url = https://github.com/mattn/gist-vim.git
+[submodule "home/.vim/bundle/webapi"]
+	path = home/.vim/bundle/webapi
+	url = https://github.com/mattn/webapi-vim.git
