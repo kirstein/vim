@@ -2,29 +2,160 @@
 " This must be first because it changes other options as a side effect
 set nocompatible
 
-execute pathogen#infect()
-execute pathogen#helptags()
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Startify
+" => Vundle nstall
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:startify_bookmarks = [ '~/.vimrc' ]
-let g:startify_custom_header =
-      \ map(split(system('task ls limit:5'), '\n'), '"\t ". v:val') + ['','']
-let g:startify_list_order = [
-      \ ['   Bookmarks:'],
-      \ 'bookmarks',
-      \ ['   DIR:'],
-      \ 'dir',
-      \ ['   Sessions:'],
-      \ 'sessions',
-      \ ]
+let vundle_autoinstall = 0
+let vundle_readme = expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+    echo "Installing Vundle..."
+    echo ""
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    let vundle_autoinstall = 1
+endif
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> Bundles
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""" Let vundle manage vundle
+Bundle 'gmarik/vundle'
+
+""" Silver surfer
+Bundle 'rking/ag.vim'
+" bind K to grep word under cursor
+nnoremap K :Ag! "<C-R><C-W>"<CR>
+" Bind \ as default search param
+nnoremap \ :Ag<SPACE>
+
+""" Airline
+Bundle 'bling/vim-airline'
+set laststatus=2
+set noshowmode
+let g:airline_powerline_fonts = 1
+let g:airline_theme="murmur"
+
+""" CtrlP
+Bundle 'kien/ctrlp.vim'
+Bundle 'endel/ctrlp-filetype.vim'
+Bundle 'tacahiroy/ctrlp-funky'
+Bundle 'mattn/ctrlp-register'
+nnoremap /d :CtrlPCurWD<CR>
+nnoremap /b :CtrlPBuffer<CR>
+nnoremap /m :CtrlPMRU<CR>
+nnoremap /f :CtrlPFunky<CR>
+" narrow the list down with a word under cursor
+nnoremap /fu :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+silent! nnoremap <unique> <silent> <Leader>f :CtrlPFiletype<CR>
+silent! nnoremap <unique> <silent> <Leader>a :CtrlPRegister<CR>
+" Overwrite the default mapping in order to let the C+p work
+let g:ctrlp_map = "/t"
+let g:ctrlp_extensions = [ 'filetype', 'register', 'funky' ]
+let g:ctrlp_working_path_mode = 'ra'
+" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|.git\'
+" ag is fast enough that CtrlP doesn't need to cache
+let g:ctrlp_use_caching = 0
+
+""" Emmet
+Bundle 'mattn/emmet-vim'
+
+""" Gist
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
+
+""" Nerdcommenter
+Bundle 'scrooloose/nerdcommenter'
+
+""" Repeat - repet enchance for tpope plugin
+Bundle 'tpope/vim-repeat'
+
+""" Slime - repl everything with tmux
+Bundle 'jpalardy/vim-slime'
+let g:slime_target = "tmux"
+let g:slime_paste_file = tempname()
+
+""" Supertab
+Bundle 'ervandew/supertab'
+
+""" Syntastic
+Bundle 'scrooloose/syntastic'
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_javascript_checkers=['jshint']
+
+""" Tabular - align text with ease
+Bundle 'godlygeek/tabular'
+
+""" Textobj
+Bundle 'kana/vim-textobj-user'
+Bundle 'coderifous/textobj-word-column.vim'
+
+""" Vertical move - try to jump as far as possible without newline
+Bundle 'bruno-/vim-vertical-move'
+
+""" Autoclose endings
+Bundle 'Townk/vim-autoclose'
+
+""" Coffee-script
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'carlosvillu/coffeScript-VIM-Snippets'
+vmap <leader>c <esc>:'<,'>:CoffeeCompile<CR>
+map <leader>c :CoffeeCompile<CR>
+
+""" Easymotion
+Bundle 'Lokaltog/vim-easymotion'
+let g:EasyMotion_leader_key = '\'
+
+""" Fugitive - git support
+Bundle 'tpope/vim-fugitive'
+
+""" Gitgutter - show modification gutter
+Bundle 'airblade/vim-gitgutter'
+
+""" JS support
+Bundle 'pangloss/vim-javascript'
+Bundle 'moll/vim-node'
+
+""" Matchit - make % more useful
+Bundle 'tsaleh/vim-matchit'
+
+""" Show marks as gutter
+Bundle 'kshenoy/vim-signature'
+
+""" Snipmate
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim.git'
+Bundle 'garbas/vim-snipmate'
+Bundle 'honza/vim-snippets'
+
+""" Surround
+Bundle 'tpope/vim-surround'
+
+""" Unimpaired - paired mappings
+Bundle 'tpope/vim-unimpaired'
+
+""" Visual start - better search with * in visual mode
+Bundle 'bronson/vim-visual-star-search'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Automatically install bundles
+" => if the system did not have vundle installed
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if vundle_autoinstall
+  echo "Installing bundles..."
+  echo ""
+  :BundleInstall
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Directory assigning
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Make PWD the current file
 nnoremap \cd :cd %:p:h<CR>:pwd<CR>
 
@@ -36,57 +167,9 @@ nnoremap \rd :execute ':cd ' . root_dir<CR>:pwd<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Last tab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 let g:lasttab = 1
 nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Netrw
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let g:netrw_banner       = 0
-let g:netrw_keepdir      = 0
-let g:netrw_liststyle    = 3
-let g:netrw_sort_options = 'i'
-let g:netrw_altv         = 1
-let g:netrw_browse_split = 4
-
-" Toggle Vexplore with Ctrl-E
-function! ToggleVExplorer()
-  if exists("t:expl_buf_num")
-      let expl_win_num = bufwinnr(t:expl_buf_num)
-      if expl_win_num != -1
-          let cur_win_nr = winnr()
-          exec expl_win_num . 'wincmd w'
-          close
-          exec cur_win_nr . 'wincmd w'
-          unlet t:expl_buf_num
-      else
-          unlet t:expl_buf_num
-      endif
-  else
-      exec '1wincmd w'
-      Vexplore
-      let t:expl_buf_num = bufnr("%")
-      :vertical resize 30
-  endif
-endfunction
-map <silent> <C-E> :call ToggleVExplorer()<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Silver surfer
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" bind K to grep word under cursor
-nnoremap K :Ag! "<C-R><C-W>"<CR>
-
-" Bind \ as default search param
-nnoremap \ :Ag<SPACE>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Tern settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:tern_map_keys=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Reload vimrc config each time
@@ -107,29 +190,6 @@ nnoremap <C-p> "+gP
 vnoremap <C-p> "+gP
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Airline
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set laststatus=2
-set noshowmode
-let g:airline_powerline_fonts = 1
-let g:airline_theme="murmur"
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text bubbling
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <C-left> <NOP>
-nnoremap <C-right> <NOP>
-
-" Bubble single lines
-nmap <C-Up> [egv
-nmap <C-Down> ]egv
-
-" Keep the visual block if indenting
-vnoremap > >gv
-vnoremap < <gv
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set foldmethod=indent
@@ -139,6 +199,10 @@ set nofoldenable " dont fold by default
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Keep the visual block if indenting
+vnoremap > >gv
+vnoremap < <gv
+
 " Incremental search. This is kind of amazing
 set incsearch
 
@@ -317,34 +381,6 @@ map <c-space> ?
 " Replace highlight line when insert and vice versa
 :autocmd InsertEnter,InsertLeave * set cul!
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => CtrlP
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap /d :CtrlPCurWD<CR>
-nnoremap /b :CtrlPBuffer<CR>
-nnoremap /m :CtrlPMRU<CR>
-nnoremap /f :CtrlPFunky<CR>
-" narrow the list down with a word under cursor
-nnoremap /fu :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-
-silent! nnoremap <unique> <silent> <Leader>f :CtrlPFiletype<CR>
-silent! nnoremap <unique> <silent> <Leader>a :CtrlPRegister<CR>
-
-" Overwrite the default mapping in order to let the C+p work
-let g:ctrlp_map = "/t"
-let g:ctrlp_extensions = [ 'filetype', 'register', 'funky' ]
-let g:ctrlp_working_path_mode = 'ra'
-" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|.git\'
-
-" ag is fast enough that CtrlP doesn't need to cache
-let g:ctrlp_use_caching = 0
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Relative line numbers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Use relative numbers
 :set relativenumber
 
@@ -359,7 +395,9 @@ set listchars=tab:▸\ ,eol:¬,trail:.
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
 
-" Remove trailing whitespaces
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Remove trailing whitespaces when dealing with certain languages
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType javascript,python,coffee,vim,html autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -370,22 +408,36 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-""" Easymotion
-let g:EasyMotion_leader_key = '\'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Netrw
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Syntastic
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_javascript_checkers=['jshint']
+let g:netrw_banner       = 0
+let g:netrw_keepdir      = 0
+let g:netrw_liststyle    = 3
+let g:netrw_sort_options = 'i'
+let g:netrw_altv         = 1
+let g:netrw_browse_split = 4
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Slime
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:slime_target = "tmux"
-let g:slime_paste_file = tempname()
+" Toggle Vexplore with Ctrl-E
+function! ToggleVExplorer()
+  if exists("t:expl_buf_num")
+      let expl_win_num = bufwinnr(t:expl_buf_num)
+      if expl_win_num != -1
+          let cur_win_nr = winnr()
+          exec expl_win_num . 'wincmd w'
+          close
+          exec cur_win_nr . 'wincmd w'
+          unlet t:expl_buf_num
+      else
+          unlet t:expl_buf_num
+      endif
+  else
+      exec '1wincmd w'
+      Vexplore
+      let t:expl_buf_num = bufnr("%")
+      :vertical resize 30
+  endif
+endfunction
+map <silent> <C-E> :call ToggleVExplorer()<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Tabbar
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:lasttab = 1
