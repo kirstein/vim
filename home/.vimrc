@@ -105,8 +105,8 @@ Bundle 'Townk/vim-autoclose'
 """ Coffee-script
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'carlosvillu/coffeScript-VIM-Snippets'
-vmap <leader>c <esc>:'<,'>:CoffeeCompile<CR>
-map <leader>c :CoffeeCompile<CR>
+vmap /c <esc>:'<,'>:CoffeeCompile<CR>
+map /c :CoffeeCompile<CR>
 
 """ Easymotion
 Bundle 'Lokaltog/vim-easymotion'
