@@ -91,6 +91,7 @@ let g:syntastic_javascript_checkers=['jshint']
 
 """ Tabular - align text with ease
 Bundle 'godlygeek/tabular'
+vmap /a <esc>:'<,'>:Tabular /
 
 """ Textobj
 Bundle 'kana/vim-textobj-user'
