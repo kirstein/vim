@@ -26,6 +26,9 @@ call vundle#rc()
 """ Let vundle manage vundle
 Bundle 'gmarik/vundle'
 
+""" Awesome color support
+Bundle 'gorodinskiy/vim-coloresque'
+
 """ Silver surfer
 Bundle 'rking/ag.vim'
 " bind K to grep word under cursor
