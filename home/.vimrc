@@ -105,7 +105,7 @@ Bundle 'Townk/vim-autoclose'
 
 """ Coffee-script
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'carlosvillu/coffeScript-VIM-Snippets'
+Bundle 'kirstein/coffeescript-snippets'
 vmap /c <esc>:'<,'>:CoffeeCompile<CR>
 map /c :CoffeeCompile<CR>
 
