@@ -1,11 +1,15 @@
-" Use Vim settings, rather than Vi settings
-" This must be first because it changes other options as a side effect
 set nocompatible
+filetype off
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Leaders.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader = ","
+let g:mapleader = ","
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vundle nstall
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 let vundle_autoinstall = 0
 let vundle_readme = expand('~/.vim/bundle/vundle/README.md')
 if !filereadable(vundle_readme)
@@ -20,7 +24,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> Bundles
+"=> Bundles. Here be snakes.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """ Let vundle manage vundle
@@ -31,40 +35,15 @@ Bundle 'gorodinskiy/vim-coloresque'
 
 """ Silver surfer
 Bundle 'rking/ag.vim'
-" bind K to grep word under cursor
-nnoremap K :Ag! "<C-R><C-W>"<CR>
-" Bind \ as default search param
-nnoremap \ :Ag<SPACE>
 
 """ Airline
 Bundle 'bling/vim-airline'
-set laststatus=2
-set noshowmode
-let g:airline_powerline_fonts = 1
-let g:airline_theme="murmur"
 
 """ CtrlP
 Bundle 'kien/ctrlp.vim'
 Bundle 'endel/ctrlp-filetype.vim'
 Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'mattn/ctrlp-register'
-nnoremap /d :CtrlPCurWD<CR>
-nnoremap /b :CtrlPBuffer<CR>
-nnoremap /m :CtrlPMRU<CR>
-nnoremap /f :CtrlPFunky<CR>
-" narrow the list down with a word under cursor
-nnoremap /fu :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-silent! nnoremap <unique> <silent> <Leader>f :CtrlPFiletype<CR>
-silent! nnoremap <unique> <silent> <Leader>a :CtrlPRegister<CR>
-" Overwrite the default mapping in order to let the C+p work
-let g:ctrlp_map = "/t"
-let g:ctrlp_extensions = [ 'filetype', 'register', 'funky' ]
-let g:ctrlp_working_path_mode = 'ra'
-" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|.git\'
-" ag is fast enough that CtrlP doesn't need to cache
-let g:ctrlp_use_caching = 0
 
 """ Emmet
 Bundle 'mattn/emmet-vim'
@@ -81,20 +60,15 @@ Bundle 'tpope/vim-repeat'
 
 """ Slime - repl everything with tmux
 Bundle 'jpalardy/vim-slime'
-let g:slime_target = "tmux"
-let g:slime_paste_file = tempname()
 
 """ Supertab
 Bundle 'ervandew/supertab'
 
 """ Syntastic
 Bundle 'scrooloose/syntastic'
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_javascript_checkers=['jshint']
 
 """ Tabular - align text with ease
 Bundle 'godlygeek/tabular'
-vmap /a <esc>:'<,'>:Tabular /
 
 """ Textobj
 Bundle 'kana/vim-textobj-user'
@@ -109,12 +83,9 @@ Bundle 'Townk/vim-autoclose'
 """ Coffee-script
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kirstein/coffeescript-snippets'
-vmap /c <esc>:'<,'>:CoffeeCompile<CR>
-map /c :CoffeeCompile<CR>
 
 """ Easymotion
 Bundle 'Lokaltog/vim-easymotion'
-let g:EasyMotion_leader_key = '\'
 
 """ Fugitive - git support
 Bundle 'tpope/vim-fugitive'
@@ -157,6 +128,79 @@ if vundle_autoinstall
   :BundleInstall
 endif
 
+filetype plugin indent on
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: Syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_javascript_checkers=['jshint']
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: Tabular
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vmap /a <esc>:'<,'>:Tabular /
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: Slime
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:slime_target = "tmux"
+let g:slime_paste_file = tempname()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: CoffeeScript
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vmap /c <esc>:'<,'>:CoffeeCompile<CR>
+map /c :CoffeeCompile<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: Easymotion
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:EasyMotion_leader_key = '\'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: Ag
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" bind K to grep word under cursor
+nnoremap K :Ag! "<C-R><C-W>"<CR>
+" Bind \ as default search param
+nnoremap \ :Ag<SPACE>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: Airline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set laststatus=2
+set noshowmode
+let g:airline_powerline_fonts = 1
+let g:airline_theme="murmur"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: CtrlP
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap /d :CtrlPCurWD<CR>
+nnoremap /b :CtrlPBuffer<CR>
+nnoremap /m :CtrlPMRU<CR>
+nnoremap /f :CtrlPFunky<CR>
+" narrow the list down with a word under cursor
+nnoremap /fu :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+nnoremap <Leader>f :CtrlPFiletype<CR>
+nnoremap <Leader>a :CtrlPRegister<CR>
+" Overwrite the default mapping in order to let the C+p work
+let g:ctrlp_map = "/t"
+let g:ctrlp_extensions = [ 'filetype', 'register', 'funky' ]
+let g:ctrlp_working_path_mode = 'ra'
+" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|.git\'
+" ag is fast enough that CtrlP doesn't need to cache
+let g:ctrlp_use_caching = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Set the max column color
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+highlight ColorColumn ctermbg=red
+call matchadd('ColorColumn', '\%81v', 100)
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Directory assigning
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -182,8 +226,6 @@ augroup myvimrc
     au!
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
-
-nmap <leader>v :tabedit $MYVIMRC<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Clipboard fun
@@ -215,7 +257,7 @@ nmap ,, <NOP>
 
 " Allow unsaved buffers
 set hidden
-"
+
 " map @q to Q
 nnoremap Q @q
 
@@ -225,36 +267,20 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" wraped lines
-nnoremap j gj
-nnoremap k gk
-
 " Toggle f2 as paste mode
 set pastetoggle=<F2>
 
 " Sets how many lines of history VIM has to remember
 set history=70000
 
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-
 " Set to auto read when a file is changed from the outside
 set autoread
-
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
-
-" Can be typed even faster than jj.
-:imap jj <Esc>
 
 " Fast saving
 nmap <leader>s :w!<cr>
 
 " Replace word under the cursor
-:nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -314,7 +340,6 @@ set novisualbell
 set t_vb=
 set tm=500
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -339,10 +364,6 @@ set encoding=utf-8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowb
 set noswapfile
@@ -368,9 +389,6 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
@@ -378,21 +396,21 @@ map k gk
 " Use one space instead of two when joining lines
 set nojoinspaces
 
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
+map <space> ?
+map <c-space> /
 
 " Replace highlight line when insert and vice versa
-:autocmd InsertEnter,InsertLeave * set cul!
+autocmd InsertEnter,InsertLeave * set cul!
 
 " Use relative numbers
-:set relativenumber
+set relativenumber
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " List char
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬,trail:.
+map <Leader>l :set list!<CR>
 
 " Colors for chars
 "Invisible character colors
@@ -403,14 +421,6 @@ highlight SpecialKey guifg=#4a4a59
 " => Remove trailing whitespaces when dealing with certain languages
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType javascript,python,coffee,vim,html autocmd BufWritePre <buffer> :%s/\s\+$//e
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Lets learn this shit
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Netrw
@@ -445,3 +455,6 @@ function! ToggleVExplorer()
 endfunction
 map <silent> <C-E> :call ToggleVExplorer()<CR>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Thats it, thats all folks
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
