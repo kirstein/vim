@@ -33,6 +33,9 @@ Bundle 'gmarik/vundle'
 """ Awesome color support
 Bundle 'gorodinskiy/vim-coloresque'
 
+""" Sublime like multi-line-select
+Bundle 'terryma/vim-multiple-cursors'
+
 """ Silver surfer
 Bundle 'rking/ag.vim'
 
