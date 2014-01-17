@@ -33,6 +33,10 @@ Bundle 'gmarik/vundle'
 """ Awesome color support
 Bundle 'gorodinskiy/vim-coloresque'
 
+""" Rails
+""" Defacto for rails devolpment
+"Bundle 'tpope/vim-rails'
+
 """ Sublime like multi-line-select
 Bundle 'terryma/vim-multiple-cursors'
 
@@ -159,7 +163,8 @@ map /c :CoffeeCompile<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Easymotion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:EasyMotion_leader_key = '\'
+let g:EasyMotion_leader_key = '<Space>'
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Ag
@@ -374,7 +379,7 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use spaces instead of tabs
+" Use paces instead of tabs
 set expandtab
 
 " Be smart when using tabs ;)
@@ -398,9 +403,6 @@ map k gk
 
 " Use one space instead of two when joining lines
 set nojoinspaces
-
-map <space> ?
-map <c-space> /
 
 " Replace highlight line when insert and vice versa
 autocmd InsertEnter,InsertLeave * set cul!
@@ -457,6 +459,24 @@ function! ToggleVExplorer()
   endif
 endfunction
 map <silent> <C-E> :call ToggleVExplorer()<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Wrap everything to console.time - console.timeEnd
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+fun! ConsoleTime() range
+  let name = input("Name: ")
+  "let name = 'test'
+  if len(name) > 0
+    let start = "console.time('".name."')"
+    let end   = "console.timeEnd('".name."')"
+    normal `>j
+    exe "normal! O".end."\<CR>"
+    normal `<k
+    exe "normal! o\<CR>".start
+    normal `<
+  endif
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Thats it, thats all folks
