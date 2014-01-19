@@ -36,6 +36,7 @@ Bundle 'gorodinskiy/vim-coloresque'
 """ Rails
 """ Defacto for rails devolpment
 "Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-markdown'
 
 """ Sublime like multi-line-select
 Bundle 'terryma/vim-multiple-cursors'
@@ -80,12 +81,13 @@ Bundle 'godlygeek/tabular'
 """ Textobj
 Bundle 'kana/vim-textobj-user'
 Bundle 'coderifous/textobj-word-column.vim'
+Bundle 'kana/vim-textobj-indent'
 
 """ Vertical move - try to jump as far as possible without newline
 Bundle 'bruno-/vim-vertical-move'
 
 """ Autoclose endings
-Bundle 'Townk/vim-autoclose'
+Bundle 'kana/vim-smartinput'
 
 """ Coffee-script
 Bundle 'kchmck/vim-coffee-script'
