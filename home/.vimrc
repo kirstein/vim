@@ -248,7 +248,7 @@ vnoremap <C-p> "+gP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set foldmethod=indent
+set foldmethod=manual
 set foldnestmax=10
 set nofoldenable " dont fold by default
 
