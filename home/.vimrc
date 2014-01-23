@@ -33,6 +33,9 @@ Bundle 'gmarik/vundle'
 """ Awesome color support
 Bundle 'gorodinskiy/vim-coloresque'
 
+""" Golang
+Bundle 'jnwhiteh/vim-golang'
+
 """ Rails
 """ Defacto for rails devolpment
 "Bundle 'tpope/vim-rails'
