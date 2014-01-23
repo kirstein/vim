@@ -50,8 +50,7 @@ Bundle 'bling/vim-airline'
 """ CtrlP
 Bundle 'kien/ctrlp.vim'
 Bundle 'endel/ctrlp-filetype.vim'
-Bundle 'tacahiroy/ctrlp-funky'
-Bundle 'mattn/ctrlp-register'
+Bundle 'kirstein/ctrlp-funky'
 
 """ Emmet
 Bundle 'mattn/emmet-vim'
@@ -91,7 +90,6 @@ Bundle 'kana/vim-smartinput'
 
 """ Coffee-script
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'kirstein/coffeescript-snippets'
 
 """ Easymotion
 Bundle 'Lokaltog/vim-easymotion'
@@ -116,7 +114,7 @@ Bundle 'kshenoy/vim-signature'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim.git'
 Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
+Bundle 'kirstein/vim-snippets'
 
 """ Surround
 Bundle 'tpope/vim-surround'
@@ -163,6 +161,11 @@ vmap /c <esc>:'<,'>:CoffeeCompile<CR>
 map /c :CoffeeCompile<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: Fugitive
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <Leader>gb :Gblame<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Easymotion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:EasyMotion_leader_key = '<Space>'
@@ -194,10 +197,13 @@ nnoremap /f :CtrlPFunky<CR>
 " narrow the list down with a word under cursor
 nnoremap /fu :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 nnoremap <Leader>f :CtrlPFiletype<CR>
-nnoremap <Leader>a :CtrlPRegister<CR>
+
+" Add fugitive porn to ignore
+let g:ctrlp_custom_ignore = '\.fugitive.*'
+
 " Overwrite the default mapping in order to let the C+p work
 let g:ctrlp_map = "/t"
-let g:ctrlp_extensions = [ 'filetype', 'register', 'funky' ]
+let g:ctrlp_extensions = [ 'filetype', 'funky' ]
 let g:ctrlp_working_path_mode = 'ra'
 " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
@@ -255,6 +261,8 @@ set nofoldenable " dont fold by default
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <Leader>q :q<CR>
+
 " Keep the visual block if indenting
 vnoremap > >gv
 vnoremap < <gv
@@ -441,7 +449,7 @@ let g:netrw_altv         = 1
 let g:netrw_browse_split = 4
 
 " Toggle Vexplore with Ctrl-E
-function! ToggleVExplorer()
+fun! ToggleVExplorer()
   if exists("t:expl_buf_num")
       let expl_win_num = bufwinnr(t:expl_buf_num)
       if expl_win_num != -1
