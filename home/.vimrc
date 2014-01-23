@@ -33,6 +33,9 @@ Bundle 'gmarik/vundle'
 """ Awesome color support
 Bundle 'gorodinskiy/vim-coloresque'
 
+""" Undotree
+Bundle 'sjl/gundo.vim'
+
 """ Golang
 Bundle 'jnwhiteh/vim-golang'
 
@@ -164,6 +167,19 @@ vmap /c <esc>:'<,'>:CoffeeCompile<CR>
 map /c :CoffeeCompile<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: Gundotree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("persistent_undo")
+    set undodir = "~/.undodir/"
+    set undofile
+endif
+
+let g:gundo_width = 60
+let g:gundo_preview_height = 20
+let g:gundo_auto_preview = 0
+nmap <F3> :GundoToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Fugitive
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <Leader>gb :Gblame<CR>
@@ -172,7 +188,6 @@ nmap <Leader>gb :Gblame<CR>
 " => Bundle: Easymotion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:EasyMotion_leader_key = '<Space>'
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Ag
@@ -215,12 +230,6 @@ let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|
 let g:ctrlp_use_caching = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Set the max column color
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight ColorColumn ctermbg=red
-call matchadd('ColorColumn', '\%81v', 100)
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Directory assigning
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Make PWD the current file
@@ -253,6 +262,8 @@ nnoremap <C-y> "+y
 vnoremap <C-y> "+y
 nnoremap <C-p> "+gP
 vnoremap <C-p> "+gP
+" Since we use supertab, we really do not sue ctrl p anymore
+inoremap <C-p> "+gP
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding
