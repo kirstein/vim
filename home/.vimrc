@@ -33,6 +33,9 @@ Bundle 'gmarik/vundle'
 """ Awesome color support
 Bundle 'gorodinskiy/vim-coloresque'
 
+""" Sass, haml and Scss
+Bundle 'tpope/vim-haml'
+
 """ Undotree
 Bundle 'sjl/gundo.vim'
 
@@ -193,9 +196,8 @@ let g:EasyMotion_leader_key = '<Space>'
 " => Bundle: Ag
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " bind K to grep word under cursor
-nnoremap K :Ag! "<C-R><C-W>"<CR>
-" Bind \ as default search param
-nnoremap \ :Ag<SPACE>
+nmap K :Ag! "<C-R><C-W>"<CR>
+vmap K y:<C-U>Ag! '<C-R>"'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Airline
