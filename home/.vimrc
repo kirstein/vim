@@ -58,7 +58,6 @@ Bundle 'bling/vim-airline'
 
 """ CtrlP
 Bundle 'kien/ctrlp.vim'
-Bundle 'endel/ctrlp-filetype.vim'
 Bundle 'kirstein/ctrlp-funky'
 
 """ Emmet
@@ -216,14 +215,13 @@ nnoremap /m :CtrlPMRU<CR>
 nnoremap /f :CtrlPFunky<CR>
 " narrow the list down with a word under cursor
 nnoremap /fu :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-nnoremap <Leader>f :CtrlPFiletype<CR>
 
 " Add fugitive porn to ignore
 let g:ctrlp_custom_ignore = '\.fugitive.*'
 
 " Overwrite the default mapping in order to let the C+p work
 let g:ctrlp_map = "/t"
-let g:ctrlp_extensions = [ 'filetype', 'funky' ]
+let g:ctrlp_extensions = [ 'funky' ]
 let g:ctrlp_working_path_mode = 'ra'
 " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
