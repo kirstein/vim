@@ -99,6 +99,8 @@ Bundle 'kana/vim-smartinput'
 """ Coffee-script
 Bundle 'kchmck/vim-coffee-script'
 
+Bundle 'henrik/vim-indexed-search'
+
 """ Easymotion
 Bundle 'Lokaltog/vim-easymotion'
 
@@ -185,6 +187,7 @@ nmap <F3> :GundoToggle<CR>
 " => Bundle: Fugitive
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <Leader>gb :Gblame<CR>
+nmap <Leader>gs :Gstatus<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Easymotion
@@ -262,8 +265,6 @@ nnoremap <C-y> "+y
 vnoremap <C-y> "+y
 nnoremap <C-p> "+gP
 vnoremap <C-p> "+gP
-" Since we use supertab, we really do not sue ctrl p anymore
-inoremap <C-p> "+gP
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding
