@@ -56,6 +56,8 @@ Bundle 'rking/ag.vim'
 """ Airline
 Bundle 'bling/vim-airline'
 
+Bundle 'vim-scripts/searchfold.vim'
+
 """ CtrlP
 Bundle 'kien/ctrlp.vim'
 Bundle 'kirstein/ctrlp-funky'
