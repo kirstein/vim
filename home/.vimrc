@@ -192,7 +192,9 @@ nmap <Leader>gs :Gstatus<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Easymotion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:EasyMotion_leader_key = '<Space>'
+nmap <Space> <Plug>(easymotion-s)
+let g:EasyMotion_use_smartsign_us = 1
+let g:EasyMotion_smartcase = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Ag
