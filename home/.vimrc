@@ -47,6 +47,8 @@ Bundle 'jnwhiteh/vim-golang'
 "Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-markdown'
 
+Bundle 'editorconfig/editorconfig-vim'
+
 """ Sublime like multi-line-select
 Bundle 'terryma/vim-multiple-cursors'
 
