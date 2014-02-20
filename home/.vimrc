@@ -90,16 +90,11 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'coderifous/textobj-word-column.vim'
 Bundle 'kana/vim-textobj-indent'
 
-""" Vertical move - try to jump as far as possible without newline
-Bundle 'bruno-/vim-vertical-move'
-
 """ Autoclose endings
 Bundle 'kana/vim-smartinput'
 
 """ Coffee-script
 Bundle 'kchmck/vim-coffee-script'
-
-Bundle 'henrik/vim-indexed-search'
 
 """ Easymotion
 Bundle 'Lokaltog/vim-easymotion'
@@ -134,6 +129,8 @@ Bundle 'tpope/vim-unimpaired'
 
 """ Visual start - better search with * in visual mode
 Bundle 'bronson/vim-visual-star-search'
+
+Bundle 'vim-scripts/searchfold.vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Automatically install bundles
@@ -192,9 +189,15 @@ nmap <Leader>gs :Gstatus<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Easymotion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <Space> <Plug>(easymotion-s)
+map <Space> <Plug>(easymotion-s)
 let g:EasyMotion_use_smartsign_us = 1
 let g:EasyMotion_smartcase = 1
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  ? <Plug>(easymotion-sn)
+omap ? <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Ag
@@ -284,9 +287,6 @@ nmap <Leader>q :q<CR>
 vnoremap > >gv
 vnoremap < <gv
 
-" Incremental search. This is kind of amazing
-set incsearch
-
 " Make sure that if i hyper-click my leader i wont get jumped back
 nmap ,, <NOP>
 
@@ -352,12 +352,6 @@ vmap <Leader>n :set hls!<cr>
 " When searching try to be smart about cases
 set smartcase
 
-" Highlight search results
-set hlsearch
-
-" Makes search act like search in modern browsers
-set incsearch
-
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
 
@@ -408,6 +402,12 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use paces instead of tabs
 set expandtab
+
+" Highlight search results
+set hlsearch
+
+" Makes search act like search in modern browsers
+set incsearch
 
 " Be smart when using tabs ;)
 set smarttab
