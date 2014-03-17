@@ -202,7 +202,7 @@ let g:EasyMotion_smartcase = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " bind K to grep word under cursor
 nmap K :Ag! "<C-R><C-W>"<CR>
-vmap K y:<C-U>Ag! '<C-R>"'
+vmap K y:<C-U>Ag! '<C-R>"'<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Airline
@@ -394,6 +394,15 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Jumping brackets
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+noremap % v%
+set showmatch
+set matchtime=3
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
