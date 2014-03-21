@@ -47,6 +47,8 @@ Bundle 'jnwhiteh/vim-golang'
 "Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-markdown'
 
+Bundle 'thoughtbot/vim-rspec'
+
 Bundle 'editorconfig/editorconfig-vim'
 
 """ Sublime like multi-line-select
@@ -94,6 +96,9 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'coderifous/textobj-word-column.vim'
 Bundle 'kana/vim-textobj-indent'
 
+""" Expands one key for multiple actions
+Bundle 'terryma/vim-expand-region'
+
 """ Autoclose endings
 Bundle 'kana/vim-smartinput'
 
@@ -135,6 +140,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'bronson/vim-visual-star-search'
 
 Bundle 'vim-scripts/searchfold.vim'
+Bundle 'mustache/vim-mustache-handlebars'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Automatically install bundles
@@ -147,6 +153,17 @@ if vundle_autoinstall
 endif
 
 filetype plugin indent on
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: Rspec
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rspec_command = "!bundle rspec --drb {spec}"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: Expand region
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Syntastic
@@ -277,9 +294,19 @@ set foldnestmax=10
 set nofoldenable " dont fold by default
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Third party shit
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nmap tig :!tig %<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <Leader>q :q<CR>
+map q: :q
+
+" Select what has been pasted
+noremap gV `[v`]
 
 " Keep the visual block if indenting
 vnoremap > >gv
