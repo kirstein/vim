@@ -125,10 +125,8 @@ Bundle 'edsono/vim-matchit'
 """ Show marks as gutter
 Bundle 'kshenoy/vim-signature'
 
-""" Snipmate
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim.git'
-Bundle 'garbas/vim-snipmate'
+""" Ultrasnips
+Bundle 'SirVer/ultisnips'
 Bundle 'kirstein/vim-snippets'
 
 """ Surround
@@ -432,8 +430,6 @@ set noswapfile
 noremap % v%
 set showmatch
 set matchtime=3
-
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
