@@ -47,8 +47,11 @@ Bundle 'jnwhiteh/vim-golang'
 "Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-markdown'
 
+""" Make sure to run
+""" cd ~/.vim/bundle/YouCompleteMe
+""" ./install.sh --clang-completer
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'thoughtbot/vim-rspec'
-
 Bundle 'editorconfig/editorconfig-vim'
 
 """ Sublime like multi-line-select
@@ -82,9 +85,6 @@ Bundle 'tpope/vim-repeat'
 
 """ Slime - repl everything with tmux
 Bundle 'jpalardy/vim-slime'
-
-""" Supertab
-Bundle 'ervandew/supertab'
 
 """ Syntastic
 Bundle 'scrooloose/syntastic'
@@ -157,6 +157,12 @@ filetype plugin indent on
 " => Bundle: Rspec
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rspec_command = "!bundle rspec --drb {spec}"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: Ultrasnips
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" c-j triggers a snippet
+let g:UltiSnipsExpandTrigger="<c-j>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Expand region
