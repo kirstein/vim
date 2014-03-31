@@ -69,6 +69,7 @@ Bundle 'vim-scripts/searchfold.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mattn/ctrlp-register'
 Bundle 'tacahiroy/ctrlp-funky'
+Bundle 'pielgrzym/ctrlp-sessions'
 
 """ Emmet
 Bundle 'mattn/emmet-vim'
@@ -219,6 +220,10 @@ map <Space> <Plug>(easymotion-s)
 let g:EasyMotion_use_smartsign_us = 1
 let g:EasyMotion_smartcase = 1
 
+" JK motions: Line motions
+map /j <Plug>(easymotion-j)
+map /k <Plug>(easymotion-k)
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Ag
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -242,6 +247,7 @@ nnoremap /b :CtrlPBuffer<CR>
 nnoremap /m :CtrlPMRU<CR>
 nnoremap /f :CtrlPFunky<CR>
 nnoremap /r :CtrlPRegister<CR>
+nnoremap /s :CtrlPSessions<CR>
 
 " narrow the list down with a word under cursor
 nnoremap /fu :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
@@ -251,7 +257,7 @@ let g:ctrlp_custom_ignore = '\.fugitive.*'
 
 " Overwrite the default mapping in order to let the C+p work
 let g:ctrlp_map = "/t"
-let g:ctrlp_extensions = [ 'funky', 'register' ]
+let g:ctrlp_extensions = [ 'funky', 'register', 'sessions' ]
 
 let g:ctrlp_working_path_mode = 'ra'
 " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
@@ -305,6 +311,7 @@ set nofoldenable " dont fold by default
 " => Third party shit
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+nmap vim :tabnew ~/.vimrc<CR>
 nmap tig :!tig %<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
