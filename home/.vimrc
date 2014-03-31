@@ -67,7 +67,7 @@ Bundle 'vim-scripts/searchfold.vim'
 
 """ CtrlP
 Bundle 'kien/ctrlp.vim'
-Bundle 'mattn/ctrlp-register'
+Bundle 'kirstein/ctrlp-register'
 Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'pielgrzym/ctrlp-sessions'
 
