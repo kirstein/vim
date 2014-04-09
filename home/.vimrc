@@ -77,6 +77,7 @@ Bundle 'mattn/emmet-vim'
 """ Gist
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
+Bundle 'jaxbot/github-issues.vim'
 
 """ Nerdcommenter
 Bundle 'scrooloose/nerdcommenter'
@@ -238,6 +239,14 @@ set laststatus=2
 set noshowmode
 let g:airline_powerline_fonts = 1
 let g:airline_theme="murmur"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: Gist
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:gist_clip_command = 'pbcopy'
+let g:gist_detect_filetype = 1
+let g:gist_post_private = 1
+let g:gist_show_privates = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: CtrlP
