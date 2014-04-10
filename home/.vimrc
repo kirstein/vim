@@ -232,6 +232,9 @@ map /k <Plug>(easymotion-k)
 nmap K :Ag! "<C-R><C-W>"<CR>
 vmap K y:<C-U>Ag! '<C-R>"'<CR>
 
+" Find all todo tags
+map todo :Ag! "todo"<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
