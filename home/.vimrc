@@ -46,6 +46,7 @@ Bundle 'jnwhiteh/vim-golang'
 """ Defacto for rails devolpment
 "Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-markdown'
+Bundle 'itspriddle/vim-marked'
 
 """ Make sure to run
 """ cd ~/.vim/bundle/YouCompleteMe
