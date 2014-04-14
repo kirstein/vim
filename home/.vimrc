@@ -335,6 +335,9 @@ set cm=blowfish
 nmap <Leader>q :q<CR>
 map q: :q
 
+" Switch quickly between buffers
+nmap // <c-^>
+
 " Select what has been pasted
 noremap gV `[v`]
 
