@@ -1,4 +1,3 @@
-set nocompatible
 filetype off
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -331,6 +330,9 @@ nmap tig :!tig %<CR>
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set cm=blowfish
+
+map <Leader>ts :tab split<CR>
+map <Leader>tc :tabc<CR>
 
 nmap <Leader>q :q<CR>
 map q: :q
