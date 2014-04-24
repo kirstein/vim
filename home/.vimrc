@@ -69,7 +69,6 @@ Bundle 'vim-scripts/searchfold.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kirstein/ctrlp-register'
 Bundle 'tacahiroy/ctrlp-funky'
-Bundle 'pielgrzym/ctrlp-sessions'
 
 """ Emmet
 Bundle 'mattn/emmet-vim'
@@ -259,7 +258,6 @@ nnoremap /b :CtrlPBuffer<CR>
 nnoremap /m :CtrlPMRU<CR>
 nnoremap /f :CtrlPFunky<CR>
 nnoremap /r :CtrlPRegister<CR>
-nnoremap /s :CtrlPSessions<CR>
 
 " narrow the list down with a word under cursor
 nnoremap /fu :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
@@ -269,7 +267,7 @@ let g:ctrlp_custom_ignore = '\.fugitive.*'
 
 " Overwrite the default mapping in order to let the C+p work
 let g:ctrlp_map = "/t"
-let g:ctrlp_extensions = [ 'funky', 'register', 'sessions' ]
+let g:ctrlp_extensions = [ 'funky', 'register' ]
 
 let g:ctrlp_working_path_mode = 'ra'
 " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
