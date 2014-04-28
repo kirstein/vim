@@ -338,7 +338,7 @@ nmap tig :!tig %<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set cm=blowfish
 
-map <silent> <Leader>e :Errors<CR>
+map <silent> <Leader>e :call ToggleErrors()<CR>
 
 map <Leader>ts :tab split<CR>
 map <Leader>tc :tabc<CR>
@@ -597,6 +597,17 @@ endfunction
 
 nmap <silent> --s "=HaskellModuleSection()<CR>gp
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Toggle errors
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! ToggleErrors()
+    let old_last_winnr = winnr('$')
+    lclose
+    if old_last_winnr == winnr('$')
+        " Nothing was closed, open syntastic error location panel
+        Errors
+    endif
+endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Thats it, thats all folks
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
