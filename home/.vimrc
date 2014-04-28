@@ -32,6 +32,11 @@ Bundle 'gmarik/vundle'
 """ Awesome color support
 Bundle 'gorodinskiy/vim-coloresque'
 
+""" Haskell stuff
+Bundle 'dag/vim2hs'
+Bundle 'eagletmt/ghcmod-vim'
+Bundle 'Shougo/vimproc.vim'
+
 """ Sass, haml and Scss
 Bundle 'tpope/vim-haml'
 
@@ -139,7 +144,6 @@ Bundle 'tpope/vim-unimpaired'
 """ Visual start - better search with * in visual mode
 Bundle 'bronson/vim-visual-star-search'
 
-Bundle 'vim-scripts/searchfold.vim'
 Bundle 'mustache/vim-mustache-handlebars'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -176,6 +180,11 @@ vmap <C-v> <Plug>(expand_region_shrink)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_javascript_checkers=['jshint']
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Haskell shit
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>ht :GhcModType<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Tabular
@@ -328,6 +337,8 @@ nmap tig :!tig %<CR>
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set cm=blowfish
+
+map <silent> <Leader>e :Errors<CR>
 
 map <Leader>ts :tab split<CR>
 map <Leader>tc :tabc<CR>
@@ -569,6 +580,22 @@ fun! ConsoleTime() range
     normal `<
   endif
 endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Haskell mod section seperator
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:width = 80
+
+function! HaskellModuleSection(...)
+    let name = 0 < a:0 ? a:1 : inputdialog("Section name: ")
+
+    return  repeat('-', s:width) . "\n"
+    \       . "--  " . name . "\n"
+    \       . "\n"
+
+endfunction
+
+nmap <silent> --s "=HaskellModuleSection()<CR>gp
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Thats it, thats all folks
