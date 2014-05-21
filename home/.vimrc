@@ -56,7 +56,7 @@ Bundle 'itspriddle/vim-marked'
 """ cd ~/.vim/bundle/YouCompleteMe
 """ ./install.sh --clang-completer
 Bundle 'Valloric/YouCompleteMe'
-Bundle 'thoughtbot/vim-rspec'
+"Bundle 'thoughtbot/vim-rspec'
 Bundle 'editorconfig/editorconfig-vim'
 
 """ Sublime like multi-line-select
@@ -184,7 +184,7 @@ let g:syntastic_javascript_checkers=['jshint']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Haskell shit
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>ht :GhcModType<CR>
+nmap <leader>ht :GhcModTypeInsert<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Tabular
@@ -338,6 +338,7 @@ nmap tig :!tig %<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set cm=blowfish
 
+map Y y$
 map <silent> <Leader>e :call ToggleErrors()<CR>
 
 map <Leader>ts :tab split<CR>
