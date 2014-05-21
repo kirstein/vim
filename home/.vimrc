@@ -91,6 +91,7 @@ Bundle 'tpope/vim-repeat'
 
 """ Slime - repl everything with tmux
 Bundle 'jpalardy/vim-slime'
+Bundle 'christoomey/vim-tmux-navigator'
 
 """ Syntastic
 Bundle 'scrooloose/syntastic'
@@ -185,6 +186,7 @@ let g:syntastic_javascript_checkers=['jshint']
 " => Haskell shit
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>ht :GhcModTypeInsert<CR>
+"au BufRead,BufNewFile,BufNew *.hss,*.hs setl ft=haskell.script
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Tabular
@@ -241,7 +243,7 @@ nmap K :Ag! "<C-R><C-W>"<CR>
 vmap K y:<C-U>Ag! '<C-R>"'<CR>
 
 " Find all todo tags
-map todo :Ag! "todo"<CR>
+map todo :Ag! -i "todo"<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Airline
