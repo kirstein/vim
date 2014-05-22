@@ -338,9 +338,20 @@ nmap tig :!tig %<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" I constantly have a problem with leader s fast saving
+" since i dont use s for replace lets remove it
+map s <Nop>
+
 set cm=blowfish
 
+" God damn, i hate when new splits are added to left and top
+set splitbelow
+set splitright
+
+" Consistant Y
 map Y y$
+
 map <silent> <Leader>e :call ToggleErrors()<CR>
 
 map <Leader>ts :tab split<CR>
@@ -359,13 +370,10 @@ noremap gV `[v`]
 vnoremap > >gv
 vnoremap < <gv
 
-" Make sure that if i hyper-click my leader i wont get jumped back
-nmap ,, <NOP>
-
 " Allow unsaved buffers
 set hidden
 
-" map @q to Q
+" map @q to Q, quicker macros
 nnoremap Q @q
 
 " Easy window navigation
