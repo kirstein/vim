@@ -144,7 +144,6 @@ Bundle 'tpope/vim-unimpaired'
 
 """ Visual start - better search with * in visual mode
 Bundle 'bronson/vim-visual-star-search'
-
 Bundle 'mustache/vim-mustache-handlebars'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -158,11 +157,6 @@ if vundle_autoinstall
 endif
 
 filetype plugin indent on
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Rspec
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:rspec_command = "!bundle rspec --drb {spec}"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Ultrasnips
