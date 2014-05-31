@@ -29,6 +29,9 @@ call vundle#rc()
 """ Let vundle manage vundle
 Bundle 'gmarik/vundle'
 
+""" Documentation, only for osx
+Bundle 'rizzatti/dash.vim'
+
 """ Awesome color support
 Bundle 'gorodinskiy/vim-coloresque'
 
