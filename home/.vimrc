@@ -29,8 +29,11 @@ call vundle#rc()
 """ Let vundle manage vundle
 Bundle 'gmarik/vundle'
 
-""" Documentation, only for osx
-Bundle 'rizzatti/dash.vim'
+""" Tags
+Bundle 'xolox/vim-misc'
+Bundle 'lukaszkorecki/CoffeeTags'
+Bundle 'xolox/vim-easytags'
+Bundle 'majutsushi/tagbar'
 
 """ Awesome color support
 Bundle 'gorodinskiy/vim-coloresque'
@@ -46,12 +49,7 @@ Bundle 'tpope/vim-haml'
 """ Undotree
 Bundle 'sjl/gundo.vim'
 
-""" Golang
 Bundle 'jnwhiteh/vim-golang'
-
-""" Rails
-""" Defacto for rails devolpment
-"Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-markdown'
 Bundle 'itspriddle/vim-marked'
 
@@ -59,7 +57,6 @@ Bundle 'itspriddle/vim-marked'
 """ cd ~/.vim/bundle/YouCompleteMe
 """ ./install.sh --clang-completer
 Bundle 'Valloric/YouCompleteMe'
-"Bundle 'thoughtbot/vim-rspec'
 Bundle 'editorconfig/editorconfig-vim'
 
 """ Sublime like multi-line-select
@@ -70,8 +67,6 @@ Bundle 'rking/ag.vim'
 
 """ Airline
 Bundle 'bling/vim-airline'
-
-Bundle 'vim-scripts/searchfold.vim'
 
 """ CtrlP
 Bundle 'kien/ctrlp.vim'
@@ -84,13 +79,10 @@ Bundle 'mattn/emmet-vim'
 """ Gist
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
-Bundle 'jaxbot/github-issues.vim'
-
-""" Nerdcommenter
-Bundle 'scrooloose/nerdcommenter'
 
 """ Repeat - repet enchance for tpope plugin
 Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-commentary'
 
 """ Slime - repl everything with tmux
 Bundle 'jpalardy/vim-slime'
@@ -106,9 +98,6 @@ Bundle 'godlygeek/tabular'
 Bundle 'kana/vim-textobj-user'
 Bundle 'coderifous/textobj-word-column.vim'
 Bundle 'kana/vim-textobj-indent'
-
-""" Expands one key for multiple actions
-Bundle 'terryma/vim-expand-region'
 
 """ Autoclose endings
 Bundle 'kana/vim-smartinput'
@@ -164,14 +153,8 @@ filetype plugin indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Ultrasnips
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" c-j triggers a snippet
-let g:UltiSnipsExpandTrigger="<c-j>"
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Expand region
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
+" c-o triggers a snippet
+let g:UltiSnipsExpandTrigger="<c-o>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Syntastic
@@ -189,6 +172,11 @@ nmap <leader>ht :GhcModTypeInsert<CR>
 " => Bundle: Tabular
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vmap /a <esc>:'<,'>:Tabular /
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: YouCompleteMe
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ycm_collect_identifiers_from_tags_files = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Slime
@@ -317,6 +305,32 @@ nnoremap <C-y> "+y
 vnoremap <C-y> "+y
 nnoremap <C-p> "+gP
 vnoremap <C-p> "+gP
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Tags
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <F4> :Tagbar<CR>
+
+if executable('coffeetags')
+    let g:tagbar_type_coffee = {
+        \ 'ctagsbin' : 'coffeetags',
+        \ 'ctagsargs' : '',
+        \ 'kinds' : [
+            \ 'f:functions',
+            \ 'o:object',
+        \ ],
+        \ 'sro' : ".",
+        \ 'kind2scope' : {
+            \ 'f' : 'object',
+            \ 'o' : 'object',
+        \ }
+    \ }
+endif
+
+set tags=./.tags;
+let g:easytags_file          = '~/.vim/tags'
+let g:easytags_dynamic_files = 1
+let g:easytags_events        = ['BufReadPost', 'BufWritePost']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding
