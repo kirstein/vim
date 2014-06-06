@@ -328,7 +328,7 @@ if executable('coffeetags')
 endif
 
 set tags=./.tags;
-let g:easytags_file          = '~/.vim/tags'
+let g:easytags_file          = '~/.tags'
 let g:easytags_dynamic_files = 1
 let g:easytags_events        = ['BufReadPost', 'BufWritePost']
 
