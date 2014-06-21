@@ -135,7 +135,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 
 """ Visual start - better search with * in visual mode
-Bundle 'bronson/vim-visual-star-search'
+Bundle 'thinca/vim-visualstar'
 Bundle 'mustache/vim-mustache-handlebars'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -254,6 +254,7 @@ nnoremap /b :CtrlPBuffer<CR>
 nnoremap /m :CtrlPMRU<CR>
 nnoremap /f :CtrlPFunky<CR>
 nnoremap /r :CtrlPRegister<CR>
+nnoremap /x :CtrlPTag<CR>
 
 " narrow the list down with a word under cursor
 nnoremap /fu :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
@@ -327,9 +328,8 @@ if executable('coffeetags')
     \ }
 endif
 
-set tags=./.tags;
 let g:easytags_file          = '~/.tags'
-let g:easytags_dynamic_files = 1
+let g:easytags_dynamic_files = 0
 let g:easytags_events        = ['BufReadPost', 'BufWritePost']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -349,6 +349,9 @@ nmap tig :!tig %<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" . is not a word!
+set iskeyword-=.
 
 " I constantly have a problem with leader s fast saving
 " since i dont use s for replace lets remove it
