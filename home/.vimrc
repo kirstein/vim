@@ -28,6 +28,8 @@ call vundle#rc()
 """ Let vundle manage vundle
 Bundle 'gmarik/vundle'
 
+Bundle 'pydave/vim-hiinterestingword'
+
 """ Tags
 Bundle 'xolox/vim-misc'
 Bundle 'lukaszkorecki/CoffeeTags'
