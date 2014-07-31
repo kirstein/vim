@@ -36,8 +36,6 @@ Bundle 'lukaszkorecki/CoffeeTags'
 Bundle 'xolox/vim-easytags'
 Bundle 'majutsushi/tagbar'
 
-Bundle 'szw/vim-ctrlspace'
-
 """ Awesome color support
 Bundle 'gorodinskiy/vim-coloresque'
 
