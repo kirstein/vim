@@ -36,9 +36,6 @@ Bundle 'lukaszkorecki/CoffeeTags'
 Bundle 'xolox/vim-easytags'
 Bundle 'majutsushi/tagbar'
 
-""" Awesome color support
-Bundle 'gorodinskiy/vim-coloresque'
-
 """ Haskell stuff
 Bundle 'dag/vim2hs'
 Bundle 'eagletmt/ghcmod-vim'
