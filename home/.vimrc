@@ -339,6 +339,8 @@ set foldmethod=manual
 set foldnestmax=10
 set nofoldenable " dont fold by default
 
+nnoremap <Leader>z zMzvzz
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Third party shit
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -356,6 +358,11 @@ set iskeyword-=.
 " I constantly have a problem with leader s fast saving
 " since i dont use s for replace lets remove it
 map s <Nop>
+
+" Don't move on *
+" I'd use a function for this but Vim clobbers the last search when you're in
+" a function so fuck it, practicality beats purity.
+nnoremap <silent> * :let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>
 
 set cm=blowfish
 
@@ -390,12 +397,6 @@ set hidden
 " map @q to Q, quicker macros
 nnoremap Q @q
 
-" Easy window navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-
 " Toggle f2 as paste mode
 set pastetoggle=<F2>
 
@@ -410,6 +411,18 @@ nmap <leader>s :w!<cr>
 
 " Replace word under the cursor
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+" Display the last search in quickfix window
+nnoremap <silent> <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => window / pane magic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Easy window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -492,6 +505,15 @@ set nowb
 set noswapfile
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Yeah, no!
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Get off my lawn
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Jumping brackets
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 noremap % v%
@@ -541,6 +563,8 @@ set relativenumber
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " List char
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set showbreak=↪
+
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬,trail:.
 map <Leader>l :set list!<CR>
