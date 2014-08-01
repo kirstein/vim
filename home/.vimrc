@@ -29,6 +29,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'pydave/vim-hiinterestingword'
+Bundle 'sjl/clam.vim'
 
 """ Tags
 Bundle 'xolox/vim-misc'
@@ -160,6 +161,11 @@ let g:UltiSnipsExpandTrigger="<c-o>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_javascript_checkers=['jshint']
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Clam
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>! :Clam<space>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Haskell shit
