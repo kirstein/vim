@@ -316,6 +316,9 @@ vnoremap <C-p> "+gP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tags
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:CoffeeAutoTagFile='~/.tags'  " Name of the generated tag file (Default: ./tags)
+let g:CoffeeAutoTagTagRelative=1  " Sets file names to the relative path from the tag file location to the tag file location (Default: 1 [true])"
+
 nmap <F4> :Tagbar<CR>
 
 if executable('coffeetags')
@@ -334,8 +337,9 @@ if executable('coffeetags')
     \ }
 endif
 
+let g:easytags_auto_highlight = 1
 let g:easytags_file          = '~/.tags'
-let g:easytags_dynamic_files = 0
+let g:easytags_dynamic_files = 1
 let g:easytags_events        = ['BufReadPost', 'BufWritePost']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
