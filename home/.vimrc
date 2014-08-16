@@ -195,6 +195,8 @@ let g:slime_paste_file = tempname()
 vmap /c <esc>:'<,'>:CoffeeCompile<CR>
 map /c :CoffeeCompile<CR>
 
+set suffixesadd+=.coffee
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Gundotree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
