@@ -31,6 +31,8 @@ Bundle 'gmarik/vundle'
 Bundle 'pydave/vim-hiinterestingword'
 Bundle 'sjl/clam.vim'
 
+Bundle 'jaxbot/github-issues.vim'
+
 """ Tags
 Bundle 'xolox/vim-misc'
 Bundle 'lukaszkorecki/CoffeeTags'
