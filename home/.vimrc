@@ -36,13 +36,17 @@ Bundle 'jaxbot/github-issues.vim'
 """ Tags
 Bundle 'xolox/vim-misc'
 Bundle 'lukaszkorecki/CoffeeTags'
-Bundle 'xolox/vim-easytags'
+" Removed due the problem with tag creating which makes it extremely slow
+" Bundle 'xolox/vim-easytags'
 Bundle 'majutsushi/tagbar'
 
 """ Haskell stuff
 Bundle 'dag/vim2hs'
 Bundle 'eagletmt/ghcmod-vim'
 Bundle 'Shougo/vimproc.vim'
+
+""" Go to directory
+Bundle 'justinmk/vim-gtfo'
 
 """ Sass, haml and Scss
 Bundle 'tpope/vim-haml'
@@ -70,7 +74,7 @@ Bundle 'rking/ag.vim'
 Bundle 'bling/vim-airline'
 
 """ CtrlP
-Bundle 'kien/ctrlp.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'kirstein/ctrlp-register'
 Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'endel/ctrlp-filetype.vim'
@@ -264,6 +268,7 @@ nnoremap /m :CtrlPMRU<CR>
 nnoremap /f :CtrlPFunky<CR>
 nnoremap /r :CtrlPRegister<CR>
 nnoremap /x :CtrlPTag<CR>
+nnoremap /a :CtrlPBufTagAll<CR>
 nnoremap /s :CtrlPFiletype<CR>
 
 " narrow the list down with a word under cursor
@@ -671,6 +676,12 @@ function! ToggleErrors()
         Errors
     endif
 endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Source private config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+so ~/.vimrc-private
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Thats it, thats all folks
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
