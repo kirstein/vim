@@ -140,6 +140,9 @@ Bundle 'tpope/vim-surround'
 """ Unimpaired - paired mappings
 Bundle 'tpope/vim-unimpaired'
 
+""" Project configuration
+Bundle 'tpope/vim-projectionist'
+
 """ Visual start - better search with * in visual mode
 Bundle 'thinca/vim-visualstar'
 Bundle 'mustache/vim-mustache-handlebars'
@@ -268,7 +271,7 @@ nnoremap /m :CtrlPMRU<CR>
 nnoremap /f :CtrlPFunky<CR>
 nnoremap /r :CtrlPRegister<CR>
 nnoremap /x :CtrlPTag<CR>
-nnoremap /a :CtrlPBufTagAll<CR>
+nnoremap /a :CtrlPCurFile<CR>
 nnoremap /s :CtrlPFiletype<CR>
 
 " narrow the list down with a word under cursor
