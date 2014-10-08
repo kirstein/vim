@@ -54,7 +54,7 @@ Bundle 'tpope/vim-haml'
 """ Undotree
 Bundle 'sjl/gundo.vim'
 
-Bundle 'jnwhiteh/vim-golang'
+Bundle 'fatih/vim-go'
 Bundle 'tpope/vim-markdown'
 Bundle 'itspriddle/vim-marked'
 
@@ -542,6 +542,10 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
+ab lod: ಠ_ಠ
+ab flip: (ﾉಥ益ಥ）ﾉ︵┻━┻
+ab yuno: ლ(ಠ益ಠლ))
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Jumping brackets
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -582,6 +586,9 @@ map k gk
 
 " Use one space instead of two when joining lines
 set nojoinspaces
+
+" Automatic save on buffer change etc
+set autowriteall
 
 " Replace highlight line when insert and vice versa
 autocmd InsertEnter,InsertLeave * set cul!
@@ -640,7 +647,6 @@ fun! ToggleVExplorer()
   endif
 endfunction
 map <silent> <C-E> :call ToggleVExplorer()<CR>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Wrap everything to console.time - console.timeEnd
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
