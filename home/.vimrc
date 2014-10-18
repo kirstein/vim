@@ -292,6 +292,14 @@ let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|
 let g:ctrlp_use_caching = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim go
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Directory assigning
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Make PWD the current file
