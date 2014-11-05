@@ -64,9 +64,6 @@ Bundle 'itspriddle/vim-marked'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'editorconfig/editorconfig-vim'
 
-""" Sublime like multi-line-select
-Bundle 'terryma/vim-multiple-cursors'
-
 """ Silver surfer
 Bundle 'rking/ag.vim'
 
