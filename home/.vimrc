@@ -299,6 +299,12 @@ au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 
+au FileType go nmap <Leader>e <Plug>(go-rename)
+
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Directory assigning
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -420,6 +426,10 @@ map q: :q
 
 " Switch quickly between buffers
 nmap // <c-^>
+
+" Rotate through buffers
+nmap <C-n> :bn<CR>
+nmap <C-p> :bp<CR>
 
 " Select what has been pasted
 noremap gV `[v`]
