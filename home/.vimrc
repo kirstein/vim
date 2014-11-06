@@ -48,6 +48,9 @@ Bundle 'Shougo/vimproc.vim'
 """ Go to directory
 Bundle 'justinmk/vim-gtfo'
 
+""" UNIX shell commands
+Bundle 'tpope/vim-eunuch'
+
 """ Sass, haml and Scss
 Bundle 'tpope/vim-haml'
 
@@ -426,7 +429,7 @@ nmap // <c-^>
 
 " Rotate through buffers
 nmap <C-n> :bn<CR>
-nmap <C-p> :bp<CR>
+nmap <C-m> :bp<CR>
 
 " Select what has been pasted
 noremap gV `[v`]
