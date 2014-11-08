@@ -33,6 +33,9 @@ Bundle 'sjl/clam.vim'
 
 Bundle 'jaxbot/github-issues.vim'
 
+""" AMAZING hyperfocus thing
+Bundle 'junegunn/limelight.vim'
+
 """ Tags
 Bundle 'xolox/vim-misc'
 Bundle 'lukaszkorecki/CoffeeTags'
