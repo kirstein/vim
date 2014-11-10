@@ -35,6 +35,7 @@ Bundle 'jaxbot/github-issues.vim'
 
 """ AMAZING hyperfocus thing
 Bundle 'junegunn/limelight.vim'
+Bundle 'junegunn/goyo.vim'
 
 """ Tags
 Bundle 'xolox/vim-misc'
