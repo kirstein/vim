@@ -448,9 +448,6 @@ nnoremap Q @q
 " Toggle f2 as paste mode
 set pastetoggle=<F2>
 
-" Sets how many lines of history VIM has to remember
-set history=70000
-
 " Set to auto read when a file is changed from the outside
 set autoread
 
