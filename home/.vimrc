@@ -38,11 +38,11 @@ Bundle 'junegunn/limelight.vim'
 Bundle 'junegunn/goyo.vim'
 
 """ Tags
-Bundle 'xolox/vim-misc'
-Bundle 'lukaszkorecki/CoffeeTags'
+" Bundle 'xolox/vim-misc'
+" Bundle 'lukaszkorecki/CoffeeTags'
 " Removed due the problem with tag creating which makes it extremely slow
 " Bundle 'xolox/vim-easytags'
-Bundle 'majutsushi/tagbar'
+" Bundle 'majutsushi/tagbar'
 
 """ Haskell stuff
 Bundle 'dag/vim2hs'
@@ -343,31 +343,31 @@ vnoremap <C-p> "+gP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tags
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:CoffeeAutoTagFile='~/.tags'  " Name of the generated tag file (Default: ./tags)
-let g:CoffeeAutoTagTagRelative=1  " Sets file names to the relative path from the tag file location to the tag file location (Default: 1 [true])"
+" let g:CoffeeAutoTagFile='~/.tags'  " Name of the generated tag file (Default: ./tags)
+" let g:CoffeeAutoTagTagRelative=1  " Sets file names to the relative path from the tag file location to the tag file location (Default: 1 [true])"
 
-nmap <F4> :Tagbar<CR>
+" nmap <F4> :Tagbar<CR>
 
-if executable('coffeetags')
-    let g:tagbar_type_coffee = {
-        \ 'ctagsbin' : 'coffeetags',
-        \ 'ctagsargs' : '',
-        \ 'kinds' : [
-            \ 'f:functions',
-            \ 'o:object',
-        \ ],
-        \ 'sro' : ".",
-        \ 'kind2scope' : {
-            \ 'f' : 'object',
-            \ 'o' : 'object',
-        \ }
-    \ }
-endif
+" if executable('coffeetags')
+"     let g:tagbar_type_coffee = {
+"         \ 'ctagsbin' : 'coffeetags',
+"         \ 'ctagsargs' : '',
+"         \ 'kinds' : [
+"             \ 'f:functions',
+"             \ 'o:object',
+"         \ ],
+"         \ 'sro' : ".",
+"         \ 'kind2scope' : {
+"             \ 'f' : 'object',
+"             \ 'o' : 'object',
+"         \ }
+"     \ }
+" endif
 
-let g:easytags_auto_highlight = 1
-let g:easytags_file          = '~/.tags'
-let g:easytags_dynamic_files = 1
-let g:easytags_events        = ['BufReadPost', 'BufWritePost']
+" let g:easytags_auto_highlight = 1
+" let g:easytags_file          = '~/.tags'
+" let g:easytags_dynamic_files = 1
+" let g:easytags_events        = ['BufReadPost', 'BufWritePost']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding
@@ -431,6 +431,8 @@ nmap // <c-^>
 " Rotate through buffers
 nmap <C-n> :bn<CR>
 nmap <C-p> :bp<CR>
+
+nmap <silent> <leader>c :bp\|bd #<CR>, but I'm getting E94: No matching buffer for #<CR>'
 
 " Select what has been pasted
 noremap gV `[v`]
