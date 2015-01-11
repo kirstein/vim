@@ -135,6 +135,8 @@ Bundle 'kshenoy/vim-signature'
 Bundle 'SirVer/ultisnips'
 Bundle 'kirstein/vim-snippets'
 
+Bundle 'tpope/vim-eunuch'
+
 """ Surround
 Bundle 'tpope/vim-surround'
 
