@@ -44,6 +44,9 @@ Bundle 'junegunn/goyo.vim'
 " Bundle 'xolox/vim-easytags'
 " Bundle 'majutsushi/tagbar'
 
+""" React
+Bundle 'mxw/vim-jsx'
+
 """ Haskell stuff
 Bundle 'dag/vim2hs'
 Bundle 'eagletmt/ghcmod-vim'
@@ -172,12 +175,13 @@ let g:UltiSnipsExpandTrigger="<c-o>"
 " => Bundle: Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_always_populate_loc_list=1
-let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_javascript_checkers=['jsxhint']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Clam
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>! :Clam<space>
+nmap ! :Clam<space>
+vnoremap ! :ClamVisual<space>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Haskell shit
@@ -293,6 +297,12 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|.git\'
 " ag is fast enough that CtrlP doesn't need to cache
 let g:ctrlp_use_caching = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => React
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:jsx_ext_required = 0
+let g:jsx_pragma_required = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim go
@@ -457,9 +467,6 @@ set autoread
 
 " Fast saving
 nmap <leader>s :w!<cr>
-
-" Replace word under the cursor
-nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " Display the last search in quickfix window
 nnoremap <silent> <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
