@@ -37,6 +37,11 @@ Bundle 'jaxbot/github-issues.vim'
 Bundle 'junegunn/limelight.vim'
 Bundle 'junegunn/goyo.vim'
 
+""" Jsdoc
+Bundle 'heavenshell/vim-jsdoc'
+
+Bundle 'tmux-plugins/vim-tmux-focus-events'
+
 """ Tags
 " Bundle 'xolox/vim-misc'
 " Bundle 'lukaszkorecki/CoffeeTags'
@@ -149,9 +154,17 @@ Bundle 'tpope/vim-unimpaired'
 """ Project configuration
 Bundle 'tpope/vim-projectionist'
 
+""" Ruby
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-rbenv'
+Bundle 'tpope/vim-dispatch'
+
 """ Visual start - better search with * in visual mode
 Bundle 'thinca/vim-visualstar'
 Bundle 'mustache/vim-mustache-handlebars'
+
+Bundle 'vim-scripts/Tabmerge'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Automatically install bundles
@@ -164,6 +177,20 @@ if vundle_autoinstall
 endif
 
 filetype plugin indent on
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: Rails + rspec
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <silent> \a :Dispatch rake test<CR>
+map <silent> \t :Dispatch rake test TEST=%<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: Jsdoc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap /l :JsDoc<CR>
+let g:jsdoc_return=0
+let g:jsdoc_default_mapping=0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Ultrasnips
@@ -380,6 +407,12 @@ vnoremap <C-p> "+gP
 " let g:easytags_file          = '~/.tags'
 " let g:easytags_dynamic_files = 1
 " let g:easytags_events        = ['BufReadPost', 'BufWritePost']
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Folding
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:marked_app = 'Marked'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding
