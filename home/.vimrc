@@ -142,6 +142,7 @@ Bundle 'kshenoy/vim-signature'
 """ Ultrasnips
 Bundle 'SirVer/ultisnips'
 Bundle 'kirstein/vim-snippets'
+Bundle 'justinj/vim-react-snippets'
 
 Bundle 'tpope/vim-eunuch'
 
@@ -483,6 +484,8 @@ map <Leader>tc :tabc<CR>
 nmap <Leader>q :q<CR>
 map q: :q
 
+map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+
 " Switch quickly between buffers
 nmap // <c-^>
 
@@ -534,9 +537,10 @@ set so=7
 
 " Turn on the WiLd menu
 set wildmenu
+set wildmode=list:longest
 
-" Ignore compiled files
-set wildignore=*/tmp/*,*/*-target/,*/node_modules/,*.zip,*.o,*~,*.pyc
+" " Ignore compiled files
+set wildignore=.git,*/tmp,*/node_modules
 
 "Always show current position
 set ruler
