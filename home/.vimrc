@@ -159,6 +159,7 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-rbenv'
 Bundle 'tpope/vim-dispatch'
+Bundle 'ecomba/vim-ruby-refactoring'
 
 """ Visual start - better search with * in visual mode
 Bundle 'thinca/vim-visualstar'
@@ -182,8 +183,21 @@ filetype plugin indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Rails + rspec
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <silent> \a :Dispatch rake test<CR>
-map <silent> \t :Dispatch rake test TEST=%<CR>
+map <silent> \a :Rake spec test<CR>
+map <silent> \t :Rake spec SPEC=%<CR>
+
+map <silent><leader>. :A<CR>
+map <silent><leader>\ :AV<CR>
+map <silent><leader>rr :Rake routes<CR>
+
+map <leader>em :Emodel 
+map <leader>ec :Econtroller 
+map <leader>ev :Eview 
+map <leader>es :Estylesheet 
+map <leader>vm :Vmodel 
+map <leader>vc :Vcontroller 
+map <leader>vv :Vview 
+map <leader>vs :Vstylesheet 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Jsdoc
@@ -279,6 +293,8 @@ vmap K y:<C-U>Ag! '<C-R>"'<CR>
 
 " Find all todo tags
 map todo :Ag! -i "todo"<CR>
+map <leader>f :Ag! 
+map <leader>F :Ag! -i 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Airline
@@ -436,10 +452,7 @@ nmap tig :!tig %<CR>
 " Give access to mouse support
 " Usable for resizing panes
 set mouse+=a
-if &term =~ '^screen'
-  " tmux knows the extended mouse mode
-  set ttymouse=xterm2
-endif
+set ttymouse=xterm2
 
 " . is not a word!
 set iskeyword-=.
@@ -673,7 +686,8 @@ highlight SpecialKey guifg=#4a4a59
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Remove trailing whitespaces when dealing with certain languages
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType javascript,python,coffee,vim,html autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType ruby,python,javascript,coffee,markdown autocmd BufWritePre <buffer> :%s/\($\n\s*\)\+\%$//e
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Netrw
