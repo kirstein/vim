@@ -33,6 +33,9 @@ Bundle 'sjl/clam.vim'
 
 Bundle 'jaxbot/github-issues.vim'
 
+""" Allow creating directories with new or edit
+Bundle 'duggiefresh/vim-easydir'
+
 """ AMAZING hyperfocus thing
 Bundle 'junegunn/limelight.vim'
 Bundle 'junegunn/goyo.vim'
@@ -141,9 +144,13 @@ Bundle 'kshenoy/vim-signature'
 
 """ Ultrasnips
 Bundle 'SirVer/ultisnips'
-Bundle 'kirstein/vim-snippets'
-Bundle 'justinj/vim-react-snippets'
 
+""" All those glorious snippets
+Bundle 'kirstein/vim-javascript-snippets'
+Bundle 'kirstein/vim-javascript-node-snippets'
+Bundle 'kirstein/vim-jsx-snippets'
+
+""" Fs helpers. :Rename etc
 Bundle 'tpope/vim-eunuch'
 
 """ Surround
@@ -212,6 +219,12 @@ let g:jsdoc_default_mapping=0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " c-o triggers a snippet
 let g:UltiSnipsExpandTrigger="<c-o>"
+let snipsDir = $HOME."/workspace/vim-snippets/"
+let g:UltiSnipsSnippetDirectories=[ 'UltiSnips' ]
+if isdirectory(snipsDir)
+  let g:UltiSnipsSnippetDirectories=[ snipsDir."**/UltiSnips" ]
+else
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Syntastic
@@ -239,7 +252,7 @@ vmap /a <esc>:'<,'>:Tabular /
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: YouCompleteMe
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_min_num_of_chars_for_completion = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Slime
@@ -476,8 +489,6 @@ set splitright
 " Consistant Y
 map Y y$
 
-map <silent> <Leader>e :call ToggleErrors()<CR>
-
 map <Leader>ts :tab split<CR>
 map <Leader>tc :tabc<CR>
 
@@ -537,7 +548,7 @@ set so=7
 
 " Turn on the WiLd menu
 set wildmenu
-set wildmode=list:longest
+set wildmode=longest:full,full
 
 " " Ignore compiled files
 set wildignore=.git,*/tmp,*/node_modules
@@ -769,6 +780,38 @@ function! ToggleErrors()
         " Nothing was closed, open syntastic error location panel
         Errors
     endif
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Open the first matching variable with require statement
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nmap <silent> gw :call OpenFirstRequire()<CR>
+
+function! OpenFirstRequire()
+  let l:name = expand("<cword>")
+  " Find require statement
+  " Matches the following cases. Work both for js and coffeescript
+  "  1. = require or =require
+  "  2. ('location') or 'location' or ("location") or "location"
+  let l:regexp = l:name . '\s*=\s*require\((\|\s\)\(''\|"\).*\(''\|"\)\()\|\s\)'
+  let l:lnr = 0
+  let l:loc = 0
+  while l:lnr < line('$')
+      let l:line = getline(l:lnr)
+      if len(matchstr(l:line, l:regexp))
+          for i in split(l:line, '\zs')
+            if l:loc != 0 && len(matchstr(i, '\(''\|"\)'))
+              call cursor(l:lnr, l:loc)
+              normal! gF"
+              return
+            endif
+            let l:loc = l:loc + 1
+          endfor
+          break
+      endif
+      let l:lnr = l:lnr + 1
+  endwhile
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
