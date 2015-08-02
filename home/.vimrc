@@ -28,6 +28,8 @@ call vundle#rc()
 """ Let vundle manage vundle
 Bundle 'gmarik/vundle'
 
+Bundle 'marijnh/tern_for_vim'
+
 Bundle 'pydave/vim-hiinterestingword'
 Bundle 'sjl/clam.vim'
 
@@ -187,6 +189,10 @@ endif
 
 filetype plugin indent on
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: Tern
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType javascript setlocal omnifunc=tern#Complete
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Rails + rspec
