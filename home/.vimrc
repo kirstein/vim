@@ -800,23 +800,23 @@ function! OpenFirstRequire()
   " Matches the following cases. Work both for js and coffeescript
   "  1. = require or =require
   "  2. ('location') or 'location' or ("location") or "location"
-  let l:regexp = l:name . '\s*=\s*require\((\|\s\)\(''\|"\).*\(''\|"\)\()\|\s\)'
+  let l:regexp = l:name . '\s*=\s*require\s*\((\|\s\)\(''\|"\).*\(''\|"\)\()\|\s*\)'
   let l:lnr = 0
   let l:loc = 0
   while l:lnr < line('$')
-      let l:line = getline(l:lnr)
-      if len(matchstr(l:line, l:regexp))
-          for i in split(l:line, '\zs')
-            if l:loc != 0 && len(matchstr(i, '\(''\|"\)'))
-              call cursor(l:lnr, l:loc)
-              normal! gF"
-              return
-            endif
-            let l:loc = l:loc + 1
-          endfor
-          break
-      endif
-      let l:lnr = l:lnr + 1
+    let l:line = getline(l:lnr)
+    if len(matchstr(l:line, l:regexp))
+      for i in split(l:line, '\zs')
+        if l:loc != 0 && len(matchstr(i, '\(''\|"\)'))
+          call cursor(l:lnr, l:loc)
+          normal! gF"
+          return
+        endif
+        let l:loc = l:loc + 1
+      endfor
+      break
+    endif
+    let l:lnr = l:lnr + 1
   endwhile
 endfunction
 
