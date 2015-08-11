@@ -38,21 +38,10 @@ Bundle 'jaxbot/github-issues.vim'
 """ Allow creating directories with new or edit
 Bundle 'duggiefresh/vim-easydir'
 
-""" AMAZING hyperfocus thing
-Bundle 'junegunn/limelight.vim'
-Bundle 'junegunn/goyo.vim'
-
-""" Jsdoc
-Bundle 'heavenshell/vim-jsdoc'
-
-Bundle 'tmux-plugins/vim-tmux-focus-events'
-
 """ Tags
-" Bundle 'xolox/vim-misc'
-" Bundle 'lukaszkorecki/CoffeeTags'
-" Removed due the problem with tag creating which makes it extremely slow
-" Bundle 'xolox/vim-easytags'
-" Bundle 'majutsushi/tagbar'
+Bundle 'kirstein/CoffeeTags'
+Bundle 'majutsushi/tagbar'
+Bundle 'dbakker/vim-projectroot'
 
 """ React
 Bundle 'mxw/vim-jsx'
@@ -89,9 +78,6 @@ Bundle 'bling/vim-airline'
 
 """ CtrlP
 Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'kirstein/ctrlp-register'
-Bundle 'tacahiroy/ctrlp-funky'
-Bundle 'endel/ctrlp-filetype.vim'
 
 """ Emmet
 Bundle 'mattn/emmet-vim'
@@ -214,13 +200,6 @@ map <leader>vv :Vview
 map <leader>vs :Vstylesheet 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Jsdoc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap /l :JsDoc<CR>
-let g:jsdoc_return=0
-let g:jsdoc_default_mapping=0
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Ultrasnips
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " c-o triggers a snippet
@@ -338,21 +317,16 @@ let g:gist_show_privates = 1
 nnoremap /d :CtrlPCurWD<CR>
 nnoremap /b :CtrlPBuffer<CR>
 nnoremap /m :CtrlPMRU<CR>
-nnoremap /f :CtrlPFunky<CR>
-nnoremap /r :CtrlPRegister<CR>
 nnoremap /x :CtrlPTag<CR>
 nnoremap /a :CtrlPCurFile<CR>
-nnoremap /s :CtrlPFiletype<CR>
-
-" narrow the list down with a word under cursor
-nnoremap /fu :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+nnoremap /g :CtrlPLine<CR>
 
 " Add fugitive porn to ignore
 let g:ctrlp_custom_ignore = '\.fugitive.*'
 
 " Overwrite the default mapping in order to let the C+p work
 let g:ctrlp_map = "/t"
-let g:ctrlp_extensions = [ 'funky', 'register', 'filetype' ]
+let g:ctrlp_extensions = [ 'line' ]
 
 let g:ctrlp_working_path_mode = 'ra'
 " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
@@ -418,35 +392,15 @@ vnoremap <C-p> "+gP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tags
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:CoffeeAutoTagFile='~/.tags'  " Name of the generated tag file (Default: ./tags)
-" let g:CoffeeAutoTagTagRelative=1  " Sets file names to the relative path from the tag file location to the tag file location (Default: 1 [true])"
+let g:CoffeeAutoTagFile=projectroot#guess() . "/.tags"
+let g:CoffeeAutoTagUseDispatch=1
 
-" nmap <F4> :Tagbar<CR>
+set tags+=.tags
 
-" if executable('coffeetags')
-"     let g:tagbar_type_coffee = {
-"         \ 'ctagsbin' : 'coffeetags',
-"         \ 'ctagsargs' : '',
-"         \ 'kinds' : [
-"             \ 'f:functions',
-"             \ 'o:object',
-"         \ ],
-"         \ 'sro' : ".",
-"         \ 'kind2scope' : {
-"             \ 'f' : 'object',
-"             \ 'o' : 'object',
-"         \ }
-"     \ }
-" endif
-
-" let g:easytags_auto_highlight = 1
-" let g:easytags_file          = '~/.tags'
-" let g:easytags_dynamic_files = 1
-" let g:easytags_events        = ['BufReadPost', 'BufWritePost']
-
+nmap <F4> :Tagbar<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Folding
+" => Marked
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:marked_app = 'Marked'
 
@@ -510,7 +464,7 @@ nmap // <c-^>
 nmap <C-n> :bn<CR>
 nmap <C-p> :bp<CR>
 
-nmap <silent> <leader>c :bp\|bd #<CR>, but I'm getting E94: No matching buffer for #<CR>'
+nmap <silent> <leader>c :bp\|bd #<CR>
 
 " Select what has been pasted
 noremap gV `[v`]
