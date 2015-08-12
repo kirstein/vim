@@ -361,10 +361,8 @@ au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 " Make PWD the current file
 nnoremap \cd :cd %:p:h<CR>:pwd<CR>
 
-" Set variable on vim initiation
-let g:root_dir = getcwd()
 " Navigate to root `root_dir` directory
-nnoremap \rd :execute ':cd ' . root_dir<CR>:pwd<CR>
+nnoremap \rd :execute ':cd ' . projectroot#guess() <CR>:pwd<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Last tab
