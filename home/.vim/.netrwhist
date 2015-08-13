@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/kirstein/workspace/toggl_next/app/scripts/notifications'
+let g:netrw_dirhist_2='/Users/kirstein'
+let g:netrw_dirhist_3='/Users/kirstein/workspace/vim-snippets'
+let g:netrw_dirhist_4='/Users/kirstein/workspace/vim-snippets/vim-javascript-node-snippets'

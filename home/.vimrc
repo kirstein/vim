@@ -33,8 +33,6 @@ Bundle 'marijnh/tern_for_vim'
 Bundle 'pydave/vim-hiinterestingword'
 Bundle 'sjl/clam.vim'
 
-Bundle 'jaxbot/github-issues.vim'
-
 """ Allow creating directories with new or edit
 Bundle 'duggiefresh/vim-easydir'
 
@@ -47,18 +45,15 @@ Bundle 'dbakker/vim-projectroot'
 Bundle 'mxw/vim-jsx'
 
 """ Haskell stuff
-Bundle 'dag/vim2hs'
-Bundle 'eagletmt/ghcmod-vim'
-Bundle 'Shougo/vimproc.vim'
+" Bundle 'dag/vim2hs'
+" Bundle 'eagletmt/ghcmod-vim'
+" Bundle 'Shougo/vimproc.vim'
 
 """ Go to directory
 Bundle 'justinmk/vim-gtfo'
 
 """ Sass, haml and Scss
 Bundle 'tpope/vim-haml'
-
-""" Undotree
-Bundle 'sjl/gundo.vim'
 
 Bundle 'fatih/vim-go'
 Bundle 'tpope/vim-markdown'
@@ -147,9 +142,6 @@ Bundle 'tpope/vim-surround'
 """ Unimpaired - paired mappings
 Bundle 'tpope/vim-unimpaired'
 
-""" Project configuration
-Bundle 'tpope/vim-projectionist'
-
 """ Ruby
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-bundler'
@@ -160,8 +152,6 @@ Bundle 'ecomba/vim-ruby-refactoring'
 """ Visual start - better search with * in visual mode
 Bundle 'thinca/vim-visualstar'
 Bundle 'mustache/vim-mustache-handlebars'
-
-Bundle 'vim-scripts/Tabmerge'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Automatically install bundles
@@ -252,19 +242,6 @@ vmap /c <esc>:'<,'>:CoffeeCompile<CR>
 map /c :CoffeeCompile<CR>
 
 set suffixesadd+=.coffee
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Gundotree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("persistent_undo")
-    set undodir = "~/.undodir/"
-    set undofile
-endif
-
-let g:gundo_width = 60
-let g:gundo_preview_height = 20
-let g:gundo_auto_preview = 0
-nmap <F3> :GundoToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Fugitive
