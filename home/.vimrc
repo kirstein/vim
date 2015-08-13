@@ -211,12 +211,11 @@ let g:syntastic_javascript_checkers=['jsxhint']
 " => Clam
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap ! :Clam<space>
-vnoremap ! :ClamVisual<space>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Haskell shit
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>ht :GhcModTypeInsert<CR>
+" nmap <leader>ht :GhcModTypeInsert<CR>
 "au BufRead,BufNewFile,BufNew *.hss,*.hs setl ft=haskell.script
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -564,10 +563,6 @@ nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
-
-ab lod: ಠ_ಠ
-ab flip: (ﾉಥ益ಥ）ﾉ︵┻━┻
-ab yuno: ლ(ಠ益ಠლ))
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Jumping brackets
