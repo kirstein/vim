@@ -6,7 +6,7 @@ let mapleader = ","
 let g:mapleader = ","
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vundle nstall
+" => Vundle install
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let vundle_autoinstall = 0
 let vundle_readme = expand('~/.vim/bundle/vundle/README.md')
@@ -38,6 +38,8 @@ Bundle 'duggiefresh/vim-easydir'
 
 """ Tags
 Bundle 'kirstein/CoffeeTags'
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-easytags'
 Bundle 'majutsushi/tagbar'
 Bundle 'dbakker/vim-projectroot'
 
@@ -194,7 +196,7 @@ map <leader>vs :Vstylesheet
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " c-o triggers a snippet
 let g:UltiSnipsExpandTrigger="<c-o>"
-let snipsDir = $HOME."/workspace/vim-snippets/"
+let snipsDir = $HOME."/workspace/github/kirstein/vim-snippets/"
 let g:UltiSnipsSnippetDirectories=[ 'UltiSnips' ]
 if isdirectory(snipsDir)
   let g:UltiSnipsSnippetDirectories=[ snipsDir."**/UltiSnips" ]
@@ -368,6 +370,9 @@ vnoremap <C-p> "+gP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:CoffeeAutoTagFile=projectroot#guess() . "/.tags"
 let g:CoffeeAutoTagUseDispatch=1
+
+let g:easytags_async = 1
+let g:easytags_dynamic_files = 1
 
 set tags+=.tags
 
