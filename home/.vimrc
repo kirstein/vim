@@ -391,7 +391,7 @@ set foldmethod=marker
 set foldmarker={,}
 set foldnestmax=1
 
-nnoremap <Leader>z zMzvzz
+nnoremap <Leader>z zMzAzz
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Third party shit
