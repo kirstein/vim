@@ -386,9 +386,8 @@ let g:marked_app = 'Marked'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set foldmethod=manual
 set nofoldenable
-set foldmethod=marker
+set foldmethod=manual
 set foldmarker={,}
 set foldnestmax=1
 
