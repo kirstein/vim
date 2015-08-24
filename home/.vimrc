@@ -36,6 +36,8 @@ Bundle 'sjl/clam.vim'
 """ Allow creating directories with new or edit
 Bundle 'duggiefresh/vim-easydir'
 
+Bundle 'junegunn/vim-peekaboo'
+
 """ Tags
 Bundle 'kirstein/CoffeeTags'
 Bundle 'xolox/vim-misc'
@@ -173,11 +175,42 @@ filetype plugin indent on
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Testing
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! InvokeAllTests()
+  call InvokeTestByType('all')
+endfunction
+
+function! InvokeSingleTest()
+  call InvokeTestByType('single')
+endfunction
+
+function! InvokeTestByType(type)
+  if empty(&filetype) | return | endif
+  if !exists('g:test_commands') | return | endif
+
+  " Handles the case of curious filetypes
+  " such as javascript.jsx
+  let l:ft   = split(&filetype, "\\.")[0]
+  let l:cmds = get(g:test_commands, l:ft)
+  let l:cmd  = get(l:cmds, a:type)
+  
+  " No command defined for specific ft
+  if empty(l:cmd) | return | endif
+  exec(l:cmd)
+endfunction
+
+let g:test_commands = { 
+  \'javascript': { 'all': 'Dispatch npm test', 'single': 'Dispatch npm test -- %' },
+  \'ruby': { 'all': 'Rake spec test', 'single': 'Rake spec SPEC=%' }
+\}
+
+map <silent> \a :call InvokeAllTests()<CR>
+map <silent> \t :call InvokeSingleTest()<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Rails + rspec
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <silent> \a :Rake spec test<CR>
-map <silent> \t :Rake spec SPEC=%<CR>
-
 map <silent><leader>. :A<CR>
 map <silent><leader>\ :AV<CR>
 map <silent><leader>rr :Rake routes<CR>
@@ -389,7 +422,9 @@ let g:marked_app = 'Marked'
 set nofoldenable
 set foldmethod=marker
 set foldmarker={,}
-set foldnestmax=1
+set foldnestmax=2
+
+autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent
 
 nnoremap <Leader>z zMzAzz
 
@@ -457,7 +492,8 @@ vnoremap < <gv
 set hidden
 
 " map @q to Q, quicker macros
-nnoremap Q @q
+" Used recursive mapping because of vim bekaboo
+nmap Q @q
 
 " Toggle f2 as paste mode
 set pastetoggle=<F2>
