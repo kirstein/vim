@@ -656,7 +656,6 @@ highlight SpecialKey guifg=#4a4a59
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType ruby,python,javascript,coffee,markdown autocmd BufWritePre <buffer> :%s/\($\n\s*\)\+\%$//e
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Netrw
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -722,18 +721,6 @@ function! HaskellModuleSection(...)
 endfunction
 
 nmap <silent> --s "=HaskellModuleSection()<CR>gp
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Toggle errors
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! ToggleErrors()
-    let old_last_winnr = winnr('$')
-    lclose
-    if old_last_winnr == winnr('$')
-        " Nothing was closed, open syntastic error location panel
-        Errors
-    endif
-endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Open the first matching variable with require statement
