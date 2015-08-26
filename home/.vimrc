@@ -33,12 +33,14 @@ Bundle 'marijnh/tern_for_vim'
 Bundle 'pydave/vim-hiinterestingword'
 Bundle 'sjl/clam.vim'
 
+Bundle 'junegunn/goyo.vim'
+
 """ Allow creating directories with new or edit
 Bundle 'duggiefresh/vim-easydir'
 
 Bundle 'junegunn/vim-peekaboo'
 
-Bundle "kirstein/vim-ft-execute"
+Bundle "kirstein/vim-execute-ft"
 
 """ Tags
 Bundle 'kirstein/CoffeeTags'

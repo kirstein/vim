@@ -1,11 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/kirstein/workspace/toggl_next/app/scripts/notifications'
-let g:netrw_dirhist_2='/Users/kirstein'
-let g:netrw_dirhist_3='/Users/kirstein/workspace/vim-snippets'
-let g:netrw_dirhist_4='/Users/kirstein/workspace/vim-snippets/vim-javascript-node-snippets'
-let g:netrw_dirhist_5='/Users/kirstein/.homesick/repos/vim'
-let g:netrw_dirhist_6='/Users/kirstein/workspace/toggl_next/app/scripts/workspaces/edit'
-let g:netrw_dirhist_7='/Users/kirstein/workspace/github/kirstein/find-project-root/bin'
-let g:netrw_dirhist_8='/Users/kirstein/workspace/github/kirstein/vim-snippets/vim-javascript-snippets'
-let g:netrw_dirhist_9='/Users/kirstein/workspace/github/kirstein/vim-snippets/vim-javascript-snippets/UltiSnips'
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/Users/kirstein/workspace/github/kirstein/vim-execute-ft'
+let g:netrw_dirhist_2='/Users/kirstein/workspace/github/kirstein/vim-execute-ft/.git/info'
