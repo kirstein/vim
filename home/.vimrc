@@ -38,6 +38,8 @@ Bundle 'duggiefresh/vim-easydir'
 
 Bundle 'junegunn/vim-peekaboo'
 
+Bundle "kirstein/vim-ft-execute"
+
 """ Tags
 Bundle 'kirstein/CoffeeTags'
 Bundle 'xolox/vim-misc'
@@ -177,36 +179,13 @@ autocmd FileType javascript setlocal omnifunc=tern#Complete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Testing
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! InvokeAllTests()
-  call InvokeTestByType('all')
-endfunction
-
-function! InvokeSingleTest()
-  call InvokeTestByType('single')
-endfunction
-
-function! InvokeTestByType(type)
-  if empty(&filetype) | return | endif
-  if !exists('g:test_commands') | return | endif
-
-  " Handles the case of curious filetypes
-  " such as javascript.jsx
-  let l:ft   = split(&filetype, "\\.")[0]
-  let l:cmds = get(g:test_commands, l:ft)
-  let l:cmd  = get(l:cmds, a:type)
-  
-  " No command defined for specific ft
-  if empty(l:cmd) | return | endif
-  exec(l:cmd)
-endfunction
-
-let g:test_commands = { 
+let g:execute_ft_commands = { 
   \'javascript': { 'all': 'Dispatch npm test', 'single': 'Dispatch npm test -- %' },
   \'ruby': { 'all': 'Rake spec test', 'single': 'Rake spec SPEC=%' }
 \}
 
-map <silent> \a :call InvokeAllTests()<CR>
-map <silent> \t :call InvokeSingleTest()<CR>
+map <silent> \a :call ExecuteByFT("all")<CR>
+map <silent> \t :call ExecuteByFT("single")<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Rails + rspec
