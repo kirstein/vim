@@ -177,17 +177,20 @@ filetype plugin indent on
 " => Bundle: Tern
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType javascript setlocal omnifunc=tern#Complete
+set completeopt-=preview
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Testing
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:execute_ft_commands = { 
-  \'javascript': { 'all': 'Dispatch npm test', 'single': 'Dispatch npm test -- %' },
-  \'ruby': { 'all': 'Rake spec test', 'single': 'Rake spec SPEC=%' }
+  \'javascript': { 'all': 'Dispatch npm test', 'single': 'Dispatch npm test -- {file}' },
+  \'ruby': { 'all': 'Rake spec test', 'single': 'Rake spec SPEC={file}' }
 \}
 
+map <silent> \\ :call ExecuteByFtLast()<CR>
 map <silent> \a :call ExecuteByFT("all")<CR>
 map <silent> \t :call ExecuteByFT("single")<CR>
+map <silent> <C-c>j :wincmd j<CR>:bd<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Rails + rspec
@@ -753,6 +756,12 @@ function! OpenFirstRequire()
     let l:lnr = l:lnr + 1
   endwhile
 endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Highlight overlength columns
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
+match OverLength /\%81v.*/
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Source private config
