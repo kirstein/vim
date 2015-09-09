@@ -30,15 +30,10 @@ Bundle 'gmarik/vundle'
 
 Bundle 'marijnh/tern_for_vim'
 
-Bundle 'pydave/vim-hiinterestingword'
-Bundle 'sjl/clam.vim'
-
 Bundle 'junegunn/goyo.vim'
 
 """ Allow creating directories with new or edit
 Bundle 'duggiefresh/vim-easydir'
-
-Bundle 'junegunn/vim-peekaboo'
 
 Bundle "kirstein/vim-execute-ft"
 
@@ -225,11 +220,6 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_javascript_checkers=['jsxhint']
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Clam
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap ! :Clam<space>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Haskell shit
@@ -760,8 +750,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Highlight overlength columns
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
-match OverLength /\%81v.*/
+autocmd FileType ruby,python,javascript,coffee,vim autocmd BufWritePre <buffer> match ErrorMsg '\%>100v.\+'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Source private config
