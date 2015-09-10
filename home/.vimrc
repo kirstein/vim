@@ -25,134 +25,68 @@ call vundle#rc()
 "=> Bundles. Here be snakes.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""" Let vundle manage vundle
+""" Make sure to run
+""" cd ~/.vim/bundle/YouCompleteMe
+""" ./install.sh --clang-completer
+
 Bundle 'gmarik/vundle'
-
 Bundle 'marijnh/tern_for_vim'
-
 Bundle 'junegunn/goyo.vim'
-
-""" Allow creating directories with new or edit
 Bundle 'duggiefresh/vim-easydir'
-
 Bundle "kirstein/vim-execute-ft"
-
-""" Tags
 Bundle 'kirstein/CoffeeTags'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-easytags'
 Bundle 'majutsushi/tagbar'
 Bundle 'dbakker/vim-projectroot'
-
-""" React
 Bundle 'mxw/vim-jsx'
-
 """ Haskell stuff
 " Bundle 'dag/vim2hs'
 " Bundle 'eagletmt/ghcmod-vim'
 " Bundle 'Shougo/vimproc.vim'
-
-""" Go to directory
 Bundle 'justinmk/vim-gtfo'
-
-""" Sass, haml and Scss
 Bundle 'tpope/vim-haml'
-
 Bundle 'fatih/vim-go'
 Bundle 'tpope/vim-markdown'
 Bundle 'itspriddle/vim-marked'
-
-""" Make sure to run
-""" cd ~/.vim/bundle/YouCompleteMe
-""" ./install.sh --clang-completer
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'editorconfig/editorconfig-vim'
-
-""" Silver surfer
 Bundle 'rking/ag.vim'
-
-""" Airline
 Bundle 'bling/vim-airline'
-
-""" CtrlP
 Bundle 'ctrlpvim/ctrlp.vim'
-
-""" Emmet
 Bundle 'mattn/emmet-vim'
-
-""" Gist
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
-
-""" Repeat - repet enchance for tpope plugin
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-commentary'
-
-""" Slime - repl everything with tmux
 Bundle 'jpalardy/vim-slime'
 Bundle 'christoomey/vim-tmux-navigator'
-
-""" Syntastic
 Bundle 'scrooloose/syntastic'
-
-""" Tabular - align text with ease
 Bundle 'godlygeek/tabular'
-
-""" Textobj
 Bundle 'kana/vim-textobj-user'
 Bundle 'coderifous/textobj-word-column.vim'
 Bundle 'kana/vim-textobj-indent'
-
-""" Autoclose endings
 Bundle 'kana/vim-smartinput'
-
-""" Coffee-script
 Bundle 'kchmck/vim-coffee-script'
-
-""" Easymotion
 Bundle 'Lokaltog/vim-easymotion'
-
-""" Fugitive - git support
 Bundle 'tpope/vim-fugitive'
-
-""" Gitgutter - show modification gutter
 Bundle 'airblade/vim-gitgutter'
-
-""" JS support
 Bundle 'pangloss/vim-javascript'
 Bundle 'moll/vim-node'
-
-""" Matchit - make % more useful
 Bundle 'edsono/vim-matchit'
-
-""" Show marks as gutter
 Bundle 'kshenoy/vim-signature'
-
-""" Ultrasnips
 Bundle 'SirVer/ultisnips'
-
-""" All those glorious snippets
 Bundle 'kirstein/vim-javascript-snippets'
 Bundle 'kirstein/vim-javascript-node-snippets'
 Bundle 'kirstein/vim-jsx-snippets'
-
-""" Fs helpers. :Rename etc
 Bundle 'tpope/vim-eunuch'
-
-""" Surround
 Bundle 'tpope/vim-surround'
-
-""" Unimpaired - paired mappings
 Bundle 'tpope/vim-unimpaired'
-
-""" Ruby
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-rbenv'
 Bundle 'tpope/vim-dispatch'
 Bundle 'ecomba/vim-ruby-refactoring'
-
-""" Visual start - better search with * in visual mode
 Bundle 'thinca/vim-visualstar'
 Bundle 'mustache/vim-mustache-handlebars'
 
@@ -256,6 +190,7 @@ set suffixesadd+=.coffee
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <Leader>gb :Gblame<CR>
 nmap <Leader>gs :Gstatus<CR>
+nmap <Leader>gw :Gwrite<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Easymotion
@@ -519,10 +454,6 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
-" Toggle search highlighting
-nmap <Leader>n :set hls!<cr>
-vmap <Leader>n :set hls!<cr>
-
 " When searching try to be smart about cases
 set smartcase
 
@@ -542,6 +473,11 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
+
+" Various characters are wider than normal fixed width characters, but the
+" default setting of ambiwidth (single) squeezes them into normal width, which
+" sucks.  Setting it to double makes it awesome.
+set ambiwidth=double
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -691,11 +627,11 @@ fun! ConsoleTime() range
   if len(name) > 0
     let start = "console.time('".name."')"
     let end   = "console.timeEnd('".name."')"
-    normal `>j
+    normal! `>j
     exe "normal! O".end."\<CR>"
-    normal `<k
+    normal! `<k
     exe "normal! o\<CR>".start
-    normal `<
+    normal! `<
   endif
 endfunction
 
@@ -751,6 +687,14 @@ endfunction
 " => Highlight overlength columns
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType ruby,python,javascript,coffee,vim autocmd BufWritePre <buffer> match ErrorMsg '\%>100v.\+'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => I suck at spelling
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+iab reuqure require
+iab reuire require
+iab teh the
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Source private config
