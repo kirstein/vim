@@ -566,6 +566,9 @@ autocmd InsertEnter,InsertLeave * set cul!
 " Use relative numbers
 set relativenumber
 
+" Shorthand for dispatch
+nmap ! :Dispatch<space>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " List char
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -682,6 +685,20 @@ function! OpenFirstRequire()
     let l:lnr = l:lnr + 1
   endwhile
 endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Open the first matching variable with require statement
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Fill in require statement with the word under the cursor
+function! AddRequire() 
+  normal! "xyiw^[
+  normal! Arequire('')
+  normal! F';
+  normal! "xpVi'u$
+endfunction
+
+autocmd FileType javascript,coffee nmap <C-i> :call AddRequire()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Highlight overlength columns
