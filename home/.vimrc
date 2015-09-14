@@ -53,7 +53,6 @@ Bundle 'itspriddle/vim-marked'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'rking/ag.vim'
-Bundle 'bling/vim-airline'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'mattn/emmet-vim'
 Bundle 'mattn/webapi-vim'
@@ -217,13 +216,81 @@ map <leader>f :Ag!
 map <leader>F :Ag! -i 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Airline
+" => Statusline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set laststatus=2
-set noshowmode
-let g:airline_powerline_fonts = 1
-let g:airline_theme="murmur"
+"statusline setup
+set statusline =%#identifier#
+set statusline+=\ \%t\ \   "tail of the filename
+set statusline+=%*
 
+"display a warning if fileformat isnt unix
+set statusline+=%#warningmsg#
+set statusline+=%{&ff!='unix'?'['.&ff.']':''}
+set statusline+=%*
+
+"display a warning if file encoding isnt utf-8
+set statusline+=%#warningmsg#
+set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
+set statusline+=%*
+
+set statusline+=%h      "help file flag
+set statusline+=%y      "filetype
+
+"read only flag
+set statusline+=%#identifier#
+set statusline+=%r
+set statusline+=%*
+
+"modified flag
+set statusline+=%#identifier#
+set statusline+=%m
+set statusline+=%*
+
+"display a warning if &et is wrong, or we have mixed-indenting
+set statusline+=%#error#
+set statusline+=%{StatuslineTabWarning()}
+set statusline+=%*
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+"display a warning if &paste is set
+set statusline+=%#error#
+set statusline+=%{&paste?'[paste]':''}
+set statusline+=%*
+
+set statusline+=%=      "left/right separator
+set statusline+=%{fugitive#statusline()}
+set laststatus=2
+
+"recalculate the tab warning flag when idle and after writing
+autocmd cursorhold,bufwritepost * unlet! b:statusline_tab_warning
+
+"return '[&et]' if &et is set wrong
+"return '[mixed-indenting]' if spaces and tabs are used to indent
+"return an empty string if everything is fine
+function! StatuslineTabWarning()
+    if !exists("b:statusline_tab_warning")
+        let b:statusline_tab_warning = ''
+
+        if !&modifiable
+            return b:statusline_tab_warning
+        endif
+
+        let tabs = search('^\t', 'nw') != 0
+
+        "find spaces that arent used as alignment in the first indent column
+        let spaces = search('^ \{' . &ts . ',}[^\t]', 'nw') != 0
+
+        if tabs && spaces
+            let b:statusline_tab_warning =  '[mixed-indenting]'
+        elseif (spaces && !&et) || (tabs && &et)
+            let b:statusline_tab_warning = '[&et]'
+        endif
+    endif
+    return b:statusline_tab_warning
+endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Switch
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -582,7 +649,6 @@ set showbreak=↪
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬,trail:.
-map <Leader>l :set list!<CR>
 
 " Colors for chars
 "Invisible character colors
@@ -619,7 +685,7 @@ fun! ToggleVExplorer()
           unlet t:expl_buf_num
       endif
   else
-      exec '1wincmd w'
+      exec 'wincmd w'
       Vexplore
       let t:expl_buf_num = bufnr("%")
       :vertical resize 30

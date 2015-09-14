@@ -1,4 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/kirstein/.homesick/repos/vim/home/.vim/bundle/vim-execute-ft'
 let g:netrw_dirhist_2='/Users/kirstein/workspace/github/kirstein/perfectionist/src/patchers'
+let g:netrw_dirhist_3='/Users/mikk/.bash'
+let g:netrw_dirhist_4='/Users/mikk/workspace/github/testlio/onboarding-app'
+let g:netrw_dirhist_5='/Users/mikk/workspace/github/testlio/onboarding-app/js'
+let g:netrw_dirhist_6='/Users/mikk/workspace/github/testlio/onboarding-app/js/components'
+let g:netrw_dirhist_7='/Users/mikk/workspace/github/testlio/onboarding-app/js/components/sections'
