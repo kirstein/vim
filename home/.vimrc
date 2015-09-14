@@ -30,6 +30,7 @@ call vundle#rc()
 """ ./install.sh --clang-completer
 
 Bundle 'gmarik/vundle'
+Bundle 'AndrewRadev/switch.vim'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'junegunn/goyo.vim'
 Bundle 'duggiefresh/vim-easydir'
@@ -222,6 +223,11 @@ set laststatus=2
 set noshowmode
 let g:airline_powerline_fonts = 1
 let g:airline_theme="murmur"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: Switch
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> \s :Switch<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Gist
