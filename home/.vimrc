@@ -41,6 +41,7 @@ Bundle 'xolox/vim-easytags'
 Bundle 'majutsushi/tagbar'
 Bundle 'dbakker/vim-projectroot'
 Bundle 'mxw/vim-jsx'
+Bundle 'tpope/vim-abolish'
 """ Haskell stuff
 " Bundle 'dag/vim2hs'
 " Bundle 'eagletmt/ghcmod-vim'
@@ -89,6 +90,8 @@ Bundle 'tpope/vim-dispatch'
 Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'thinca/vim-visualstar'
 Bundle 'mustache/vim-mustache-handlebars'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'wavded/vim-stylus'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Automatically install bundles
@@ -113,7 +116,8 @@ set completeopt-=preview
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:execute_ft_commands = { 
   \'javascript': { 'all': 'Dispatch npm test', 'single': 'Dispatch npm test -- {file}' },
-  \'ruby': { 'all': 'Rake spec test', 'single': 'Rake spec SPEC={file}' }
+  \'ruby': { 'all': 'Rake spec test', 'single': 'Rake spec SPEC={file}' },
+  \'php': { 'all': 'Dispatch composer run test', 'single': 'Dispatch composer run test -- {file}' }
 \}
 
 map <silent> \\ :call ExecuteByFtLast()<CR>
@@ -153,7 +157,7 @@ endif
 " => Bundle: Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_always_populate_loc_list=1
-let g:syntastic_javascript_checkers=[ 'eslint']
+let g:syntastic_javascript_checkers=[ 'eslint' ]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Haskell shit
@@ -388,6 +392,7 @@ let g:CoffeeAutoTagUseDispatch=1
 
 let g:easytags_async = 1
 let g:easytags_dynamic_files = 1
+let g:easytags_auto_update = 0
 
 set tags+=.tags
 
@@ -770,8 +775,6 @@ function! AddRequire()
   normal! "xpVi'u$
 endfunction
 
-autocmd FileType javascript,coffee nmap <C-i> :call AddRequire()<CR>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Highlight overlength columns
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -784,43 +787,6 @@ autocmd FileType ruby,python,javascript,coffee,vim autocmd BufWritePre <buffer> 
 iab reuqure require
 iab reuire require
 iab teh the
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Follow symlinks
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-  function! MyFollowSymlink(...)
-    if exists('w:no_resolve_symlink') && w:no_resolve_symlink
-      return
-    endif
-    let fname = a:0 ? a:1 : expand('%')
-    if fname =~ '^\w\+:/'
-      " Do not mess with 'fugitive://' etc.
-      return
-    endif
-    let fname = simplify(fname)
-
-    let resolvedfile = resolve(fname)
-    if resolvedfile == fname
-      return
-    endif
-    let resolvedfile = fnameescape(resolvedfile)
-    let sshm = &shm
-    set shortmess+=A  " silence ATTENTION message about swap file (would get displayed twice)
-    exec 'file ' . resolvedfile
-    let &shm=sshm
-
-    " Re-init fugitive.
-    call fugitive#detect(resolvedfile)
-    if &modifiable
-      " Only display a note when editing a file, especially not for `:help`.
-      redraw  " Redraw now, to avoid hit-enter prompt.
-      echomsg 'Resolved symlink: =>' resolvedfile
-    endif
-  endfunction
-  command! FollowSymlink call MyFollowSymlink()
-  command! ToggleFollowSymlink let w:no_resolve_symlink = !get(w:, 'no_resolve_symlink', 0) | echo "w:no_resolve_symlink =>" w:no_resolve_symlink
-  au BufReadPost * nested call MyFollowSymlink(expand('%'))
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Source private config
