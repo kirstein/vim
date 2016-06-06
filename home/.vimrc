@@ -748,22 +748,6 @@ endfunction
 autocmd FileType ruby,python,javascript,coffee,vim autocmd BufWritePre <buffer> match ErrorMsg '\%>100v.\+'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Substitute file editing and generating
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! EditSubstitute(args)
-  if (len(a:args))<2
-    return
-  endif
-  let s:delimiter = (a:args[0])
-  let s:split = split(a:args,s:delimiter,1)[1:]
-  let s:fullpath = expand('%:p')
-  let s:bar = substitute(s:fullpath, s:split[0], s:split[1], "")
-  echo (s:bar)
-  silent execute('edit '.s:bar)
-endfunction
-command! -nargs=* E :call EditSubstitute(<q-args>)
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => I suck at spelling
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
