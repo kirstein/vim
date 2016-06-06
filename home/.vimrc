@@ -30,17 +30,24 @@ call vundle#rc()
 """ ./install.sh --clang-completer
 
 Bundle 'gmarik/vundle'
-Bundle 'AndrewRadev/switch.vim'
+Bundle 'jkramer/vim-checkbox'
+Bundle 'dyng/ctrlsf.vim'
+Bundle 'elzr/vim-json'
+" Bundle 'AndrewRadev/switch.vim'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'junegunn/goyo.vim'
 Bundle 'duggiefresh/vim-easydir'
-Bundle "kirstein/vim-execute-ft"
+Bundle 'kirstein/vim-execute-ft'
 " Bundle 'kirstein/CoffeeTags'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-easytags'
-Bundle 'majutsushi/tagbar'
+" dependency for syntaxrange
+Bundle 'vim-scripts/ingo-library' 
+Bundle 'vim-scripts/SyntaxRange'
+" Bundle 'xolox/vim-misc'
+" Bundle 'xolox/vim-easytags'
+" Bundle 'majutsushi/tagbar'
+Bundle 'tpope/vim-projectionist'
 Bundle 'dbakker/vim-projectroot'
-Bundle 'mxw/vim-jsx'
+" Bundle 'mxw/vim-jsx'
 Bundle 'tpope/vim-abolish'
 """ Haskell stuff
 " Bundle 'dag/vim2hs'
@@ -58,8 +65,6 @@ Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'mattn/emmet-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-commentary'
 Bundle 'jpalardy/vim-slime'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'scrooloose/syntastic'
@@ -70,7 +75,6 @@ Bundle 'kana/vim-textobj-indent'
 Bundle 'kana/vim-smartinput'
 " Bundle 'kchmck/vim-coffee-script'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'pangloss/vim-javascript'
 Bundle 'moll/vim-node'
@@ -80,6 +84,9 @@ Bundle 'SirVer/ultisnips'
 Bundle 'kirstein/vim-javascript-snippets'
 Bundle 'kirstein/vim-javascript-node-snippets'
 Bundle 'kirstein/vim-jsx-snippets'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-eunuch'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
@@ -90,8 +97,8 @@ Bundle 'tpope/vim-dispatch'
 " Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'thinca/vim-visualstar'
 Bundle 'mustache/vim-mustache-handlebars'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'wavded/vim-stylus'
+" Bundle 'digitaltoad/vim-jade'
+" Bundle 'wavded/vim-stylus'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Automatically install bundles
@@ -184,10 +191,10 @@ let g:slime_paste_file = tempname()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: CoffeeScript
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vmap /c <esc>:'<,'>:CoffeeCompile<CR>
-map /c :CoffeeCompile<CR>
+" vmap /c <esc>:'<,'>:CoffeeCompile<CR>
+" map /c :CoffeeCompile<CR>
 
-set suffixesadd+=.coffee
+" set suffixesadd+=.coffee
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Fugitive
@@ -218,6 +225,9 @@ vmap K y:<C-U>Ag! '<C-R>"'<CR>
 map todo :Ag! -i "todo"<CR>
 map <leader>f :Ag! 
 map <leader>F :Ag! -i 
+
+nmap <silent> <C-f> :CtrlSF 
+let g:ctrlsf_winsize = '50%'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Statusline
@@ -295,10 +305,6 @@ function! StatuslineTabWarning()
     endif
     return b:statusline_tab_warning
 endfunction
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Switch
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <silent> \s :Switch<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Gist
@@ -341,16 +347,16 @@ let g:jsx_pragma_required = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim go
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
+" au FileType go nmap <leader>r <Plug>(go-run)
+" au FileType go nmap <leader>b <Plug>(go-build)
+" au FileType go nmap <leader>t <Plug>(go-test)
+" au FileType go nmap <leader>c <Plug>(go-coverage)
 
-au FileType go nmap <Leader>e <Plug>(go-rename)
+" au FileType go nmap <Leader>e <Plug>(go-rename)
 
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+" au FileType go nmap <Leader>ds <Plug>(go-def-split)
+" au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+" au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Directory assigning
@@ -360,6 +366,15 @@ nnoremap \cd :cd %:p:h<CR>:pwd<CR>
 
 " Navigate to root `root_dir` directory
 nnoremap \rd :execute ':cd ' . projectroot#guess() <CR>:pwd<CR>
+
+let g:netrw_banner       = 0
+let g:netrw_keepdir      = 0
+let g:netrw_liststyle    = 3
+let g:netrw_sort_options = 'i'
+let g:netrw_altv         = 1
+let g:netrw_browse_split = 4
+
+nnoremap <silent> <C-e> :Lex<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Last tab
@@ -387,37 +402,34 @@ vnoremap <C-p> "+gP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tags
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:CoffeeAutoTagFile=projectroot#guess() . "/.tags"
-let g:CoffeeAutoTagUseDispatch=1
+" let g:CoffeeAutoTagFile=projectroot#guess() . "/.tags"
+" let g:CoffeeAutoTagUseDispatch=1
 
-let g:easytags_async = 1
-let g:easytags_dynamic_files = 1
-let g:easytags_auto_update = 0
+" let g:easytags_async = 1
+" let g:easytags_dynamic_files = 1
+" let g:easytags_auto_update = 0
 
-set tags+=.tags
+" set tags+=.tags
 
-nmap <F4> :Tagbar<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Marked
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:marked_app = 'Marked'
+" nmap <F4> :Tagbar<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nofoldenable
-set foldmethod=marker
-set foldmarker={,}
+set foldmethod=indent
+" set foldmarker={,}
 set foldnestmax=2
-
-autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent
 
 nnoremap <Leader>z zMzAzz
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Third party shit
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Skip autopair if dealing with whitespaces
+let g:AutoPairsOnlyWhitespace=1
+
+nmap <f4> :Goyo<CR>
 
 nmap vim :tabnew ~/.vimrc<CR>
 nmap tig :!tig %<CR>
@@ -425,6 +437,8 @@ nmap tig :!tig %<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <leader>t :e ~/workspace/notes.md<CR>
+
 " Give access to mouse support
 " Usable for resizing panes
 set mouse+=a
@@ -455,7 +469,7 @@ map <Leader>ts :tab split<CR>
 map <Leader>tc :tabc<CR>
 
 nmap <Leader>q :q<CR>
-map q: :q
+nmap /q q:
 
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
@@ -575,6 +589,9 @@ se cursorline
 set background=dark
 colorscheme molokai
 
+" set background=light
+" colorscheme PaperColor
+
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf-8
 
@@ -666,56 +683,6 @@ highlight SpecialKey guifg=#4a4a59
 autocmd FileType ruby,python,javascript,coffee,markdown autocmd BufWritePre <buffer> :%s/\($\n\s*\)\+\%$//e
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Netrw
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let g:netrw_banner       = 0
-let g:netrw_keepdir      = 0
-let g:netrw_liststyle    = 3
-let g:netrw_sort_options = 'i'
-let g:netrw_altv         = 1
-let g:netrw_browse_split = 4
-
-" Toggle Vexplore with Ctrl-E
-fun! ToggleVExplorer()
-  if exists("t:expl_buf_num")
-      let expl_win_num = bufwinnr(t:expl_buf_num)
-      if expl_win_num != -1
-          let cur_win_nr = winnr()
-          exec expl_win_num . 'wincmd w'
-          close
-          exec cur_win_nr . 'wincmd w'
-          unlet t:expl_buf_num
-      else
-          unlet t:expl_buf_num
-      endif
-  else
-      exec 'wincmd w'
-      Vexplore
-      let t:expl_buf_num = bufnr("%")
-      :vertical resize 30
-  endif
-endfunction
-map <silent> <C-E> :call ToggleVExplorer()<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Wrap everything to console.time - console.timeEnd
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-fun! ConsoleTime() range
-  let name = input("Name: ")
-  "let name = 'test'
-  if len(name) > 0
-    let start = "console.time('".name."')"
-    let end   = "console.timeEnd('".name."')"
-    normal! `>j
-    exe "normal! O".end."\<CR>"
-    normal! `<k
-    exe "normal! o\<CR>".start
-    normal! `<
-  endif
-endfunction
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Haskell mod section seperator
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:width = 80
@@ -781,12 +748,31 @@ endfunction
 autocmd FileType ruby,python,javascript,coffee,vim autocmd BufWritePre <buffer> match ErrorMsg '\%>100v.\+'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Substitute file editing and generating
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! EditSubstitute(args)
+  if (len(a:args))<2
+    return
+  endif
+  let s:delimiter = (a:args[0])
+  let s:split = split(a:args,s:delimiter,1)[1:]
+  let s:fullpath = expand('%:p')
+  let s:bar = substitute(s:fullpath, s:split[0], s:split[1], "")
+  echo (s:bar)
+  silent execute('edit '.s:bar)
+endfunction
+command! -nargs=* E :call EditSubstitute(<q-args>)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => I suck at spelling
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 iab reuqure require
 iab reuire require
 iab teh the
+iab testilo testlio
+iab quesiton question
+iab worksapce workspace
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Source private config
