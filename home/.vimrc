@@ -25,10 +25,6 @@ call vundle#rc()
 "=> Bundles. Here be snakes.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""" Make sure to run
-""" cd ~/.vim/bundle/YouCompleteMe
-""" ./install.sh --clang-completer
-
 Bundle 'gmarik/vundle'
 Bundle 'jkramer/vim-checkbox'
 Bundle 'dyng/ctrlsf.vim'
@@ -44,7 +40,7 @@ Bundle 'vim-scripts/ingo-library'
 Bundle 'vim-scripts/SyntaxRange'
 " Bundle 'xolox/vim-misc'
 " Bundle 'xolox/vim-easytags'
-" Bundle 'majutsushi/tagbar'
+Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-projectionist'
 Bundle 'dbakker/vim-projectroot'
 " Bundle 'mxw/vim-jsx'
@@ -58,7 +54,7 @@ Bundle 'tpope/vim-haml'
 Bundle 'fatih/vim-go'
 Bundle 'tpope/vim-markdown'
 Bundle 'itspriddle/vim-marked'
-Bundle 'Valloric/YouCompleteMe'
+Bundle 'shougo/neocomplete.vim'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'rking/ag.vim'
 Bundle 'ctrlpvim/ctrlp.vim'
@@ -81,18 +77,18 @@ Bundle 'moll/vim-node'
 Bundle 'edsono/vim-matchit'
 Bundle 'kshenoy/vim-signature'
 Bundle 'SirVer/ultisnips'
-Bundle 'kirstein/vim-javascript-snippets'
-Bundle 'kirstein/vim-javascript-node-snippets'
-Bundle 'kirstein/vim-jsx-snippets'
+Bundle 'kirstein/vim-snippets'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-eunuch'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
-" Bundle 'tpope/vim-rails'
-" Bundle 'tpope/vim-bundler'
-" Bundle 'tpope/vim-rbenv'
+Bundle 'tpope/vim-endwise'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-rbenv'
 Bundle 'tpope/vim-dispatch'
 " Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'thinca/vim-visualstar'
@@ -115,8 +111,8 @@ filetype plugin indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Tern
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType javascript setlocal omnifunc=tern#Complete
-set completeopt-=preview
+" autocmd FileType javascript setlocal omnifunc=tern#Complete
+set completeopt=menu,preview
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Testing
@@ -138,6 +134,7 @@ map <silent> <C-c>j :wincmd j<CR>:bd<CR>
 map <silent><leader>. :A<CR>
 map <silent><leader>\ :AV<CR>
 map <silent><leader>rr :Rake routes<CR>
+map <silent><leader>re :Rextract 
 
 map <leader>em :Emodel 
 map <leader>ec :Econtroller 
@@ -153,10 +150,12 @@ map <leader>vs :Vstylesheet
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " c-o triggers a snippet
 let g:UltiSnipsExpandTrigger="<c-o>"
+
+" load snippets from dir
 let snipsDir = $HOME."/workspace/github/kirstein/vim-snippets/"
 let g:UltiSnipsSnippetDirectories=[ 'UltiSnips' ]
 if isdirectory(snipsDir)
-  let g:UltiSnipsSnippetDirectories=[ snipsDir."**/UltiSnips" ]
+  let g:UltiSnipsSnippetDirectories=[ snipsDir."/UltiSnips" ]
 else
 endif
 
@@ -177,10 +176,25 @@ let g:syntastic_javascript_checkers=[ 'eslint' ]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vmap /a <esc>:'<,'>:Tabular /
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: YouCompleteMe
+" => Bundle: Neocomplete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_min_num_of_chars_for_completion = 1
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+
+let g:acp_enableAtStartup = 0
+let g:neocomplete#max_list = 10
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#force_overwrite_completefunc = 1
+
+" Tab complete
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Slime
@@ -202,6 +216,8 @@ let g:slime_paste_file = tempname()
 nmap <Leader>gb :Gblame<CR>
 nmap <Leader>gs :Gstatus<CR>
 nmap <Leader>gw :Gwrite<CR>
+nmap <Leader>gc :Gcommit -m 
+nmap <Leader>gp :Gpush
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Easymotion
@@ -405,13 +421,16 @@ vnoremap <C-p> "+gP
 " let g:CoffeeAutoTagFile=projectroot#guess() . "/.tags"
 " let g:CoffeeAutoTagUseDispatch=1
 
+set tags=./tags;,tags;
 " let g:easytags_async = 1
 " let g:easytags_dynamic_files = 1
-" let g:easytags_auto_update = 0
+" let g:easytags_auto_update = 1
 
-" set tags+=.tags
+" autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
+" autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
-" nmap <F4> :Tagbar<CR>
+nmap <F4> :Tagbar<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding
@@ -426,12 +445,7 @@ nnoremap <Leader>z zMzAzz
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Third party shit
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Skip autopair if dealing with whitespaces
-let g:AutoPairsOnlyWhitespace=1
-
-nmap <f4> :Goyo<CR>
-
-nmap vim :tabnew ~/.vimrc<CR>
+" nmap <f4> :Goyo<CR>
 nmap tig :!tig %<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -655,6 +669,9 @@ set nojoinspaces
 " Automatic save on buffer change etc
 set autowriteall
 
+" Format json
+nmap =j :%!python -m json.tool<CR>
+
 " Replace highlight line when insert and vice versa
 autocmd InsertEnter,InsertLeave * set cul!
 
@@ -728,18 +745,6 @@ function! OpenFirstRequire()
     endif
     let l:lnr = l:lnr + 1
   endwhile
-endfunction
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Open the first matching variable with require statement
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Fill in require statement with the word under the cursor
-function! AddRequire() 
-  normal! "xyiw^[
-  normal! Arequire('')
-  normal! F';
-  normal! "xpVi'u$
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
