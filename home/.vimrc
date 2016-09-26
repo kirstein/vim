@@ -26,20 +26,21 @@ call vundle#rc()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Bundle 'gmarik/vundle'
+Bundle 'metakirby5/codi.vim'
 Bundle 'jkramer/vim-checkbox'
 Bundle 'dyng/ctrlsf.vim'
-Bundle 'elzr/vim-json'
+Bundle 'dhruvasagar/vim-table-mode'
+Bundle 'kylef/apiblueprint.vim'
 " Bundle 'AndrewRadev/switch.vim'
-Bundle 'marijnh/tern_for_vim'
+" Bundle 'marijnh/tern_for_vim'
+" Bundle 'vim-scripts/YankRing.vim'
 Bundle 'junegunn/goyo.vim'
 Bundle 'duggiefresh/vim-easydir'
 Bundle 'kirstein/vim-execute-ft'
 " Bundle 'kirstein/CoffeeTags'
 " dependency for syntaxrange
-Bundle 'vim-scripts/ingo-library' 
-Bundle 'vim-scripts/SyntaxRange'
-" Bundle 'xolox/vim-misc'
-" Bundle 'xolox/vim-easytags'
+" Bundle 'vim-scripts/ingo-library' 
+" Bundle 'vim-scripts/SyntaxRange'
 Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-projectionist'
 Bundle 'dbakker/vim-projectroot'
@@ -78,6 +79,7 @@ Bundle 'edsono/vim-matchit'
 Bundle 'kshenoy/vim-signature'
 Bundle 'SirVer/ultisnips'
 Bundle 'kirstein/vim-snippets'
+Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
@@ -85,16 +87,16 @@ Bundle 'tpope/vim-eunuch'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-endwise'
-Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-rbenv'
 Bundle 'tpope/vim-dispatch'
-" Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'tpope/vim-vinegar'
+Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'thinca/vim-visualstar'
 Bundle 'mustache/vim-mustache-handlebars'
-" Bundle 'digitaltoad/vim-jade'
-" Bundle 'wavded/vim-stylus'
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-notes'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Automatically install bundles
@@ -109,10 +111,24 @@ endif
 filetype plugin indent on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: yankring
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>yr :YRShow <cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: table
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:table_mode_corner="|"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Tern
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " autocmd FileType javascript setlocal omnifunc=tern#Complete
-set completeopt=menu,preview
+" nmap <leader>td :TernDef<CR>
+" nmap <leader>tp :TernDefPreview<CR>
+let g:tern_request_timeout = 20
+set completeopt=menu
+set completeopt-=preview
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Testing
@@ -140,10 +156,12 @@ map <leader>em :Emodel
 map <leader>ec :Econtroller 
 map <leader>ev :Eview 
 map <leader>es :Estylesheet 
+map <leader>el :Elayout 
 map <leader>vm :Vmodel 
 map <leader>vc :Vcontroller 
 map <leader>vv :Vview 
 map <leader>vs :Vstylesheet 
+map <leader>vl :Vlayout 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Ultrasnips
@@ -176,6 +194,10 @@ let g:syntastic_javascript_checkers=[ 'eslint' ]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vmap /a <esc>:'<,'>:Tabular /
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: Notes
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:notes_directories = ['~/Dropbox/notes']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: Neocomplete
@@ -201,6 +223,11 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:slime_target = "tmux"
 let g:slime_paste_file = tempname()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundle: JavaScript
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:javascript_plugin_jsdoc = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundle: CoffeeScript
@@ -383,14 +410,15 @@ nnoremap \cd :cd %:p:h<CR>:pwd<CR>
 " Navigate to root `root_dir` directory
 nnoremap \rd :execute ':cd ' . projectroot#guess() <CR>:pwd<CR>
 
-let g:netrw_banner       = 0
+" let g:netrw_banner       = 0
 let g:netrw_keepdir      = 0
-let g:netrw_liststyle    = 3
-let g:netrw_sort_options = 'i'
-let g:netrw_altv         = 1
-let g:netrw_browse_split = 4
+" let g:netrw_liststyle    = 3
+" let g:netrw_sort_options = 'i'
+" let g:netrw_altv         = 1
+" let g:netrw_browse_split = 4
 
-nnoremap <silent> <C-e> :Lex<CR>
+set browsedir=current
+nnoremap <silent> <C-e> :Lex %:p:h<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Last tab
@@ -422,8 +450,6 @@ vnoremap <C-p> "+gP
 " let g:CoffeeAutoTagUseDispatch=1
 
 set tags=./tags;,tags;
-" let g:easytags_async = 1
-" let g:easytags_dynamic_files = 1
 " let g:easytags_auto_update = 1
 
 " autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
@@ -451,7 +477,7 @@ nmap tig :!tig %<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <silent> <leader>t :e ~/workspace/notes.md<CR>
+nmap <silent> \t :e ~/workspace/notes.md<CR>
 
 " Give access to mouse support
 " Usable for resizing panes
@@ -747,10 +773,42 @@ function! OpenFirstRequire()
   endwhile
 endfunction
 
+nmap <silent> <Leader>dd :call DupLine()<CR>
+
+" Duplicate the current line and keep the cursor as it was
+function! DupLine()
+  let a:cursor_pos = getpos(".")
+  :t.
+  call cursor(getpos('.')[1], a:cursor_pos[2])
+endfunction
+
+function! FuckImplicitReturn()
+  normal! $T>
+  normal! vf)
+  normal! "pd
+  execute "normal! i {\<CR>\<CR>}"
+  normal! kireturn
+  normal! "pp$i;
+  normal! ==
+endfunction
+
+function! HelloImplicitReturn()
+  normal! ^dwvt;"p
+  execute "normal! \<esc>"
+  normal! di}
+  execute "normal! k\<S-j>hdf}"
+  normal! 2h"pplx
+endfunction
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Highlight overlength columns
+" => Highlights 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+highlight CursorMovedHl guifg=red guibg=green
+
+hi IncSearch ctermfg=DarkGray
+
 autocmd FileType ruby,python,javascript,coffee,vim autocmd BufWritePre <buffer> match ErrorMsg '\%>100v.\+'
+" autocmd CursorMoved * silent! exe printf('match IncSearch /\<%s\>/', expand('<cword>'))
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => I suck at spelling
