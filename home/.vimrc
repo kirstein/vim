@@ -1,13 +1,9 @@
 filetype off
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Leaders.
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Leaders. {{{
 let mapleader = ","
 let g:mapleader = ","
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vundle install
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Vundle install {{{
 let vundle_autoinstall = 0
 let vundle_readme = expand('~/.vim/bundle/vundle/README.md')
 if !filereadable(vundle_readme)
@@ -20,21 +16,18 @@ endif
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> Bundles. Here be snakes.
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" }}}
+" Bundles {{{
 Bundle 'gmarik/vundle'
 Bundle 'metakirby5/codi.vim'
 Bundle 'jkramer/vim-checkbox'
 Bundle 'dyng/ctrlsf.vim'
 Bundle 'dhruvasagar/vim-table-mode'
 Bundle 'kylef/apiblueprint.vim'
+Bundle 'avakhov/vim-yaml'
 " Bundle 'AndrewRadev/switch.vim'
 " Bundle 'marijnh/tern_for_vim'
 " Bundle 'vim-scripts/YankRing.vim'
-Bundle 'junegunn/goyo.vim'
 Bundle 'duggiefresh/vim-easydir'
 Bundle 'kirstein/vim-execute-ft'
 " Bundle 'kirstein/CoffeeTags'
@@ -65,7 +58,6 @@ Bundle 'mattn/gist-vim'
 Bundle 'jpalardy/vim-slime'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'scrooloose/syntastic'
-Bundle 'godlygeek/tabular'
 Bundle 'kana/vim-textobj-user'
 Bundle 'coderifous/textobj-word-column.vim'
 Bundle 'kana/vim-textobj-indent'
@@ -97,42 +89,18 @@ Bundle 'thinca/vim-visualstar'
 Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-notes'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Automatically install bundles
-" => if the system did not have vundle installed
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Automatically install bundles {{{
 if vundle_autoinstall
   echo "Installing bundles..."
   echo ""
   :BundleInstall
 endif
+" }}}
 
 filetype plugin indent on
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: yankring
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>yr :YRShow <cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: table
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:table_mode_corner="|"
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Tern
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" autocmd FileType javascript setlocal omnifunc=tern#Complete
-" nmap <leader>td :TernDef<CR>
-" nmap <leader>tp :TernDefPreview<CR>
-let g:tern_request_timeout = 20
-set completeopt=menu
-set completeopt-=preview
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Testing
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Testing helpers {{{
 let g:execute_ft_commands = { 
   \'javascript': { 'all': 'Dispatch npm test', 'single': 'Dispatch npm test -- {file}' },
   \'ruby': { 'all': 'Rake spec test', 'single': 'Rake spec SPEC={file}' },
@@ -143,10 +111,11 @@ map <silent> \\ :call ExecuteByFtLast()<CR>
 map <silent> \a :call ExecuteByFT("all")<CR>
 map <silent> \t :call ExecuteByFT("single")<CR>
 map <silent> <C-c>j :wincmd j<CR>:bd<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Rails + rspec
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Bundle: table {{{
+let g:table_mode_corner="|"
+" }}}
+" Bundle: Rails + rspec {{{
 map <silent><leader>. :A<CR>
 map <silent><leader>\ :AV<CR>
 map <silent><leader>rr :Rake routes<CR>
@@ -162,10 +131,8 @@ map <leader>vc :Vcontroller
 map <leader>vv :Vview 
 map <leader>vs :Vstylesheet 
 map <leader>vl :Vlayout 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Ultrasnips
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Bundle: Ultrasnips {{{
 " c-o triggers a snippet
 let g:UltiSnipsExpandTrigger="<c-o>"
 
@@ -176,32 +143,15 @@ if isdirectory(snipsDir)
   let g:UltiSnipsSnippetDirectories=[ snipsDir."/UltiSnips" ]
 else
 endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Syntastic
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Bundle: Syntastic {{{
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_javascript_checkers=[ 'eslint' ]
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Haskell shit
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nmap <leader>ht :GhcModTypeInsert<CR>
-"au BufRead,BufNewFile,BufNew *.hss,*.hs setl ft=haskell.script
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Tabular
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vmap /a <esc>:'<,'>:Tabular /
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Notes
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Bundle: Notes {{{
 let g:notes_directories = ['~/Dropbox/notes']
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Neocomplete
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Bundle: Neocomplete {{{
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
@@ -216,39 +166,22 @@ let g:neocomplete#force_overwrite_completefunc = 1
 
 " Tab complete
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Slime
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Bundle: Slime {{{
 let g:slime_target = "tmux"
 let g:slime_paste_file = tempname()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: JavaScript
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Bundle: JavaScript {{{
 let g:javascript_plugin_jsdoc = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: CoffeeScript
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vmap /c <esc>:'<,'>:CoffeeCompile<CR>
-" map /c :CoffeeCompile<CR>
-
-" set suffixesadd+=.coffee
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Fugitive
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Bundle: Fugitive {{{
 nmap <Leader>gb :Gblame<CR>
 nmap <Leader>gs :Gstatus<CR>
 nmap <Leader>gw :Gwrite<CR>
 nmap <Leader>gc :Gcommit -m 
 nmap <Leader>gp :Gpush
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Easymotion
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Bundle: Easymotion {{{
 map <Space> <Plug>(easymotion-s)
 let g:EasyMotion_use_smartsign_us = 1
 let g:EasyMotion_smartcase = 1
@@ -256,10 +189,8 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 map /j <Plug>(easymotion-j)
 map /k <Plug>(easymotion-k)
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Ag
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Bundle: Ag {{{
 " bind K to grep word under cursor
 nmap K :Ag! "<C-R><C-W>"<CR>
 vmap K y:<C-U>Ag! '<C-R>"'<CR>
@@ -271,10 +202,37 @@ map <leader>F :Ag! -i
 
 nmap <silent> <C-f> :CtrlSF 
 let g:ctrlsf_winsize = '50%'
+" }}}
+" Bundle: Gist {{{
+let g:gist_clip_command = 'pbcopy'
+let g:gist_detect_filetype = 1
+let g:gist_post_private = 1
+let g:gist_show_privates = 1
+" }}}
+" Bundle: CtrlP {{{
+nnoremap /d :CtrlPCurWD<CR>
+nnoremap /b :CtrlPBuffer<CR>
+nnoremap /m :CtrlPMRU<CR>
+nnoremap /x :CtrlPTag<CR>
+nnoremap /a :CtrlPCurFile<CR>
+nnoremap /g :CtrlPLine<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Statusline
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Add fugitive porn to ignore
+let g:ctrlp_custom_ignore = '\.fugitive.*'
+
+" Overwrite the default mapping in order to let the C+p work
+let g:ctrlp_map = "/t"
+let g:ctrlp_extensions = [ 'line' ]
+
+let g:ctrlp_working_path_mode = 'ra'
+" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|.git\'
+" ag is fast enough that CtrlP doesn't need to cache
+let g:ctrlp_use_caching = 0
+" }}}
+
+" Statusline {{{
 "statusline setup
 set statusline =%#identifier#
 set statusline+=\ \%t\ \   "tail of the filename
@@ -348,62 +306,8 @@ function! StatuslineTabWarning()
     endif
     return b:statusline_tab_warning
 endfunction
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: Gist
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:gist_clip_command = 'pbcopy'
-let g:gist_detect_filetype = 1
-let g:gist_post_private = 1
-let g:gist_show_privates = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundle: CtrlP
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap /d :CtrlPCurWD<CR>
-nnoremap /b :CtrlPBuffer<CR>
-nnoremap /m :CtrlPMRU<CR>
-nnoremap /x :CtrlPTag<CR>
-nnoremap /a :CtrlPCurFile<CR>
-nnoremap /g :CtrlPLine<CR>
-
-" Add fugitive porn to ignore
-let g:ctrlp_custom_ignore = '\.fugitive.*'
-
-" Overwrite the default mapping in order to let the C+p work
-let g:ctrlp_map = "/t"
-let g:ctrlp_extensions = [ 'line' ]
-
-let g:ctrlp_working_path_mode = 'ra'
-" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-let g:ctrlp_custom_ignore = 'jmeter\|coverage\|target\|node_modules\|.DS_Store\|.git\'
-" ag is fast enough that CtrlP doesn't need to cache
-let g:ctrlp_use_caching = 0
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => React
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:jsx_ext_required = 0
-let g:jsx_pragma_required = 0
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim go
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" au FileType go nmap <leader>r <Plug>(go-run)
-" au FileType go nmap <leader>b <Plug>(go-build)
-" au FileType go nmap <leader>t <Plug>(go-test)
-" au FileType go nmap <leader>c <Plug>(go-coverage)
-
-" au FileType go nmap <Leader>e <Plug>(go-rename)
-
-" au FileType go nmap <Leader>ds <Plug>(go-def-split)
-" au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-" au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Directory assigning
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Directory assigning {{{
 " Make PWD the current file
 nnoremap \cd :cd %:p:h<CR>:pwd<CR>
 
@@ -419,33 +323,14 @@ let g:netrw_keepdir      = 0
 
 set browsedir=current
 nnoremap <silent> <C-e> :Lex %:p:h<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Last tab
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:lasttab = 1
-nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
-au TabLeave * let g:lasttab = tabpagenr()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Reload vimrc config each time
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup myvimrc
-    au!
-    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-augroup END
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Clipboard fun
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Clipboard  {{{
 nnoremap <C-y> "+y
 vnoremap <C-y> "+y
 nnoremap <C-p> "+gP
 vnoremap <C-p> "+gP
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Tags
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Tags {{{
 " let g:CoffeeAutoTagFile=projectroot#guess() . "/.tags"
 " let g:CoffeeAutoTagUseDispatch=1
 
@@ -457,28 +342,23 @@ set tags=./tags;,tags;
 " autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
 nmap <F4> :Tagbar<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Folding
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nofoldenable
+" }}}
+" Folding {{{
+set modelines=1
+" set nofoldenable
 set foldmethod=indent
 " set foldmarker={,}
 set foldnestmax=2
 
 nnoremap <Leader>z zMzAzz
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Third party shit
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nmap <f4> :Goyo<CR>
+" }}}
+" Bash helpers {{{
 nmap tig :!tig %<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <silent> \t :e ~/workspace/notes.md<CR>
-
+" Format json
+nmap =j :%!python -m json.tool<CR>
+" }}}
+" General {{{
 " Give access to mouse support
 " Usable for resizing panes
 set mouse+=a
@@ -525,6 +405,9 @@ nmap <silent> <leader>c :bp\|bd #<CR>
 " Select what has been pasted
 noremap gV `[v`]
 
+" Better bracket jumping
+noremap % v%
+
 " Keep the visual block if indenting
 vnoremap > >gv
 vnoremap < <gv
@@ -547,19 +430,21 @@ nmap <leader>s :w!<cr>
 
 " Display the last search in quickfix window
 nnoremap <silent> <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => window / pane magic
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Window / pane movements {{{
 " Easy window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM user interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Get off my lawn
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+" }}}
+" VIM user interface {{{
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
@@ -641,26 +526,8 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Yeah, no!
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Jumping brackets
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-noremap % v%
-set showmatch
-set matchtime=3
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Text, tab and indent related {{{
 " Use paces instead of tabs
 set expandtab
 
@@ -695,21 +562,10 @@ set nojoinspaces
 " Automatic save on buffer change etc
 set autowriteall
 
-" Format json
-nmap =j :%!python -m json.tool<CR>
-
-" Replace highlight line when insert and vice versa
-autocmd InsertEnter,InsertLeave * set cul!
-
 " Use relative numbers
 set relativenumber
-
-" Shorthand for dispatch
-nmap ! :Dispatch<space>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" List char
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" List chars {{{
 set showbreak=↪
 
 " Use the same symbols as TextMate for tabstops and EOLs
@@ -719,32 +575,27 @@ set listchars=tab:▸\ ,eol:¬,trail:.
 "Invisible character colors
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Remove trailing whitespaces when dealing with certain languages
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Autocommands {{{
+" Display too long lines
+autocmd FileType ruby,python,javascript,coffee,vim autocmd BufWritePre <buffer> match ErrorMsg '\%>100v.\+'
+
+" Remove trailing whitespaces when dealing with certain languages 
 autocmd FileType ruby,python,javascript,coffee,markdown autocmd BufWritePre <buffer> :%s/\($\n\s*\)\+\%$//e
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Haskell mod section seperator
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let s:width = 80
+" Reload vimrc config each time
+augroup myvimrc
+    au!
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END
 
-function! HaskellModuleSection(...)
-    let name = 0 < a:0 ? a:1 : inputdialog("Section name: ")
+" Replace highlight line when insert and vice versa
+autocmd InsertEnter,InsertLeave * set cul!
+" }}}
+" Custom functions {{{
 
-    return  repeat('-', s:width) . "\n"
-    \       . "--  " . name . "\n"
-    \       . "\n"
-
-endfunction
-
-nmap <silent> --s "=HaskellModuleSection()<CR>gp
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Open the first matching variable with require statement
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" Open the first matching variable with require statement
 nmap <silent> gw :call OpenFirstRequire()<CR>
 
 function! OpenFirstRequire()
@@ -799,20 +650,8 @@ function! HelloImplicitReturn()
   execute "normal! k\<S-j>hdf}"
   normal! 2h"pplx
 endfunction
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Highlights 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight CursorMovedHl guifg=red guibg=green
-
-hi IncSearch ctermfg=DarkGray
-
-autocmd FileType ruby,python,javascript,coffee,vim autocmd BufWritePre <buffer> match ErrorMsg '\%>100v.\+'
-" autocmd CursorMoved * silent! exe printf('match IncSearch /\<%s\>/', expand('<cword>'))
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => I suck at spelling
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" I suck at spelling {{{
 
 iab reuqure require
 iab reuire require
@@ -820,12 +659,6 @@ iab teh the
 iab testilo testlio
 iab quesiton question
 iab worksapce workspace
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Source private config
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-so ~/.vimrc-private
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Thats it, thats all folks
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim:foldmethod=marker:foldlevel=0
