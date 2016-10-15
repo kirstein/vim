@@ -1,4 +1,5 @@
 filetype off
+
 " Leaders. {{{
 let mapleader = ","
 let g:mapleader = ","
@@ -19,33 +20,17 @@ call vundle#rc()
 " }}}
 " Bundles {{{
 Bundle 'gmarik/vundle'
+Bundle 'Konfekt/FastFold'
 Bundle 'metakirby5/codi.vim'
-Bundle 'jkramer/vim-checkbox'
 Bundle 'dyng/ctrlsf.vim'
-Bundle 'dhruvasagar/vim-table-mode'
 Bundle 'kylef/apiblueprint.vim'
 Bundle 'avakhov/vim-yaml'
-" Bundle 'AndrewRadev/switch.vim'
-" Bundle 'marijnh/tern_for_vim'
-" Bundle 'vim-scripts/YankRing.vim'
 Bundle 'duggiefresh/vim-easydir'
 Bundle 'kirstein/vim-execute-ft'
-" Bundle 'kirstein/CoffeeTags'
-" dependency for syntaxrange
-" Bundle 'vim-scripts/ingo-library' 
-" Bundle 'vim-scripts/SyntaxRange'
 Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-projectionist'
 Bundle 'dbakker/vim-projectroot'
-" Bundle 'mxw/vim-jsx'
-Bundle 'tpope/vim-abolish'
-""" Haskell stuff
-" Bundle 'dag/vim2hs'
-" Bundle 'eagletmt/ghcmod-vim'
-" Bundle 'Shougo/vimproc.vim'
-Bundle 'justinmk/vim-gtfo'
 Bundle 'tpope/vim-haml'
-Bundle 'fatih/vim-go'
 Bundle 'tpope/vim-markdown'
 Bundle 'itspriddle/vim-marked'
 Bundle 'shougo/neocomplete.vim'
@@ -62,7 +47,6 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'coderifous/textobj-word-column.vim'
 Bundle 'kana/vim-textobj-indent'
 Bundle 'kana/vim-smartinput'
-" Bundle 'kchmck/vim-coffee-script'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'pangloss/vim-javascript'
@@ -71,7 +55,6 @@ Bundle 'edsono/vim-matchit'
 Bundle 'kshenoy/vim-signature'
 Bundle 'SirVer/ultisnips'
 Bundle 'kirstein/vim-snippets'
-Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
@@ -79,12 +62,8 @@ Bundle 'tpope/vim-eunuch'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-rbenv'
 Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-vinegar'
-Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'thinca/vim-visualstar'
 Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'xolox/vim-misc'
@@ -112,27 +91,27 @@ map <silent> \a :call ExecuteByFT("all")<CR>
 map <silent> \t :call ExecuteByFT("single")<CR>
 map <silent> <C-c>j :wincmd j<CR>:bd<CR>
 " }}}
-" Bundle: table {{{
-let g:table_mode_corner="|"
-" }}}
-" Bundle: Rails + rspec {{{
-map <silent><leader>. :A<CR>
-map <silent><leader>\ :AV<CR>
-map <silent><leader>rr :Rake routes<CR>
-map <silent><leader>re :Rextract 
+" " Bundle: table {{{
+" let g:table_mode_corner="|"
+" " }}}
+" " Bundle: Rails + rspec {{{
+" map <silent><leader>. :A<CR>
+" map <silent><leader>\ :AV<CR>
+" map <silent><leader>rr :Rake routes<CR>
+" map <silent><leader>re :Rextract 
 
-map <leader>em :Emodel 
-map <leader>ec :Econtroller 
-map <leader>ev :Eview 
-map <leader>es :Estylesheet 
-map <leader>el :Elayout 
-map <leader>vm :Vmodel 
-map <leader>vc :Vcontroller 
-map <leader>vv :Vview 
-map <leader>vs :Vstylesheet 
-map <leader>vl :Vlayout 
-" }}}
-" Bundle: Ultrasnips {{{
+" map <leader>em :Emodel 
+" map <leader>ec :Econtroller 
+" map <leader>ev :Eview 
+" map <leader>es :Estylesheet 
+" map <leader>el :Elayout 
+" map <leader>vm :Vmodel 
+" map <leader>vc :Vcontroller 
+" map <leader>vv :Vview 
+" map <leader>vs :Vstylesheet 
+" map <leader>vl :Vlayout 
+" " }}}
+" Bundle: Ultisnips {{{
 " c-o triggers a snippet
 let g:UltiSnipsExpandTrigger="<c-o>"
 
@@ -167,10 +146,10 @@ let g:neocomplete#force_overwrite_completefunc = 1
 " Tab complete
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " }}}
-" Bundle: Slime {{{
-let g:slime_target = "tmux"
-let g:slime_paste_file = tempname()
-" }}}
+" " Bundle: Slime {{{
+" let g:slime_target = "tmux"
+" let g:slime_paste_file = tempname()
+" " }}}
 " Bundle: JavaScript {{{
 let g:javascript_plugin_jsdoc = 1
 " }}}
