@@ -407,6 +407,9 @@ set autoread
 " Fast saving
 nmap <leader>s :w!<cr>
 
+" Fuzzy search with find
+set path+=**
+
 " Display the last search in quickfix window
 nnoremap <silent> <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 " }}}
@@ -432,7 +435,7 @@ set wildmenu
 set wildmode=longest:full,full
 
 " " Ignore compiled files
-set wildignore=.git,*/tmp,*/node_modules
+set wildignore=.git,*/tmp,**/node_modules/**,*/node_modules
 
 "Always show current position
 set ruler
