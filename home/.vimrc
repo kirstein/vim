@@ -51,7 +51,8 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'pangloss/vim-javascript'
 Bundle 'moll/vim-node'
-Bundle 'edsono/vim-matchit'
+Bundle 'ludovicchabant/vim-gutentags'
+"Bundle 'edsono/vim-matchit'
 Bundle 'kshenoy/vim-signature'
 Bundle 'SirVer/ultisnips'
 Bundle 'kirstein/vim-snippets'
@@ -310,9 +311,6 @@ nnoremap <C-p> "+gP
 vnoremap <C-p> "+gP
 " }}}
 " Tags {{{
-" let g:CoffeeAutoTagFile=projectroot#guess() . "/.tags"
-" let g:CoffeeAutoTagUseDispatch=1
-
 set tags=./tags;,tags;
 " let g:easytags_auto_update = 1
 
@@ -320,6 +318,7 @@ set tags=./tags;,tags;
 " autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
+let g:gutentags_exclude = ['*.min', 'node_modules']
 nmap <F4> :Tagbar<CR>
 " }}}
 " Folding {{{
@@ -328,7 +327,6 @@ set modelines=1
 set foldmethod=indent
 " set foldmarker={,}
 set foldnestmax=2
-
 nnoremap <Leader>z zMzAzz
 " }}}
 " Bash helpers {{{
@@ -414,17 +412,18 @@ set path+=**
 nnoremap <silent> <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 " }}}
 " Window / pane movements {{{
-" Easy window navigation
+" Easy window navigation {{{
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-
-" Get off my lawn
+" }}}
+" Get off my lawn {{{
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
+" }}}
 " }}}
 " VIM user interface {{{
 " Set 7 lines to the cursor - when moving vertically using j/k
@@ -560,26 +559,50 @@ highlight SpecialKey guifg=#4a4a59
 " }}}
 
 " Autocommands {{{
-" Display too long lines
+" Display too long lines {{{
 autocmd FileType ruby,python,javascript,coffee,vim autocmd BufWritePre <buffer> match ErrorMsg '\%>100v.\+'
-
-" Remove trailing whitespaces when dealing with certain languages 
+" }}}
+" Remove trailing whitespaces when dealing with certain languages  {{{
 autocmd FileType ruby,python,javascript,coffee,markdown autocmd BufWritePre <buffer> :%s/\($\n\s*\)\+\%$//e
-
-" Reload vimrc config each time
+" }}}
+" Reload vimrc config each time its saved {{{
 augroup myvimrc
     au!
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
-
-" Replace highlight line when insert and vice versa
+" }}}
+" Replace highlight line when insert and vice versa {{{
 autocmd InsertEnter,InsertLeave * set cul!
 " }}}
+" }}}
 " Custom functions {{{
-
-" Open the first matching variable with require statement
+" Zoom in given pane {{{
+func! s:zoom_toggle() abort
+  if 1 == winnr('$')
+    return
+  endif
+  let restore_cmd = winrestcmd()
+  wincmd |
+  wincmd _
+  " If the layout did not change, it's a toggle (un-zoom).
+  if restore_cmd ==# winrestcmd()
+    exe t:zoom_restore
+  else
+    let t:zoom_restore = restore_cmd
+  endif
+  return '<Nop>'
+endfunc
+func! s:zoom_or_goto_column(cnt) abort
+  if a:cnt
+    exe 'norm! '.v:count.'|'
+  else
+    call s:zoom_toggle()
+  endif
+endfunc
+nnoremap + :<C-U>call <SID>zoom_or_goto_column(v:count)<CR>
+" }}}
+" Open the first matching variable with require statement {{{
 nmap <silent> gw :call OpenFirstRequire()<CR>
-
 function! OpenFirstRequire()
   let l:name = expand("<cword>")
   " Find require statement
@@ -605,7 +628,8 @@ function! OpenFirstRequire()
     let l:lnr = l:lnr + 1
   endwhile
 endfunction
-
+" }}}
+" Duplicate line under cursor {{{
 nmap <silent> <Leader>dd :call DupLine()<CR>
 
 " Duplicate the current line and keep the cursor as it was
@@ -614,7 +638,8 @@ function! DupLine()
   :t.
   call cursor(getpos('.')[1], a:cursor_pos[2])
 endfunction
-
+" }}}
+" Turn implicit return into a function {{{
 function! FuckImplicitReturn()
   normal! $T>
   normal! vf)
@@ -624,7 +649,8 @@ function! FuckImplicitReturn()
   normal! "pp$i;
   normal! ==
 endfunction
-
+" }}}
+" Turn a function into a implicit return {{{
 function! HelloImplicitReturn()
   normal! ^dwvt;"p
   execute "normal! \<esc>"
@@ -632,6 +658,7 @@ function! HelloImplicitReturn()
   execute "normal! k\<S-j>hdf}"
   normal! 2h"pplx
 endfunction
+" }}}
 " }}}
 " I suck at spelling {{{
 
