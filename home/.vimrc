@@ -20,6 +20,8 @@ call vundle#rc()
 " }}}
 " Bundles {{{
 Bundle 'gmarik/vundle'
+Bundle 'digitaltoad/vim-pug'
+Bundle 'rizzatti/dash.vim'
 Bundle 'Konfekt/FastFold'
 Bundle 'metakirby5/codi.vim'
 Bundle 'dyng/ctrlsf.vim'
@@ -42,7 +44,7 @@ Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 Bundle 'jpalardy/vim-slime'
 Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'scrooloose/syntastic'
+Bundle 'w0rp/ale'
 Bundle 'kana/vim-textobj-user'
 Bundle 'coderifous/textobj-word-column.vim'
 Bundle 'kana/vim-textobj-indent'
@@ -69,6 +71,7 @@ Bundle 'thinca/vim-visualstar'
 Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-notes'
+Bundle 'mxw/vim-jsx'
 " }}}
 " Automatically install bundles {{{
 if vundle_autoinstall
@@ -124,9 +127,12 @@ if isdirectory(snipsDir)
 else
 endif
 " }}}
-" Bundle: Syntastic {{{
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_javascript_checkers=[ 'eslint' ]
+" " Bundle: Syntastic {{{
+" let g:syntastic_always_populate_loc_list=1
+" let g:syntastic_javascript_checkers=[ 'eslint' ]
+" " }}}
+" Bundle: Ale {{{
+let g:ale_statusline_format = [' ⨉ %d ', ' ⚠ %d ', ' ⬥ ok ']
 " }}}
 " Bundle: Notes {{{
 let g:notes_directories = ['~/Dropbox/notes']
@@ -247,7 +253,7 @@ set statusline+=%{StatuslineTabWarning()}
 set statusline+=%*
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{ALEGetStatusLine()}
 set statusline+=%*
 
 "display a warning if &paste is set
@@ -326,7 +332,7 @@ set modelines=1
 " set nofoldenable
 set foldmethod=indent
 " set foldmarker={,}
-set foldnestmax=2
+set foldnestmax=4
 nnoremap <Leader>z zMzAzz
 " }}}
 " Bash helpers {{{
@@ -417,12 +423,6 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-" }}}
-" Get off my lawn {{{
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
 " }}}
 " }}}
 " VIM user interface {{{
@@ -562,9 +562,9 @@ highlight SpecialKey guifg=#4a4a59
 " Display too long lines {{{
 autocmd FileType ruby,python,javascript,coffee,vim autocmd BufWritePre <buffer> match ErrorMsg '\%>100v.\+'
 " }}}
-" Remove trailing whitespaces when dealing with certain languages  {{{
-autocmd FileType ruby,python,javascript,coffee,markdown autocmd BufWritePre <buffer> :%s/\($\n\s*\)\+\%$//e
-" }}}
+" " Remove trailing whitespaces when dealing with certain languages  {{{
+" autocmd FileType ruby,python,javascript,coffee,markdown autocmd BufWritePre <buffer> :%s/\($\n\s*\)\+\%$//e
+" " }}}
 " Reload vimrc config each time its saved {{{
 augroup myvimrc
     au!
@@ -573,6 +573,14 @@ augroup END
 " }}}
 " Replace highlight line when insert and vice versa {{{
 autocmd InsertEnter,InsertLeave * set cul!
+" }}}
+" Show trailing whitespaces {{{
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 " }}}
 " }}}
 " Custom functions {{{
@@ -657,6 +665,21 @@ function! HelloImplicitReturn()
   normal! di}
   execute "normal! k\<S-j>hdf}"
   normal! 2h"pplx
+endfunction
+" }}}
+" Wrap stuff to console.time {{{
+fun! ConsoleTime() range
+  let name = input("Name: ")
+  "let name = 'test'
+  if len(name) > 0
+    let start = "console.time('".name."');"
+    let end   = "console.timeEnd('".name."');"
+    normal! `>j
+    exe "normal! O".end."\<CR>"
+    normal! `<k
+    exe "normal! o\<CR>".start
+    normal! `<
+  endif
 endfunction
 " }}}
 " }}}
